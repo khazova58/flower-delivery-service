@@ -1,0 +1,11 @@
+databaseChangeLog:
+  #Схема
+  - include:
+      file: db/changelog/schema/create-schema-delivery.sql
+  #Таблицы
+  - include:
+      file: db/changelog/tables/create-table-clients.sql
+  - include:
+      file: db/changelog/tables/create-table-couriers.sql
+  - include:
+      file: db/changelog/tables/create-table-orders.sql
