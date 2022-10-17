@@ -27,17 +27,17 @@ public class CourierController {
     }
 
     @GetMapping("/{id}")
-    public String getCourierNameByID(@PathVariable int id) {
+    public String getCourierNameByID(@PathVariable String id) {
         return "клиент";//TODO
     }
 
     @PutMapping("/{id}")
-    public String updateCourier(@PathVariable int id) {
+    public String updateCourier(@PathVariable String id) {
         return "обновить";//TODO
     }
 
     @DeleteMapping("/{id}")
-    public String deleteCourier(@PathVariable int id) {
+    public String deleteCourier(@PathVariable String id) {
         return "удалить";//TODO
     }
 }

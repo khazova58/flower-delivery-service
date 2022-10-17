@@ -22,7 +22,7 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public String getClientNameByID(@PathVariable int id) {
+    public String getClientNameByID(@PathVariable String id) {
         return "Найден клиент";//TODO
     }
 
@@ -32,12 +32,12 @@ public class ClientController {
     }
 
     @PutMapping("/{id}")
-    public String updateClient(@PathVariable int id) {
+    public String updateClient(@PathVariable String id) {
         return "update Client";//TODO
     }
 
     @DeleteMapping("/{id}")
-    public String deleteClient(@PathVariable int id) {
+    public String deleteClient(@PathVariable String id) {
         return "delete Client";//TODO
     }
 }
