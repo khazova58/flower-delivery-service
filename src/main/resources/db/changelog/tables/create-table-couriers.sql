@@ -3,7 +3,7 @@
 -- changeset yakhazova:create-table-clients
 create table if not exists DELIVERY.couriers
 (
-    courier_id   integer      not null primary key,
+    courier_id   varchar      not null primary key,
     name         varchar(100) not null,
     last_name    varchar(150) not null,
     phone_number varchar(15)  not null
