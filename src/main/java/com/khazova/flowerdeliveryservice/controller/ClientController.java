@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/client/")
+@RequestMapping("api/v1/clients")
 @Tag(name = "Клиент")
 public class ClientController {
 
@@ -20,28 +20,32 @@ public class ClientController {
     }
 
     @PostMapping
-    @Operation(description = "Новый клиент")
+    @Operation(summary = "Создать новю запись")
     public String newClient(ClientDTO client) {
         return "newClient";//TODO
     }
 
-    @GetMapping("/find/{id}")
-    public String getClientNameByID(@PathVariable int id) {
+    @GetMapping("/{id}")
+    @Operation(summary = "Получить запись по индентификатору")
+    public String getClientNameByID(@PathVariable String id) {
         return "Найден клиент";//TODO
     }
 
-    @GetMapping("/find")
+    @GetMapping
+    @Operation(summary = "Получить все записи")
     public List<ClientDTO> getAllClient() {
         return null;//TODO
     }
 
     @PutMapping("/{id}")
-    public String updateClient(@PathVariable int id) {
+    @Operation(summary = "Обновить запись с заданным индентификаторм")
+    public String updateClient(@PathVariable String id) {
         return "update Client";//TODO
     }
 
     @DeleteMapping("/{id}")
-    public String deleteClient(@PathVariable int id) {
+    @Operation(summary = "Удалить запись с заданным идентификатором")
+    public String deleteClient(@PathVariable String id) {
         return "delete Client";//TODO
     }
 }

@@ -1,6 +1,8 @@
 package com.khazova.flowerdeliveryservice.model.entity;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.id.UUIDGenerator;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,9 +19,10 @@ public class Client {
     private List<Orders> orders;
 
     @Id
-    @Column(name = "client_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer clientID;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "client_id", unique = true)
+    private String clientID;
 
     @Column(name = "name")
     private String name;

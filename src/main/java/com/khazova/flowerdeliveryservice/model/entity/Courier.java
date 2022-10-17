@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,9 +21,10 @@ public class Courier {
     private List<Orders> orders;
 
     @Id
-    @Column(name = "courier_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer courierID;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "courier_id", unique = true)
+    private String courierID;
 
     @Column(name = "name")
     private String name;
