@@ -21,12 +21,12 @@ public class OrderController {
         return null;
     }
 
-    @GetMapping("/find")
+    @GetMapping
     public List<OrderDTO> allOrder() {
         return null;
     }
 
-    @GetMapping("/find/{id}")
+    @GetMapping("/{id}")
     public List<OrderDTO> getOrderByIDClient(@PathVariable int id) {
         return null;
     }

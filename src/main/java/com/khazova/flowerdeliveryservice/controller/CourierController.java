@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/courier/")
+@RequestMapping("api/v1/couriers")
 public class CourierController {
 
     private final CourierService courierService;
@@ -21,12 +21,12 @@ public class CourierController {
         return "новый";//TODO
     }
 
-    @GetMapping("/find")
+    @GetMapping
     public List<CourierDTO> getAllCourier() {
         return null;//TODO
     }
 
-    @GetMapping("/find/{id}")
+    @GetMapping("/{id}")
     public String getCourierNameByID(@PathVariable int id) {
         return "клиент";//TODO
     }

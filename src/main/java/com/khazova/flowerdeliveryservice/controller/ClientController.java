@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/client/")
+@RequestMapping("api/v1/clients")
 public class ClientController {
 
     private final ClientService clientService;
@@ -21,12 +21,12 @@ public class ClientController {
         return "newClient";//TODO
     }
 
-    @GetMapping("/find/{id}")
+    @GetMapping("/{id}")
     public String getClientNameByID(@PathVariable int id) {
         return "Найден клиент";//TODO
     }
 
-    @GetMapping("/find")
+    @GetMapping
     public List<ClientDTO> getAllClient() {
         return null;//TODO
     }
