@@ -20,7 +20,7 @@ public class ClientController {
     }
 
     @PostMapping
-    @Operation(summary = "Создать новю запись")
+    @Operation(summary = "Создать новую запись")
     public String newClient(ClientDTO client) {
         return "newClient";//TODO
     }
