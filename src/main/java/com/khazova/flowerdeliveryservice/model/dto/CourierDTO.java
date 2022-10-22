@@ -1,4 +1,4 @@
-package com.khazova.flowerdeliveryservice.model.DTO;
+package com.khazova.flowerdeliveryservice.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;

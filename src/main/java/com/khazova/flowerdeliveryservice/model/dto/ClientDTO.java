@@ -1,10 +1,10 @@
-package com.khazova.flowerdeliveryservice.model.DTO;
+package com.khazova.flowerdeliveryservice.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 /**
- * DTO-класс - представление объекта Client в формате Имя, Фамилия, Телефон и eMail
+ * DTO-класс для ответа- представление объекта Client в формате Имя, Фамилия, Телефон и eMail
  */
 
 @Getter

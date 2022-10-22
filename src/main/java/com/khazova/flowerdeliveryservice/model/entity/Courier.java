@@ -1,24 +1,23 @@
 package com.khazova.flowerdeliveryservice.model.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Сущность для работы с Couriers
+ */
 @Entity
 @Table(name = "couriers")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 public class Courier {
 
     @OneToMany(mappedBy = "courier")
-    private List<Orders> orders;
+    private List<Order> orders;
 
     @Id
     @GeneratedValue(generator = "uuid")
