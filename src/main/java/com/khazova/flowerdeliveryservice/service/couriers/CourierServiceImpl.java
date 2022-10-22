@@ -1,7 +1,7 @@
 package com.khazova.flowerdeliveryservice.service.couriers;
 
 import com.khazova.flowerdeliveryservice.mapper.UserMapper;
-import com.khazova.flowerdeliveryservice.model.DTO.CourierDTO;
+import com.khazova.flowerdeliveryservice.model.dto.CourierDTO;
 import com.khazova.flowerdeliveryservice.model.entity.Courier;
 import com.khazova.flowerdeliveryservice.repository.CourierRepository;
 import org.springframework.stereotype.Service;
@@ -60,7 +60,7 @@ public class CourierServiceImpl implements CourierService {
     @Override
     public CourierDTO findOneCourierByID(String id) {
         Courier findCourier = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Курьер не найден"));//todo
+                .orElseThrow(() -> new RuntimeException("Курьер не найден"));//todo обработать ошибку
         return mapper.mapToCourierResponse(findCourier);
     }
 
@@ -74,7 +74,7 @@ public class CourierServiceImpl implements CourierService {
     @Transactional
     public boolean updateCourier(String id, CourierDTO updateCourier) {
         Courier courier = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Курьер не найден"));//todo
+                .orElseThrow(() -> new RuntimeException("Курьер не найден"));//todo обработать ошибку
         courier.setName(updateCourier.getName());
         courier.setLastName(updateCourier.getLastName());
         courier.setPhoneNumber(updateCourier.getPhoneNumber());
@@ -90,6 +90,8 @@ public class CourierServiceImpl implements CourierService {
     @Override
     @Transactional
     public boolean deleteCourier(String id) {
+        repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Курьер не найден"));//todo обработать ошибку
         repository.deleteById(id);
         return true;
     }

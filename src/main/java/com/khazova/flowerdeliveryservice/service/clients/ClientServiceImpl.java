@@ -1,7 +1,8 @@
 package com.khazova.flowerdeliveryservice.service.clients;
 
 import com.khazova.flowerdeliveryservice.mapper.ServiceMapper;
-import com.khazova.flowerdeliveryservice.model.DTO.ClientDTO;
+import com.khazova.flowerdeliveryservice.model.dto.ClientDTO;
+import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithId;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
 import com.khazova.flowerdeliveryservice.repository.ClientRepository;
 import org.springframework.stereotype.Service;
@@ -33,10 +34,10 @@ public class ClientServiceImpl implements ClientService {
      */
     @Override
     @Transactional
-    public String newClient(ClientDTO clientDTO) {
+    public ClientDtoWithId newClient(ClientDTO clientDTO) {
         Client newClient = mapper.clientDtoToEntity(clientDTO);
         repository.save(newClient);
-        return String.valueOf(newClient.getClientID());
+        return mapper.mapClientDtoWithId(newClient);
     }
 
     /**
@@ -96,6 +97,8 @@ public class ClientServiceImpl implements ClientService {
     @Override
     @Transactional
     public boolean deleteClientById(String id) {
+        repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Клиент не найден"));//todo обработать ошибку
         repository.deleteById(id);
         return true;
     }

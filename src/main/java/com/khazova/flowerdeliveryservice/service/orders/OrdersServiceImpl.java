@@ -1,7 +1,6 @@
 package com.khazova.flowerdeliveryservice.service.orders;
 
-import com.khazova.flowerdeliveryservice.mapper.OderMapper;
-import com.khazova.flowerdeliveryservice.model.DTO.OrderDTO;
+import com.khazova.flowerdeliveryservice.model.dto.OrderDTO;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
 import com.khazova.flowerdeliveryservice.model.entity.Courier;
 import com.khazova.flowerdeliveryservice.model.entity.Order;
@@ -20,13 +19,11 @@ public class OrdersServiceImpl implements OrdersService {
     private final OrderRepository repository;
     private final ClientRepository clientRepository;
     private final CourierRepository courierRepository;
-    private final OderMapper mapper;
 
-    public OrdersServiceImpl(OrderRepository repository, ClientRepository clientRepository, CourierRepository courierRepository, OderMapper mapper) {
+    public OrdersServiceImpl(OrderRepository repository, ClientRepository clientRepository, CourierRepository courierRepository) {
         this.repository = repository;
         this.clientRepository = clientRepository;
         this.courierRepository = courierRepository;
-        this.mapper = mapper;
     }
 
     @Override

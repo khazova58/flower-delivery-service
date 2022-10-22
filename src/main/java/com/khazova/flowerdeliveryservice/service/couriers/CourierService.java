@@ -1,6 +1,6 @@
 package com.khazova.flowerdeliveryservice.service.couriers;
 
-import com.khazova.flowerdeliveryservice.model.DTO.CourierDTO;
+import com.khazova.flowerdeliveryservice.model.dto.CourierDTO;
 
 import java.util.List;
 

@@ -1,6 +1,7 @@
 package com.khazova.flowerdeliveryservice.controller;
 
-import com.khazova.flowerdeliveryservice.model.DTO.ClientDTO;
+import com.khazova.flowerdeliveryservice.model.dto.ClientDTO;
+import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithId;
 import com.khazova.flowerdeliveryservice.service.clients.ClientService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,9 +22,8 @@ public class ClientController {
 
     @PostMapping
     @Operation(summary = "Создать новую запись")
-    public String newClient(@RequestBody ClientDTO client) {
-        String newClientID = clientService.newClient(client);
-        return "ID нового пользователя: " + newClientID;
+    public ClientDtoWithId newClient(@RequestBody ClientDTO client) {
+        return clientService.newClient(client);
     }
 
     @GetMapping("/{id}")

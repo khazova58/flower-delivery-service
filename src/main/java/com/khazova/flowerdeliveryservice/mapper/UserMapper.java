@@ -1,7 +1,8 @@
 package com.khazova.flowerdeliveryservice.mapper;
 
-import com.khazova.flowerdeliveryservice.model.DTO.ClientDTO;
-import com.khazova.flowerdeliveryservice.model.DTO.CourierDTO;
+import com.khazova.flowerdeliveryservice.model.dto.ClientDTO;
+import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithId;
+import com.khazova.flowerdeliveryservice.model.dto.CourierDTO;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
 import com.khazova.flowerdeliveryservice.model.entity.Courier;
 import org.springframework.stereotype.Component;
@@ -38,7 +39,7 @@ public class UserMapper implements ServiceMapper {
 
     /**
      * Перевод сущности Courier в формат ответа
-     * @param courier
+     * @param courier сущность  таблицы Courier
      * @return сущность в формате Name, LastName, PhoneNumber
      */
     @Override
@@ -58,5 +59,12 @@ public class UserMapper implements ServiceMapper {
     @Override
     public Courier courierDtoToEntity(CourierDTO courierDTO) {
         return new Courier(courierDTO.getName(), courierDTO.getLastName(), courierDTO.getPhoneNumber());
+    }
+
+    public ClientDtoWithId mapClientDtoWithId(Client client){
+        ClientDtoWithId dtoWithId = new ClientDtoWithId();
+        dtoWithId.setId(client.getClientID());
+        return dtoWithId;
+
     }
 }

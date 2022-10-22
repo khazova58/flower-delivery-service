@@ -1,6 +1,7 @@
 package com.khazova.flowerdeliveryservice.service.clients;
 
-import com.khazova.flowerdeliveryservice.model.DTO.ClientDTO;
+import com.khazova.flowerdeliveryservice.model.dto.ClientDTO;
+import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithId;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface ClientService {
      * @param client клиент
      * @return ID клиента
      */
-    String newClient(ClientDTO client);
+    ClientDtoWithId newClient(ClientDTO client);
 
     /**
      * Возвращает всех клиентов

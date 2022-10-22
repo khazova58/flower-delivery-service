@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Сущность для работы с Orders
+ * Сущность для работы с таблицей Orders
  */
 @Entity
 @Table(name = "orders")

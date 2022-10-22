@@ -1,6 +1,6 @@
 package com.khazova.flowerdeliveryservice.controller;
 
-import com.khazova.flowerdeliveryservice.model.DTO.CourierDTO;
+import com.khazova.flowerdeliveryservice.model.dto.CourierDTO;
 import com.khazova.flowerdeliveryservice.service.couriers.CourierService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
