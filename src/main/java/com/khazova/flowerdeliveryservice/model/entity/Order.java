@@ -1,20 +1,22 @@
 package com.khazova.flowerdeliveryservice.model.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * Сущность для работы с Orders
+ */
 @Entity
 @Table(name = "orders")
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
-public class Orders {
+public class Order {
 
     @ManyToOne
     @JoinColumn(name = "courier_id", referencedColumnName = "courier_id")
@@ -25,9 +27,10 @@ public class Orders {
     private Client client;
 
     @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "order_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer orderID;
+    private String orderID;
 
     @Column(name = "address_client")
     private String addressClient;
@@ -36,14 +39,24 @@ public class Orders {
     private String addressDelivery;
 
     @Column(name = "status_order")
-    private String statusOrder;
+    private String statusOrder = "Новый";
 
+    @Version
     @Column(name = "version_order")
     private int versionOrder;
 
+    @CreationTimestamp
     @Column(name = "date_of_order")
     private Date dateOfOrder;
 
+    @UpdateTimestamp
     @Column(name = "date_of_update")
     private Date dateOfUpdate;
+
+    public Order(Courier courier, Client client, String addressClient, String addressDelivery) {
+        this.courier = courier;
+        this.client = client;
+        this.addressClient = addressClient;
+        this.addressDelivery = addressDelivery;
+    }
 }

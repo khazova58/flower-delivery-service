@@ -2,21 +2,22 @@ package com.khazova.flowerdeliveryservice.model.entity;
 
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.id.UUIDGenerator;
 
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Сущность для работы с Clients
+ */
 @Entity
 @Table(name = "clients")
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 public class Client {
 
     @OneToMany(mappedBy = "client")
-    private List<Orders> orders;
+    private List<Order> orders;
 
     @Id
     @GeneratedValue(generator = "uuid")

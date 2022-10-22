@@ -1,17 +1,15 @@
 package com.khazova.flowerdeliveryservice.model.DTO;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Date;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class OrderDTO {
     private String addressClient;
     private String addressDelivery;
-    private String statusOrder;
-    private int versionOrder;
-    private Date dateOfOrder;
-    private Date dateOfUpdate;
+    private String clientId;
+    private String courierId;
 }

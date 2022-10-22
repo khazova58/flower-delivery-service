@@ -8,17 +8,17 @@ public interface CourierService {
     /**
      * Добавление нового клиента в БД
      *
-     * @param courier курьер
+     * @param newCourier курьер
      * @return ID курьера
      */
-    String newCourier(CourierDTO courier);
+    String newCourier(CourierDTO newCourier);
 
     /**
      * Возвращает всех курьеров
      *
      * @return List курьеров
      */
-    List<CourierDTO> getAllCourier();
+    List<CourierDTO> findAll();
 
     /**
      * Возвращает имя и фамилию курьера по ID
@@ -26,7 +26,7 @@ public interface CourierService {
      * @param id курьера
      * @return name, lastName курьера
      */
-    String getCourierNameByID(int id);
+    CourierDTO findOneCourierByID(String id);
 
     /**
      * Редактирование курьера по ID
@@ -34,7 +34,7 @@ public interface CourierService {
      * @param id курьера
      * @return execution message
      */
-    String updateCourier(int id);
+    boolean updateCourier(String id, CourierDTO updateCourier);
 
     /**
      * Удаление курьера из БД
@@ -42,5 +42,5 @@ public interface CourierService {
      * @param id курьера
      * @return execution message
      */
-    String deleteCourier(int id);
+    boolean deleteCourier(String id);
 }

@@ -22,30 +22,30 @@ public class CourierController {
     @PostMapping
     @Operation(summary = "Создать новую запись")
     public String newCourier(CourierDTO courier) {
-        return "новый";//TODO
+        return courierService.newCourier(courier);
     }
 
     @GetMapping
     @Operation(summary = "Получить все записи")
     public List<CourierDTO> getAllCourier() {
-        return null;//TODO
+        return courierService.findAll();
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Получить запись по идентификатору")
-    public String getCourierNameByID(@PathVariable String id) {
-        return "клиент";//TODO
+    public CourierDTO getCourierNameByID(@PathVariable String id) {
+        return courierService.findOneCourierByID(id);
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Обновить запись с заданным идентификатором")
-    public String updateCourier(@PathVariable String id) {
-        return "обновить";//TODO
+    public boolean updateCourier(@PathVariable String id, @RequestBody CourierDTO updateCourier) {
+        return courierService.updateCourier(id, updateCourier);
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Удалить запись с заданным индентификаторм")
-    public String deleteCourier(@PathVariable String id) {
-        return "удалить";//TODO
+    public boolean deleteCourier(@PathVariable String id) {
+        return courierService.deleteCourier(id);
     }
 }

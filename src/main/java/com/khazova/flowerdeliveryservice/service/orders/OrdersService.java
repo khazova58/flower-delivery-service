@@ -1,5 +1,7 @@
 package com.khazova.flowerdeliveryservice.service.orders;
 
+import com.khazova.flowerdeliveryservice.model.DTO.ClientDTO;
+import com.khazova.flowerdeliveryservice.model.DTO.CourierDTO;
 import com.khazova.flowerdeliveryservice.model.DTO.OrderDTO;
 
 import java.util.List;
@@ -8,17 +10,17 @@ public interface OrdersService {
     /**
      * Создание нового заказа
      *
-     * @param order заказ
+     * @param dto
      * @return execution message
      */
-    String newOrder(OrderDTO order);
+    String newOrder(OrderDTO dto);
 
     /**
      * Возвращает все заказы
      *
      * @return list - список заказов
      */
-    List<OrderDTO> allOrder();
+    List<OrderDTO> findAllOrder();
 
     /**
      * Возвращает заказ клиента по ID
@@ -34,7 +36,7 @@ public interface OrdersService {
      * @param id заказа
      * @return execution message
      */
-    String updateOrder(int id);
+    boolean updateOrder(int id);
 
     /**
      * Удаление заказа по ID
@@ -42,5 +44,5 @@ public interface OrdersService {
      * @param id заказа
      * @return execution message
      */
-    String deleteOrder(int id);
+    boolean deleteOrder(int id);
 }
