@@ -7,7 +7,7 @@
 * поиск объектов по заданным критериям
 
 Для локального запуска проекта понадобится:
-* IntelliJ IDEA v.17
+* IntelliJ IDEA
 * JDK 17
 * [Ссылка](https://github.com/khazova58/flower-delivery-service.git) на репозиторий
 * [API проекта](http://localhost:8080/swagger-ui/index.html#/)
