@@ -6,8 +6,11 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 public class ClientDtoWithId{
     private String id;
 
+    @Override
+    public String toString() {
+        return id;
+    }
 }
