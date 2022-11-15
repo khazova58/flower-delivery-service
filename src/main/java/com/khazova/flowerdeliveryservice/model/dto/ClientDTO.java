@@ -5,11 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Objects;
-
 /**
  * DTO-класс для ответа- представление объекта Client в формате Имя, Фамилия, Телефон и eMail
  */
+
 
 @Getter
 @Setter

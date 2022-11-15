@@ -16,8 +16,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyBoolean;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -32,9 +30,9 @@ public class ClientControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private ClientDTO dto = new ClientDTO("Sveta", "Sokolova", "89253651414", "test@mail.ru");
+    private final ClientDTO dto = new ClientDTO("Sveta", "Sokolova", "89253651414", "test@mail.ru");
 
-    String id = "testId";
+    private final String id = "testId";
 
     @Test
     void newClient() throws Exception {
@@ -71,7 +69,7 @@ public class ClientControllerTest {
     /**
      * Тест проверки функционала поиска всех клиентов
      *
-     * @throws Exception
+     * @throws Exception ошибка, если не найден
      */
     @Test
     void findAllClients() throws Exception {
