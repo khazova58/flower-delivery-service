@@ -5,10 +5,12 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Сущность для работы с Clients
  */
+
 @Entity
 @Table(name = "clients")
 @Getter
@@ -42,5 +44,18 @@ public class Client {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return Objects.equals(clientID, client.clientID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(clientID);
     }
 }

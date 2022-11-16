@@ -2,12 +2,9 @@ package com.khazova.flowerdeliveryservice.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
-public class ClientDtoWithId{
+public class ClientDtoWithId extends ClientDTO{
     private String id;
-
 }

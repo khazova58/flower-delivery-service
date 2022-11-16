@@ -5,13 +5,16 @@ import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithId;
 import com.khazova.flowerdeliveryservice.service.clients.ClientService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.http.MediaType;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/clients")
-@Tag(name = "Клиент")
+@RequestMapping(value = "api/v1/clients", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ClientController {
 
     private final ClientService clientService;
