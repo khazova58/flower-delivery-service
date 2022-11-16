@@ -1,9 +1,9 @@
 package com.khazova.flowerdeliveryservice.service.clients;
 
-import com.khazova.flowerdeliveryservice.mapper.ServiceMapper;
-import com.khazova.flowerdeliveryservice.model.dto.ClientDTO;
+import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithId;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
+import com.khazova.flowerdeliveryservice.model.mapper.ClientMapper;
 import com.khazova.flowerdeliveryservice.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,9 +19,9 @@ import java.util.List;
 public class ClientServiceImpl implements ClientService {
 
     private final ClientRepository repository;
-    private final ServiceMapper mapper;
+    private final ClientMapper mapper;
 
-    public ClientServiceImpl(ClientRepository repository, ServiceMapper mapper) {
+    public ClientServiceImpl(ClientRepository repository, ClientMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
@@ -34,10 +34,10 @@ public class ClientServiceImpl implements ClientService {
      */
     @Override
     @Transactional
-    public ClientDtoWithId newClient(ClientDTO clientDTO) {
-        Client newClient = mapper.clientDtoToEntity(clientDTO);
+    public ClientDtoWithId newClient(ClientDto clientDTO) {
+        Client newClient = mapper.dtoMapToClient(clientDTO);
         repository.save(newClient);
-        return mapper.mapClientDtoWithId(newClient);
+        return mapper.clientMapToDtoWithId(newClient);
     }
 
     /**
@@ -46,11 +46,11 @@ public class ClientServiceImpl implements ClientService {
      * @return list клиентов
      */
     @Override
-    public List<ClientDTO> findAllClients() {
+    public List<ClientDto> findAllClients() {
         List<Client> findClients = repository.findAll();
-        List<ClientDTO> dtoClient = new ArrayList<>();
+        List<ClientDto> dtoClient = new ArrayList<>();
         for (Client client : findClients) {
-            dtoClient.add(mapper.mapToClientResponse(client));
+            dtoClient.add(mapper.clientMapToDTO(client));
         }
         return dtoClient;
     }
@@ -62,10 +62,10 @@ public class ClientServiceImpl implements ClientService {
      * @return найденный клиент
      */
     @Override
-    public ClientDTO findOneClientByID(String id) {
+    public ClientDto findOneClientByID(String id) {
         Client client = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Клиент не найден"));//todo обработать ошибку
-        return mapper.mapToClientResponse(client);
+        return mapper.clientMapToDTO(client);
     }
 
     /**
@@ -77,7 +77,7 @@ public class ClientServiceImpl implements ClientService {
      */
     @Override
     @Transactional
-    public boolean updateClient(String id, ClientDTO updateClient) {
+    public boolean updateClient(String id, ClientDto updateClient) {
         Client client = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Клиент не найден"));//todo обработать ошибку
         client.setName(updateClient.getName());

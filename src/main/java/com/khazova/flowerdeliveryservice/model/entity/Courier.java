@@ -33,10 +33,4 @@ public class Courier {
 
     @Column(name = "phone_number")
     private String phoneNumber;
-
-    public Courier(String name, String lastName, String phoneNumber) {
-        this.name = name;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-    }
 }

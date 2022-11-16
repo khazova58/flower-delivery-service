@@ -1,6 +1,6 @@
 package com.khazova.flowerdeliveryservice.service.couriers;
 
-import com.khazova.flowerdeliveryservice.model.dto.CourierDTO;
+import com.khazova.flowerdeliveryservice.model.dto.CourierDto;
 
 import java.util.List;
 
@@ -11,14 +11,14 @@ public interface CourierService {
      * @param newCourier курьер
      * @return ID курьера
      */
-    String newCourier(CourierDTO newCourier);
+    String newCourier(CourierDto newCourier);
 
     /**
      * Возвращает всех курьеров
      *
      * @return List курьеров
      */
-    List<CourierDTO> findAll();
+    List<CourierDto> findAll();
 
     /**
      * Возвращает имя и фамилию курьера по ID
@@ -26,7 +26,7 @@ public interface CourierService {
      * @param id курьера
      * @return name, lastName курьера
      */
-    CourierDTO findOneCourierByID(String id);
+    CourierDto findOneCourierByID(String id);
 
     /**
      * Редактирование курьера по ID
@@ -34,7 +34,7 @@ public interface CourierService {
      * @param id курьера
      * @return execution message
      */
-    boolean updateCourier(String id, CourierDTO updateCourier);
+    boolean updateCourier(String id, CourierDto updateCourier);
 
     /**
      * Удаление курьера из БД

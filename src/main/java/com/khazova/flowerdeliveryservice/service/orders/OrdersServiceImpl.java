@@ -1,6 +1,6 @@
 package com.khazova.flowerdeliveryservice.service.orders;
 
-import com.khazova.flowerdeliveryservice.model.dto.OrderDTO;
+import com.khazova.flowerdeliveryservice.model.dto.OrderDto;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
 import com.khazova.flowerdeliveryservice.model.entity.Courier;
 import com.khazova.flowerdeliveryservice.model.entity.Order;
@@ -28,21 +28,21 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     @Transactional
-    public String newOrder(OrderDTO dto) {
+    public String newOrder(OrderDto dto) {
         Client client = clientRepository.findById(dto.getClientId()).orElseThrow(() -> new RuntimeException("Client not found"));
         Courier courier = courierRepository.findById(dto.getCourierId()).orElseThrow(() -> new RuntimeException("Courier not found"));
         Order order = new Order(courier, client, dto.getAddressClient(), dto.getAddressDelivery());
         repository.save(order);
-        return "Заказ: " + order.getOrderID() + " разместил клиент: " + order.getClient().getClientID();
+        return "Заказ: " + order.getOrderID() + " разместил клиент: " + order.getClient().getClientId();
     }
 
     @Override
-    public List<OrderDTO> findAllOrder() {
+    public List<OrderDto> findAllOrder() {
         return null;
     }
 
     @Override
-    public List<OrderDTO> getOrderByIDClient(int id) {
+    public List<OrderDto> getOrderByIDClient(int id) {
         return null;
     }
 

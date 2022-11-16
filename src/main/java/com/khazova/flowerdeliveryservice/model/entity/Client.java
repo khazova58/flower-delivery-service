@@ -25,7 +25,7 @@ public class Client {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "client_id", unique = true)
-    private String clientID;
+    private String clientId;
 
     @Column(name = "name")
     private String name;
@@ -51,11 +51,11 @@ public class Client {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
-        return Objects.equals(clientID, client.clientID);
+        return Objects.equals(clientId, client.clientId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(clientID);
+        return Objects.hash(clientId);
     }
 }
