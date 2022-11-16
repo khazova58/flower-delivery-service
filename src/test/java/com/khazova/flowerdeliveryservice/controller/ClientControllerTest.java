@@ -3,6 +3,7 @@ package com.khazova.flowerdeliveryservice.controller;
 import com.khazova.flowerdeliveryservice.model.dto.ClientDTO;
 import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithId;
 import com.khazova.flowerdeliveryservice.service.clients.ClientService;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,7 @@ public class ClientControllerTest {
     private final String id = "testId";
 
     @Test
+    @DisplayName("Создание нового клиента")
     void newClient() throws Exception {
         ClientDtoWithId withId = new ClientDtoWithId();
         withId.setId(id);
@@ -57,6 +59,7 @@ public class ClientControllerTest {
     }
 
     @Test
+    @DisplayName("Получение клиента по ID")
     void findOneClient() throws Exception {
         Mockito.when(service.findOneClientByID(id)).thenReturn(dto);
 
@@ -66,12 +69,8 @@ public class ClientControllerTest {
                 .andExpect(jsonPath("$.name").value("Sveta"));
     }
 
-    /**
-     * Тест проверки функционала поиска всех клиентов
-     *
-     * @throws Exception ошибка, если не найден
-     */
     @Test
+    @DisplayName("Получение списка всех клиентов")
     void findAllClients() throws Exception {
         Mockito.when(service.findAllClients()).thenReturn(
                 List.of(dto));
@@ -87,6 +86,7 @@ public class ClientControllerTest {
     }
 
     @Test
+    @DisplayName("Обновление клиента с заданным ID")
     void updateClient() throws Exception {
         Mockito.when(service.updateClient(id, dto)).thenReturn(true);
 
@@ -106,6 +106,7 @@ public class ClientControllerTest {
     }
 
     @Test
+    @DisplayName("Удаление клиента с заданным ID")
     void deleteClient() throws Exception {
         Mockito.when(service.deleteClientById(id)).thenReturn(true);
 

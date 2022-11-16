@@ -7,6 +7,7 @@ import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithId;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
 import com.khazova.flowerdeliveryservice.repository.ClientRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -39,20 +40,16 @@ class ClientServiceImplTest {
         sut = new ClientServiceImpl(repository, mapper);
     }
 
-    /**
-     * Тест создания нового клиента
-     */
     @Test
+    @DisplayName("Создание нового клиента")
     void newClient() {
         Mockito.when(repository.save(any())).thenReturn(client);
         ClientDtoWithId withId = sut.newClient(dto);
         assertEquals(client.getName(), withId.getName());
     }
 
-    /**
-     * Тест поиска всех клиентов
-     */
     @Test
+    @DisplayName("Получение списка всех клиентов")
     void findAllClients() {
         ArrayList<Client> allClients = new ArrayList<>();
         allClients.add(client);
@@ -60,29 +57,23 @@ class ClientServiceImplTest {
         assertEquals(1, sut.findAllClients().size());
     }
 
-    /**
-     * Тест поиск клиента по идентификатору
-     */
     @Test
+    @DisplayName("Получение клиента по ID")
     void findOneClientByID() {
         Mockito.when(repository.findById(any())).thenReturn(Optional.of(client));
         ClientDTO result = sut.findOneClientByID("testId");
         assertEquals("Sveta", result.getName());
     }
 
-    /**
-     * Тест успешного обновления клиента
-     */
     @Test
+    @DisplayName("Обновление клиента по ID")
     void updateClient() {
         Mockito.when(repository.findById(any())).thenReturn(Optional.of(client));
         assertTrue(sut.updateClient("testId", dto));
     }
 
-    /**
-     * Тест успешного удаления клиента по идентификатору
-     */
     @Test
+    @DisplayName("Удаление клиента с заданным ID")
     void deleteClientById() {
         Mockito.when(repository.findById(any())).thenReturn(Optional.of(client));
         assertTrue(sut.deleteClientById("testId"));

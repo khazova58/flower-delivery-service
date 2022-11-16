@@ -8,8 +8,6 @@ import lombok.Setter;
 /**
  * DTO-класс для ответа- представление объекта Client в формате Имя, Фамилия, Телефон и eMail
  */
-
-
 @Getter
 @Setter
 @NoArgsConstructor

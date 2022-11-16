@@ -65,6 +65,5 @@ public class UserMapper implements ServiceMapper {
         ClientDtoWithId dtoWithId = new ClientDtoWithId();
         dtoWithId.setId(client.getClientID());
         return dtoWithId;
-
     }
 }
