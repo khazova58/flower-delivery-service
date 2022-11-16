@@ -32,5 +32,3 @@ build/
 ### VS Code ###
 .vscode/
 /.h2/
-/src/main/java/com/khazova/flowerdeliveryservice/cucumber/
-/src/test/java/com/khazova/flowerdeliveryservice/cucumber/
