@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "api/v1/clients", produces = MediaType.APPLICATION_JSON_VALUE) //комментарий для меня (consumes = MediaType.APPLICATION_JSON_VALUE)
-@Tag(name = "Клиент")
+@RequestMapping(value = "api/v1/clients", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ClientController {
 
     private final ClientService clientService;
