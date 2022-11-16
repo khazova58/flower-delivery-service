@@ -3,7 +3,7 @@ package com.khazova.flowerdeliveryservice.service.clients;
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithId;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
-import com.khazova.flowerdeliveryservice.model.mapper.ClientMapperImpl;
+import com.khazova.flowerdeliveryservice.model.mapper.UserMapperImpl;
 import com.khazova.flowerdeliveryservice.repository.ClientRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -26,7 +26,7 @@ class ClientServiceImplTest {
     @Mock
     private ClientRepository repository;
 
-    private final ClientMapperImpl mapper = new ClientMapperImpl();
+    private final UserMapperImpl mapper = new UserMapperImpl();
 
     private ClientServiceImpl sut;
 

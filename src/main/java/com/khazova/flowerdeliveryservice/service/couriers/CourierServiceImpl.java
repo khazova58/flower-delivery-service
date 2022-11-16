@@ -2,7 +2,7 @@ package com.khazova.flowerdeliveryservice.service.couriers;
 
 import com.khazova.flowerdeliveryservice.model.dto.CourierDto;
 import com.khazova.flowerdeliveryservice.model.entity.Courier;
-import com.khazova.flowerdeliveryservice.model.mapper.ClientMapper;
+import com.khazova.flowerdeliveryservice.model.mapper.UserMapper;
 import com.khazova.flowerdeliveryservice.repository.CourierRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,9 +18,9 @@ import java.util.List;
 public class CourierServiceImpl implements CourierService {
 
     private final CourierRepository repository;
-    private final ClientMapper mapperCourier;
+    private final UserMapper mapperCourier;
 
-    public CourierServiceImpl(CourierRepository repository, ClientMapper mapper) {
+    public CourierServiceImpl(CourierRepository repository, UserMapper mapper) {
         this.repository = repository;
         this.mapperCourier = mapper;
     }

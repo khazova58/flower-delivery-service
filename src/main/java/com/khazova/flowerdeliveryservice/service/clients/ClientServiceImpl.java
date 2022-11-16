@@ -3,7 +3,7 @@ package com.khazova.flowerdeliveryservice.service.clients;
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithId;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
-import com.khazova.flowerdeliveryservice.model.mapper.ClientMapper;
+import com.khazova.flowerdeliveryservice.model.mapper.UserMapper;
 import com.khazova.flowerdeliveryservice.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,9 +19,9 @@ import java.util.List;
 public class ClientServiceImpl implements ClientService {
 
     private final ClientRepository repository;
-    private final ClientMapper mapper;
+    private final UserMapper mapper;
 
-    public ClientServiceImpl(ClientRepository repository, ClientMapper mapper) {
+    public ClientServiceImpl(ClientRepository repository, UserMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
