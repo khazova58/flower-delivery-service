@@ -1,13 +1,9 @@
 package com.khazova.flowerdeliveryservice.model.dto;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
-@NoArgsConstructor
-public class OrderDTO {
+@Data
+public class OrderDto {
     private String addressClient;
     private String addressDelivery;
     private String clientId;
