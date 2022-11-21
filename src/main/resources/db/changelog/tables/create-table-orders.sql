@@ -8,8 +8,8 @@ create table if not exists delivery.orders
     date_of_update   smalldatetime not null,
     address_client   varchar(300)  not null,
     address_delivery varchar(300)  not null,
-    status_order     varchar(50),
+    status_order     varchar(10)   not null,
     version_order    integer,
     client_id        varchar       not null references delivery.clients (CLIENT_ID),
-    courier_id       varchar       not null references delivery.couriers (COURIER_ID)
+    courier_id       varchar       references delivery.couriers (COURIER_ID)
 )

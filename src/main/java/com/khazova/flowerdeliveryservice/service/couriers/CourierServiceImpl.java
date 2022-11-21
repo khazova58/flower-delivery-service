@@ -35,7 +35,7 @@ public class CourierServiceImpl implements CourierService {
     public String newCourier(CourierDto courierDTO) {
         Courier newCourier = mapperCourier.dtoMapToCourier(courierDTO);
         repository.save(newCourier);
-        return String.valueOf(newCourier.getCourierID());
+        return String.valueOf(newCourier.getCourierId());
     }
 
     /**

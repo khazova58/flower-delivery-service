@@ -1,5 +1,6 @@
 package com.khazova.flowerdeliveryservice.model.entity;
 
+import com.khazova.flowerdeliveryservice.model.enums.Status;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
@@ -30,7 +31,7 @@ public class Order {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "order_id")
-    private String orderID;
+    private String orderId;
 
     @Column(name = "address_client")
     private String addressClient;
@@ -39,7 +40,8 @@ public class Order {
     private String addressDelivery;
 
     @Column(name = "status_order")
-    private String statusOrder = "Новый";
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @Version
     @Column(name = "version_order")
@@ -53,10 +55,24 @@ public class Order {
     @Column(name = "date_of_update")
     private Date dateOfUpdate;
 
-    public Order(Courier courier, Client client, String addressClient, String addressDelivery) {
-        this.courier = courier;
+    public Order(Client client, String addressClient, String addressDelivery) {
         this.client = client;
         this.addressClient = addressClient;
         this.addressDelivery = addressDelivery;
+        this.status = Status.CREATED;
+        this.dateOfOrder = new Date();
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "client=" + client +
+                ", orderID='" + orderId + '\'' +
+                ", addressClient='" + addressClient + '\'' +
+                ", addressDelivery='" + addressDelivery + '\'' +
+                ", status=" + status +
+                ", versionOrder=" + versionOrder +
+                ", dateOfOrder=" + dateOfOrder +
+                '}';
     }
 }
