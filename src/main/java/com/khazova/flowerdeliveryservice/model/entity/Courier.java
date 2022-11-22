@@ -23,7 +23,7 @@ public class Courier {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "courier_id", unique = true)
-    private String courierID;
+    private String courierId;
 
     @Column(name = "name")
     private String name;
