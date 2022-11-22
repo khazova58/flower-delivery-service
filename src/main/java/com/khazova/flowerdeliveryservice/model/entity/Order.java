@@ -1,12 +1,15 @@
 package com.khazova.flowerdeliveryservice.model.entity;
 
 import com.khazova.flowerdeliveryservice.model.enums.Status;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -41,7 +44,7 @@ public class Order {
 
     @Column(name = "status_order")
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private Status status = Status.CREATED;
 
     @Version
     @Column(name = "version_order")
@@ -49,7 +52,7 @@ public class Order {
 
     @CreationTimestamp
     @Column(name = "date_of_order")
-    private Date dateOfOrder;
+    private LocalDateTime createDateTime;
 
     @UpdateTimestamp
     @Column(name = "date_of_update")
@@ -59,8 +62,6 @@ public class Order {
         this.client = client;
         this.addressClient = addressClient;
         this.addressDelivery = addressDelivery;
-        this.status = Status.CREATED;
-        this.dateOfOrder = new Date();
     }
 
     @Override
@@ -72,7 +73,7 @@ public class Order {
                 ", addressDelivery='" + addressDelivery + '\'' +
                 ", status=" + status +
                 ", versionOrder=" + versionOrder +
-                ", dateOfOrder=" + dateOfOrder +
+                ", dateOfOrder=" + createDateTime +
                 '}';
     }
 }

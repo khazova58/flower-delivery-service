@@ -1,8 +1,8 @@
 package com.khazova.flowerdeliveryservice.service.orders;
 
 import com.khazova.flowerdeliveryservice.model.dto.OrderDto;
-import com.khazova.flowerdeliveryservice.model.dto.OrderDtoToFind;
-import com.khazova.flowerdeliveryservice.model.dto.OrderDtoToNew;
+import com.khazova.flowerdeliveryservice.model.dto.FindOrderDto;
+import com.khazova.flowerdeliveryservice.model.dto.NewOrderDto;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
 import com.khazova.flowerdeliveryservice.model.entity.Order;
 import com.khazova.flowerdeliveryservice.model.mapper.OrderMapper;
@@ -33,20 +33,20 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     @Transactional
-    public OrderDtoToNew newOrder(OrderDto dto) {
+    public NewOrderDto newOrder(OrderDto dto) {
         String id = dto.getClientId();
         Client newClient = clientRepository.findById(id).orElseThrow(() -> new RuntimeException("Client not found"));
         Order order = new Order(newClient, dto.getAddressClient(), dto.getAddressDelivery());
         Order save = repository.save(order);
-        return mapper.entityMapDtoToNew(save);
+        return mapper.entityMapToNewDto(save);
     }
 
     @Override
-    public List<OrderDtoToFind> findAllOrder() {
+    public List<FindOrderDto> findAllOrder() {
         List<Order> findOrders = repository.findAll();
-        List<OrderDtoToFind> dtoFind = new ArrayList<>();
+        List<FindOrderDto> dtoFind = new ArrayList<>();
         for (Order order : findOrders) {
-            dtoFind.add(mapper.entityMapDtoToFind(order));
+            dtoFind.add(mapper.entityMapToFindDto(order));
         }
         return dtoFind;
     }

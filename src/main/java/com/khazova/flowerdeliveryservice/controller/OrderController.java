@@ -1,8 +1,8 @@
 package com.khazova.flowerdeliveryservice.controller;
 
 import com.khazova.flowerdeliveryservice.model.dto.OrderDto;
-import com.khazova.flowerdeliveryservice.model.dto.OrderDtoToFind;
-import com.khazova.flowerdeliveryservice.model.dto.OrderDtoToNew;
+import com.khazova.flowerdeliveryservice.model.dto.FindOrderDto;
+import com.khazova.flowerdeliveryservice.model.dto.NewOrderDto;
 import com.khazova.flowerdeliveryservice.service.orders.OrdersService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -23,13 +23,13 @@ public class OrderController {
 
     @PostMapping
     @Operation(summary = "Создать новую запись")
-    public OrderDtoToNew newOrder(OrderDto order) {
+    public NewOrderDto newOrder(OrderDto order) {
         return ordersService.newOrder(order);
     }
 
     @GetMapping
     @Operation(summary = "Получить все записи")
-    public List<OrderDtoToFind> allOrder() {
+    public List<FindOrderDto> allOrder() {
         return ordersService.findAllOrder();
     }
 
