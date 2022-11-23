@@ -36,7 +36,7 @@ public interface OrdersService {
      * @param courierId идентификатор курьера
      * @return list заказов курьера
      */
-    List<FindOrderDto> getOrderByIdCourier(String courierId);
+    List<FindOrderDto> getOrderByCourierId(String courierId);
 
     /**
      * Удаление заказа по ID

@@ -4,10 +4,12 @@ import com.khazova.flowerdeliveryservice.model.dto.FindOrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.NewOrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.OrderDto;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
+import com.khazova.flowerdeliveryservice.model.entity.Courier;
 import com.khazova.flowerdeliveryservice.model.entity.Order;
 import com.khazova.flowerdeliveryservice.model.enums.OrderStatus;
 import com.khazova.flowerdeliveryservice.model.mapper.OrderMapper;
 import com.khazova.flowerdeliveryservice.repository.ClientRepository;
+import com.khazova.flowerdeliveryservice.repository.CourierRepository;
 import com.khazova.flowerdeliveryservice.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,11 +24,14 @@ public class OrdersServiceImpl implements OrdersService {
     private final OrderRepository orderRepository;
 
     private final ClientRepository clientRepository;
+
+    private final CourierRepository courierRepository;
     private final OrderMapper mapper;
 
-    public OrdersServiceImpl(OrderRepository repository, ClientRepository clientRepository, OrderMapper mapper) {
+    public OrdersServiceImpl(OrderRepository repository, ClientRepository clientRepository, CourierRepository courierRepository, OrderMapper mapper) {
         this.orderRepository = repository;
         this.clientRepository = clientRepository;
+        this.courierRepository = courierRepository;
         this.mapper = mapper;
     }
 
@@ -51,12 +56,12 @@ public class OrdersServiceImpl implements OrdersService {
      */
     @Override
     public List<FindOrderDto> findAllOrders() {
-        List<Order> findOrders = orderRepository.findAll();
-        List<FindOrderDto> dtoFind = new ArrayList<>();
-        for (Order order : findOrders) {
-            dtoFind.add(mapper.entityMapToFindDto(order));
+        List<Order> foundOrders = orderRepository.findAll();
+        List<FindOrderDto> dtoFound = new ArrayList<>();
+        for (Order order : foundOrders) {
+            dtoFound.add(mapper.entityMapToFindDto(order));
         }
-        return dtoFind;
+        return dtoFound;
     }
 
     /**
@@ -66,12 +71,13 @@ public class OrdersServiceImpl implements OrdersService {
      */
     @Override
     public List<FindOrderDto> getOrdersByClientId(String clientId) {
-        List<Order> findOrders = orderRepository.findOrdersByClient_ClientId(clientId);
-        List<FindOrderDto> dtoFind = new ArrayList<>();
-        for (Order order : findOrders) {
-            dtoFind.add(mapper.entityMapToFindDto(order));
+        Client foundClient = clientRepository.findById(clientId).orElseThrow(() -> new RuntimeException("Клиент не найден"));//todo реализовать ошибку
+        List<Order> foundOrders = orderRepository.findOrdersByClient(foundClient);
+        List<FindOrderDto> dtoFound = new ArrayList<>();
+        for (Order order : foundOrders) {
+            dtoFound.add(mapper.entityMapToFindDto(order));
         }
-        return dtoFind;
+        return dtoFound;
     }
 
     /**
@@ -80,13 +86,14 @@ public class OrdersServiceImpl implements OrdersService {
      * @return список найденных заказов
      */
     @Override
-    public List<FindOrderDto> getOrderByIdCourier(String courierId) {
-        List<Order> findOrders = orderRepository.findOrdersByCourier_CourierId(courierId);
-        List<FindOrderDto> dtoFind = new ArrayList<>();
-        for (Order order : findOrders) {
-            dtoFind.add(mapper.entityMapToFindDto(order));
+    public List<FindOrderDto> getOrderByCourierId(String courierId) {
+        Courier foundCourier = courierRepository.findById(courierId).orElseThrow(() -> new RuntimeException("Клиент не найден"));//todo реализовать ошибку
+        List<Order> foundOrders = orderRepository.findOrdersByCourier(foundCourier);
+        List<FindOrderDto> dtoFound = new ArrayList<>();
+        for (Order order : foundOrders) {
+            dtoFound.add(mapper.entityMapToFindDto(order));
         }
-        return dtoFind;
+        return dtoFound;
     }
 
     /**
@@ -111,10 +118,10 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     @Transactional
     public boolean changeStatusOrder(String orderId, OrderStatus updateStatus) {
-        Order findOrder = orderRepository.findById(orderId).orElseThrow(() ->
+        Order foundOrder = orderRepository.findById(orderId).orElseThrow(() ->
                 new RuntimeException("Заказ не найден"));//todo реализовать ошибку
-        findOrder.setStatus(updateStatus);
-        orderRepository.save(findOrder);
+        foundOrder.setStatus(updateStatus);
+        orderRepository.save(foundOrder);
         return true;
     }
 }

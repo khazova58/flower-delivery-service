@@ -17,7 +17,4 @@ public interface OrderMapper {
     @Mapping(target = "nameClient", source = "client.name")
     @Mapping(target = "lastName", source = "client.lastName")
     FindOrderDto entityMapToFindDto(Order order);
-
-//    @Mapping(target = "status", source = "order.status")
-//    Order dtoMapToEntity(UpdateStatusOrderDto orderDto);
 }

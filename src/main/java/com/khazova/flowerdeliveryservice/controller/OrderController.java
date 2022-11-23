@@ -43,7 +43,7 @@ public class OrderController {
     @GetMapping("/courier/{courierId}")
     @Operation(summary = "Получить заказы курьера")
     public List<FindOrderDto> getOrderByIdCourier(@PathVariable String courierId) {
-        return ordersService.getOrderByIdCourier(courierId);
+        return ordersService.getOrderByCourierId(courierId);
     }
 
     @DeleteMapping("/{orderId}")
