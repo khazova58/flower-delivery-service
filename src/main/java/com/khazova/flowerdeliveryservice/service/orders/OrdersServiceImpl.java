@@ -87,7 +87,7 @@ public class OrdersServiceImpl implements OrdersService {
      */
     @Override
     public List<FindOrderDto> getOrderByCourierId(String courierId) {
-        Courier foundCourier = courierRepository.findById(courierId).orElseThrow(() -> new RuntimeException("Клиент не найден"));//todo реализовать ошибку
+        Courier foundCourier = courierRepository.findById(courierId).orElseThrow(() -> new RuntimeException("Курьер не найден"));//todo реализовать ошибку
         List<Order> foundOrders = orderRepository.findOrdersByCourier(foundCourier);
         List<FindOrderDto> dtoFound = new ArrayList<>();
         for (Order order : foundOrders) {
