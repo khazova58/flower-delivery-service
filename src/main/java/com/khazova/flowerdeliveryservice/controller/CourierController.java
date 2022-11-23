@@ -20,31 +20,31 @@ public class CourierController {
     }
 
     @PostMapping
-    @Operation(summary = "Создать новую запись")
+    @Operation(summary = "Новый курьер")
     public String newCourier(CourierDto courier) {
         return courierService.newCourier(courier);
     }
 
     @GetMapping
-    @Operation(summary = "Получить все записи")
+    @Operation(summary = "Найти всех курьеров")
     public List<CourierDto> getAllCourier() {
         return courierService.findAll();
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Получить запись по идентификатору")
+    @Operation(summary = "Найти курьера")
     public CourierDto getCourierNameByID(@PathVariable String id) {
         return courierService.findOneCourierByID(id);
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Обновить запись с заданным идентификатором")
+    @Operation(summary = "Обновить курьера")
     public boolean updateCourier(@PathVariable String id, @RequestBody CourierDto updateCourier) {
         return courierService.updateCourier(id, updateCourier);
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Удалить запись с заданным индентификаторм")
+    @Operation(summary = "Удалить курьера")
     public boolean deleteCourier(@PathVariable String id) {
         return courierService.deleteCourier(id);
     }

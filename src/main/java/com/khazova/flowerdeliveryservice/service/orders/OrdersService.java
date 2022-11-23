@@ -3,6 +3,7 @@ package com.khazova.flowerdeliveryservice.service.orders;
 import com.khazova.flowerdeliveryservice.model.dto.OrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.FindOrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.NewOrderDto;
+import com.khazova.flowerdeliveryservice.model.enums.OrderStatus;
 
 import java.util.List;
 
@@ -20,23 +21,22 @@ public interface OrdersService {
      *
      * @return list - список заказов
      */
-    List<FindOrderDto> findAllOrder();
+    List<FindOrderDto> findAllOrders();
 
     /**
-     * Возвращает заказ клиента по ID
+     * Возвращает заказы клиента по ID
      *
-     * @param id идентификатор клиента
+     * @param clientId идентификатор клиента
      * @return list заказов клиента
      */
-    List<OrderDto> getOrderByIDClient(int id);
+    List<FindOrderDto> getOrdersByClientId(String clientId);
 
     /**
-     * Редактирование заказа по ID
-     *
-     * @param id заказа
-     * @return execution message
+     * Возвращает заказы курьера
+     * @param courierId идентификатор курьера
+     * @return list заказов курьера
      */
-    boolean updateOrder(int id);
+    List<FindOrderDto> getOrderByCourierId(String courierId);
 
     /**
      * Удаление заказа по ID
@@ -44,5 +44,7 @@ public interface OrdersService {
      * @param id заказа
      * @return execution message
      */
-    boolean deleteOrder(int id);
+    boolean deleteOrder(String id);
+
+    boolean changeStatusOrder(String orderId, OrderStatus updateStatus);
 }
