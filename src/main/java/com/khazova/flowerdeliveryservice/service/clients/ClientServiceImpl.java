@@ -1,7 +1,7 @@
 package com.khazova.flowerdeliveryservice.service.clients;
 
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
-import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithId;
+import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
 import com.khazova.flowerdeliveryservice.model.mapper.UserMapper;
 import com.khazova.flowerdeliveryservice.repository.ClientRepository;
@@ -34,7 +34,7 @@ public class ClientServiceImpl implements ClientService {
      */
     @Override
     @Transactional
-    public ClientDtoWithId newClient(ClientDto clientDTO) {
+    public ClientWithIdDto newClient(ClientDto clientDTO) {
         Client newClient = mapper.dtoMapToClient(clientDTO);
         repository.save(newClient);
         return mapper.clientMapToDtoWithId(newClient);
@@ -62,7 +62,7 @@ public class ClientServiceImpl implements ClientService {
      * @return найденный клиент
      */
     @Override
-    public ClientDto findOneClientByID(String id) {
+    public ClientDto findOneClientById(String id) {
         Client client = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Клиент не найден"));//todo обработать ошибку
         return mapper.clientMapToDTO(client);

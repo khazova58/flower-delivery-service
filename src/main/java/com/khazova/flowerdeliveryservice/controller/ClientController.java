@@ -1,7 +1,7 @@
 package com.khazova.flowerdeliveryservice.controller;
 
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
-import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithId;
+import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
 import com.khazova.flowerdeliveryservice.service.clients.ClientService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,31 +22,31 @@ public class ClientController {
     }
 
     @PostMapping
-    @Operation(summary = "Создать новую запись")
-    public ClientDtoWithId newClient(@RequestBody ClientDto client) {
+    @Operation(summary = "Новый клиент")
+    public ClientWithIdDto newClient(@RequestBody ClientDto client) {
         return clientService.newClient(client);
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Получить запись по индентификатору")
+    @Operation(summary = "Поиск клиента")
     public ClientDto findOneClient(@PathVariable String id) {
-        return clientService.findOneClientByID(id);
+        return clientService.findOneClientById(id);
     }
 
     @GetMapping
-    @Operation(summary = "Получить все записи")
+    @Operation(summary = "Получить всех клиентов")
     public List<ClientDto> findAllClients() {
         return clientService.findAllClients();
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Обновить запись с заданным индентификаторм")
+    @Operation(summary = "Обновить клиента")
     public boolean updateClient(@PathVariable String id, @RequestBody ClientDto updateClient) {
         return clientService.updateClient(id, updateClient);
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Удалить запись с заданным идентификатором")
+    @Operation(summary = "Удалить клиента")
     public boolean deleteClient(@PathVariable String id) {
         return clientService.deleteClientById(id);
     }

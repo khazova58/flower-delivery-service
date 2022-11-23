@@ -1,6 +1,6 @@
 package com.khazova.flowerdeliveryservice.model.entity;
 
-import com.khazova.flowerdeliveryservice.model.enums.Status;
+import com.khazova.flowerdeliveryservice.model.enums.OrderStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -44,7 +44,7 @@ public class Order {
 
     @Column(name = "status_order")
     @Enumerated(EnumType.STRING)
-    private Status status = Status.CREATED;
+    private OrderStatus status = OrderStatus.CREATED;
 
     @Version
     @Column(name = "version_order")
