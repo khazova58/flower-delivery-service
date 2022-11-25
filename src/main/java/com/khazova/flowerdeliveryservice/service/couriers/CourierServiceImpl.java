@@ -1,8 +1,8 @@
 package com.khazova.flowerdeliveryservice.service.couriers;
 
-import com.khazova.flowerdeliveryservice.mapper.UserMapper;
-import com.khazova.flowerdeliveryservice.model.dto.CourierDTO;
+import com.khazova.flowerdeliveryservice.model.dto.CourierDto;
 import com.khazova.flowerdeliveryservice.model.entity.Courier;
+import com.khazova.flowerdeliveryservice.model.mapper.UserMapper;
 import com.khazova.flowerdeliveryservice.repository.CourierRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,11 +18,11 @@ import java.util.List;
 public class CourierServiceImpl implements CourierService {
 
     private final CourierRepository repository;
-    private final UserMapper mapper;
+    private final UserMapper mapperCourier;
 
     public CourierServiceImpl(CourierRepository repository, UserMapper mapper) {
         this.repository = repository;
-        this.mapper = mapper;
+        this.mapperCourier = mapper;
     }
 
     /**
@@ -32,10 +32,10 @@ public class CourierServiceImpl implements CourierService {
      */
     @Override
     @Transactional
-    public String newCourier(CourierDTO courierDTO) {
-        Courier newCourier = mapper.courierDtoToEntity(courierDTO);
+    public String newCourier(CourierDto courierDTO) {
+        Courier newCourier = mapperCourier.dtoMapToCourier(courierDTO);
         repository.save(newCourier);
-        return String.valueOf(newCourier.getCourierID());
+        return String.valueOf(newCourier.getCourierId());
     }
 
     /**
@@ -43,11 +43,11 @@ public class CourierServiceImpl implements CourierService {
      * @return список найденных клиентов
      */
     @Override
-    public List<CourierDTO> findAll() {
+    public List<CourierDto> findAll() {
         List<Courier> findCouriers = repository.findAll();
-        List<CourierDTO> dtoCourier = new ArrayList<>();
+        List<CourierDto> dtoCourier = new ArrayList<>();
         for (Courier courier : findCouriers) {
-            dtoCourier.add(mapper.mapToCourierResponse(courier));
+            dtoCourier.add(mapperCourier.courierMapToDTO(courier));
         }
         return dtoCourier;
     }
@@ -58,10 +58,10 @@ public class CourierServiceImpl implements CourierService {
      * @return найденный курьер
      */
     @Override
-    public CourierDTO findOneCourierByID(String id) {
+    public CourierDto findOneCourierByID(String id) {
         Courier findCourier = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Курьер не найден"));//todo обработать ошибку
-        return mapper.mapToCourierResponse(findCourier);
+        return mapperCourier.courierMapToDTO(findCourier);
     }
 
     /**
@@ -72,7 +72,7 @@ public class CourierServiceImpl implements CourierService {
      */
     @Override
     @Transactional
-    public boolean updateCourier(String id, CourierDTO updateCourier) {
+    public boolean updateCourier(String id, CourierDto updateCourier) {
         Courier courier = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Курьер не найден"));//todo обработать ошибку
         courier.setName(updateCourier.getName());

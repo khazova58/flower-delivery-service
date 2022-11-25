@@ -1,7 +1,7 @@
 package com.khazova.flowerdeliveryservice.service.clients;
 
-import com.khazova.flowerdeliveryservice.model.dto.ClientDTO;
-import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithId;
+import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
+import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
 
 import java.util.List;
 
@@ -16,14 +16,14 @@ public interface ClientService {
      * @param client клиент
      * @return ID клиента
      */
-    ClientDtoWithId newClient(ClientDTO client);
+    ClientWithIdDto newClient(ClientDto client);
 
     /**
      * Возвращает всех клиентов
      *
      * @return List клиентов
      */
-    List<ClientDTO> findAllClients();
+    List<ClientDto> findAllClients();
 
     /**
      * Возвращает имя и фамилию клиента по ID
@@ -31,14 +31,14 @@ public interface ClientService {
      * @param id клиента
      * @return name, lastName клиента
      */
-    ClientDTO findOneClientByID(String id);
+    ClientDto findOneClientById(String id);
 
     /**
      * Редактирование клиента по ID
      *
      * @return execution message
      */
-    boolean updateClient(String id, ClientDTO updateClient);
+    boolean updateClient(String id, ClientDto updateClient);
 
     /**
      * Удаление клиента из БД

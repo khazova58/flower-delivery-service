@@ -1,6 +1,9 @@
 package com.khazova.flowerdeliveryservice.controller;
 
-import com.khazova.flowerdeliveryservice.model.dto.OrderDTO;
+import com.khazova.flowerdeliveryservice.model.dto.FindOrderDto;
+import com.khazova.flowerdeliveryservice.model.dto.NewOrderDto;
+import com.khazova.flowerdeliveryservice.model.dto.OrderDto;
+import com.khazova.flowerdeliveryservice.model.enums.OrderStatus;
 import com.khazova.flowerdeliveryservice.service.orders.OrdersService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -20,32 +23,39 @@ public class OrderController {
     }
 
     @PostMapping
-    @Operation(summary = "Создать новую запись")
-    public String newOrder(OrderDTO order) {
+    @Operation(summary = "Создать новый заказ")
+    public NewOrderDto newOrder(OrderDto order) {
         return ordersService.newOrder(order);
     }
 
     @GetMapping
-    @Operation(summary = "Получить все записи")
-    public List<OrderDTO> allOrder() {
-        return null;
-    }//todo реализовать  метод
+    @Operation(summary = "Получить все заказы")
+    public List<FindOrderDto> findAllOrders() {
+        return ordersService.findAllOrders();
+    }
 
-    @GetMapping("/{id}")
-    @Operation(summary = "Получить запись по идентификатору")
-    public List<OrderDTO> getOrderByIDClient(@PathVariable int id) {
-        return null;
-    } //todo реализовать  метод
+    @GetMapping("/client/{clientId}")
+    @Operation(summary = "Получить заказы клиента")
+    public List<FindOrderDto> getOrderByIdClient(@PathVariable String clientId) {
+        return ordersService.getOrdersByClientId(clientId);
+    }
 
-    @PutMapping("/{id}")
-    @Operation(summary = "Обновить запись")
-    public boolean updateOrder(@PathVariable int id) {
-        return false;
-    }    //todo реализовать  метод
+    @GetMapping("/courier/{courierId}")
+    @Operation(summary = "Получить заказы курьера")
+    public List<FindOrderDto> getOrderByIdCourier(@PathVariable String courierId) {
+        return ordersService.getOrderByCourierId(courierId);
+    }
 
-    @DeleteMapping("/{id}")
-    @Operation(summary = "Удалить запись")
-    public boolean deleteOrder(@PathVariable int id) {
-        return false;
-    }     //todo реализовать  метод
+    @DeleteMapping("/{orderId}")
+    @Operation(summary = "Удалить заказ")
+    public boolean deleteOrder(@PathVariable String  orderId) {
+        return ordersService.deleteOrder(orderId);
+    }
+
+
+    @PutMapping("/{orderId}")
+    @Operation(summary = "Изменить статус заказа")
+    public boolean changeStatusOrder(@PathVariable String orderId, @RequestParam OrderStatus updateStatus){
+        return ordersService.changeStatusOrder(orderId, updateStatus);
+    }
 }

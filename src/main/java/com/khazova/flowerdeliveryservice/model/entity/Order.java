@@ -1,11 +1,15 @@
 package com.khazova.flowerdeliveryservice.model.entity;
 
-import lombok.*;
+import com.khazova.flowerdeliveryservice.model.enums.OrderStatus;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -30,7 +34,7 @@ public class Order {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "order_id")
-    private String orderID;
+    private String orderId;
 
     @Column(name = "address_client")
     private String addressClient;
@@ -39,7 +43,8 @@ public class Order {
     private String addressDelivery;
 
     @Column(name = "status_order")
-    private String statusOrder = "Новый";
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status = OrderStatus.CREATED;
 
     @Version
     @Column(name = "version_order")
@@ -47,16 +52,28 @@ public class Order {
 
     @CreationTimestamp
     @Column(name = "date_of_order")
-    private Date dateOfOrder;
+    private LocalDateTime createDateTime;
 
     @UpdateTimestamp
     @Column(name = "date_of_update")
     private Date dateOfUpdate;
 
-    public Order(Courier courier, Client client, String addressClient, String addressDelivery) {
-        this.courier = courier;
+    public Order(Client client, String addressClient, String addressDelivery) {
         this.client = client;
         this.addressClient = addressClient;
         this.addressDelivery = addressDelivery;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "client=" + client +
+                ", orderID='" + orderId + '\'' +
+                ", addressClient='" + addressClient + '\'' +
+                ", addressDelivery='" + addressDelivery + '\'' +
+                ", status=" + status +
+                ", versionOrder=" + versionOrder +
+                ", dateOfOrder=" + createDateTime +
+                '}';
     }
 }

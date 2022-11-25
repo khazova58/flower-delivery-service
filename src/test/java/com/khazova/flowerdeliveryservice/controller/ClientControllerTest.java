@@ -1,7 +1,7 @@
 package com.khazova.flowerdeliveryservice.controller;
 
-import com.khazova.flowerdeliveryservice.model.dto.ClientDTO;
-import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithId;
+import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
+import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
 import com.khazova.flowerdeliveryservice.service.clients.ClientService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,15 +31,15 @@ public class ClientControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private final ClientDTO dto = new ClientDTO("Sveta", "Sokolova", "89253651414", "test@mail.ru");
+    private final ClientDto dto = new ClientDto("Sveta", "Sokolova", "89253651414", "test@mail.ru");
 
     private final String id = "testId";
 
     @Test
     @DisplayName("Создание нового клиента")
     void newClient() throws Exception {
-        ClientDtoWithId withId = new ClientDtoWithId();
-        withId.setId(id);
+        ClientWithIdDto withId = new ClientWithIdDto();
+        withId.setClientId(id);
 
         Mockito.when(service.newClient(any())).thenReturn(withId);
 
@@ -55,13 +55,13 @@ public class ClientControllerTest {
                                 """))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value("testId"));
+                .andExpect(jsonPath("$.clientID").value("testId"));
     }
 
     @Test
     @DisplayName("Получение клиента по ID")
     void findOneClient() throws Exception {
-        Mockito.when(service.findOneClientByID(id)).thenReturn(dto);
+        Mockito.when(service.findOneClientById(id)).thenReturn(dto);
 
         mockMvc.perform(get("/api/v1/clients/{id}", id))
                 .andDo(print())
