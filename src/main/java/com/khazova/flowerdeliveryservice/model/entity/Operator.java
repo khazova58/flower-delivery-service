@@ -11,14 +11,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "operators")
-
-
 public class Operator {
 
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
-
     @Column(name = "operator_id", unique = true)
     private String operatorID;
 
