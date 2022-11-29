@@ -4,11 +4,10 @@ import lombok.Getter;
 
 @Getter
 public enum OrderStatus {
-    CREATED("Создан", false),
-    UNDERWAY("В работе", false),
-    PAYMENT("Оплата", false),
-    DELIVERED("Доставлен", true),
-    ARCHIVE("Архив", true);
+    CREATED("Создано", false),
+    UNDERWAY("Принято в работу", false),
+    DELIVERED("Передано в доставку", false),
+    RECEIVED("Получено", true);
 
     private final String description;
     private final boolean isFinal;

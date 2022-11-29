@@ -1,5 +1,6 @@
 package com.khazova.flowerdeliveryservice.service.clients;
 
+import com.khazova.flowerdeliveryservice.exception.UserNotFound;
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
@@ -55,6 +56,11 @@ public class ClientServiceImpl implements ClientService {
         return dtoClient;
     }
 
+    private Client getClient(String id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new UserNotFound("Пользователь с id:" + id + " не найден"));
+    }
+
     /**
      * Поиск клиента по ID
      *
@@ -63,10 +69,10 @@ public class ClientServiceImpl implements ClientService {
      */
     @Override
     public ClientDto findOneClientById(String id) {
-        Client client = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Клиент не найден"));//todo обработать ошибку
+        Client client = getClient(id);
         return mapper.clientMapToDTO(client);
     }
+
 
     /**
      * Обновить данные клиента
@@ -78,8 +84,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     @Transactional
     public boolean updateClient(String id, ClientDto updateClient) {
-        Client client = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Клиент не найден"));//todo обработать ошибку
+        Client client = getClient(id);
         client.setName(updateClient.getName());
         client.setLastName(updateClient.getLastName());
         client.setPhoneNumber(updateClient.getPhoneNumber());
@@ -97,8 +102,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     @Transactional
     public boolean deleteClientById(String id) {
-        repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Клиент не найден"));//todo обработать ошибку
+        getClient(id);
         repository.deleteById(id);
         return true;
     }
