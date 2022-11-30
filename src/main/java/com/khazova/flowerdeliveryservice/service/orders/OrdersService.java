@@ -1,8 +1,8 @@
 package com.khazova.flowerdeliveryservice.service.orders;
 
-import com.khazova.flowerdeliveryservice.model.dto.OrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.FindOrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.NewOrderDto;
+import com.khazova.flowerdeliveryservice.model.dto.OrderDto;
 import com.khazova.flowerdeliveryservice.model.enums.OrderStatus;
 
 import java.util.List;
@@ -33,6 +33,7 @@ public interface OrdersService {
 
     /**
      * Возвращает заказы курьера
+     *
      * @param courierId идентификатор курьера
      * @return list заказов курьера
      */
@@ -46,5 +47,12 @@ public interface OrdersService {
      */
     boolean deleteOrder(String id);
 
+    /**
+     * Изменить статус курьера
+     *
+     * @param orderId      id заказа
+     * @param updateStatus статус
+     * @return true в случае успеха
+     */
     boolean changeStatusOrder(String orderId, OrderStatus updateStatus);
 }

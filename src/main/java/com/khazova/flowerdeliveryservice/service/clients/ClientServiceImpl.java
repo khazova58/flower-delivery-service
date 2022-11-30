@@ -1,5 +1,6 @@
 package com.khazova.flowerdeliveryservice.service.clients;
 
+import com.khazova.flowerdeliveryservice.exception.ResourceNotFoundException;
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
@@ -24,6 +25,17 @@ public class ClientServiceImpl implements ClientService {
     public ClientServiceImpl(ClientRepository repository, UserMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
+    }
+
+    /**
+     * Получить клиента по id
+     *
+     * @param id клиента
+     * @return найденного клиента или ошибку
+     */
+    private Client getClient(String id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Пользователь с id '" + id + "' не найден"));
     }
 
     /**
@@ -63,8 +75,7 @@ public class ClientServiceImpl implements ClientService {
      */
     @Override
     public ClientDto findOneClientById(String id) {
-        Client client = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Клиент не найден"));//todo обработать ошибку
+        Client client = getClient(id);
         return mapper.clientMapToDTO(client);
     }
 
@@ -78,8 +89,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     @Transactional
     public boolean updateClient(String id, ClientDto updateClient) {
-        Client client = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Клиент не найден"));//todo обработать ошибку
+        Client client = getClient(id);
         client.setName(updateClient.getName());
         client.setLastName(updateClient.getLastName());
         client.setPhoneNumber(updateClient.getPhoneNumber());
@@ -97,8 +107,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     @Transactional
     public boolean deleteClientById(String id) {
-        repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Клиент не найден"));//todo обработать ошибку
+        getClient(id);
         repository.deleteById(id);
         return true;
     }
