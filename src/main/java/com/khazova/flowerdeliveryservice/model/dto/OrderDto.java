@@ -9,8 +9,8 @@ import javax.validation.constraints.Size;
 public class OrderDto {
     @NotBlank(message = "не должно быть пустым")
     private String clientId;
-    @Size(min = 10, max = 150)
+    @NotBlank(message = "не должно быть пустым")
     private String addressClient;
-    @Size(min = 10, max = 150)
+    @NotBlank(message = "не должно быть пустым")
     private String addressDelivery;
 }

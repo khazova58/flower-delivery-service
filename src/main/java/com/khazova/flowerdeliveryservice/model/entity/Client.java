@@ -23,7 +23,7 @@ public class Client {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "client_id", unique = true)
+    @Column(name = "client_id")
     private String clientId;
 
     @Column(name = "name")
@@ -35,7 +35,7 @@ public class Client {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email")
     private String email;
 
     public Client(String name, String lastName, String phoneNumber, String email) {
