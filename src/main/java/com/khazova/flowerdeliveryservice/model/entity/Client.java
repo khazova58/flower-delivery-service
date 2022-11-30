@@ -10,7 +10,6 @@ import java.util.Objects;
 /**
  * Сущность для работы с Clients
  */
-
 @Entity
 @Table(name = "clients")
 @Getter
@@ -36,7 +35,7 @@ public class Client {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     public Client(String name, String lastName, String phoneNumber, String email) {

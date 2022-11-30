@@ -1,5 +1,6 @@
 package com.khazova.flowerdeliveryservice.service.couriers;
 
+import com.khazova.flowerdeliveryservice.exception.ResourceNotFoundException;
 import com.khazova.flowerdeliveryservice.model.dto.CourierDto;
 import com.khazova.flowerdeliveryservice.model.entity.Courier;
 import com.khazova.flowerdeliveryservice.model.mapper.UserMapper;
@@ -23,6 +24,16 @@ public class CourierServiceImpl implements CourierService {
     public CourierServiceImpl(CourierRepository repository, UserMapper mapper) {
         this.repository = repository;
         this.mapperCourier = mapper;
+    }
+
+    /**
+     * Получить курьера по id
+     * @param id клиента
+     * @return найденный курьер или exception
+     */
+    private Courier getCourier(String id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Курьер с id '" + id + "' не найден"));
     }
 
     /**
@@ -59,8 +70,7 @@ public class CourierServiceImpl implements CourierService {
      */
     @Override
     public CourierDto findOneCourierByID(String id) {
-        Courier findCourier = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Курьер не найден"));//todo обработать ошибку
+        Courier findCourier = getCourier(id);
         return mapperCourier.courierMapToDTO(findCourier);
     }
 
@@ -73,8 +83,7 @@ public class CourierServiceImpl implements CourierService {
     @Override
     @Transactional
     public boolean updateCourier(String id, CourierDto updateCourier) {
-        Courier courier = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Курьер не найден"));//todo обработать ошибку
+        Courier courier = getCourier(id);
         courier.setName(updateCourier.getName());
         courier.setLastName(updateCourier.getLastName());
         courier.setPhoneNumber(updateCourier.getPhoneNumber());
@@ -90,8 +99,7 @@ public class CourierServiceImpl implements CourierService {
     @Override
     @Transactional
     public boolean deleteCourier(String id) {
-        repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Курьер не найден"));//todo обработать ошибку
+        getCourier(id);
         repository.deleteById(id);
         return true;
     }

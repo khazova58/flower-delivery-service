@@ -1,5 +1,6 @@
 package com.khazova.flowerdeliveryservice.service.orders;
 
+import com.khazova.flowerdeliveryservice.exception.ResourceNotFoundException;
 import com.khazova.flowerdeliveryservice.model.dto.FindOrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.NewOrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.OrderDto;
@@ -35,8 +36,13 @@ public class OrdersServiceImpl implements OrdersService {
         this.mapper = mapper;
     }
 
+    private Client getClient(String id) {
+        return clientRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Клиент c id '" + id + "' не найден"));
+    }
+
     /**
      * Создать новый заказ
+     *
      * @param dto представление таблицы Orders
      * @return сохраненный заказ
      */
@@ -44,7 +50,7 @@ public class OrdersServiceImpl implements OrdersService {
     @Transactional
     public NewOrderDto newOrder(OrderDto dto) {
         String id = dto.getClientId();
-        Client newClient = clientRepository.findById(id).orElseThrow(() -> new RuntimeException("Client not found"));//todo обработать ошибку
+        Client newClient = getClient(id);
         Order order = new Order(newClient, dto.getAddressClient(), dto.getAddressDelivery());
         Order save = orderRepository.save(order);
         return mapper.entityMapToNewDto(save);
@@ -52,7 +58,8 @@ public class OrdersServiceImpl implements OrdersService {
 
     /**
      * Поиск всех заказов
-      * @return список заказов
+     *
+     * @return список заказов
      */
     @Override
     public List<FindOrderDto> findAllOrders() {
@@ -66,12 +73,13 @@ public class OrdersServiceImpl implements OrdersService {
 
     /**
      * Поиск заказов по клиенту
+     *
      * @param clientId идентификатор клиента
      * @return список найденных заказов
      */
     @Override
     public List<FindOrderDto> getOrdersByClientId(String clientId) {
-        Client foundClient = clientRepository.findById(clientId).orElseThrow(() -> new RuntimeException("Клиент не найден"));//todo реализовать ошибку
+        Client foundClient = getClient(clientId);
         List<Order> foundOrders = orderRepository.findOrdersByClient(foundClient);
         List<FindOrderDto> dtoFound = new ArrayList<>();
         for (Order order : foundOrders) {
@@ -82,12 +90,13 @@ public class OrdersServiceImpl implements OrdersService {
 
     /**
      * Поиск заказов по курьеру
+     *
      * @param courierId идентификатор курьера
      * @return список найденных заказов
      */
     @Override
     public List<FindOrderDto> getOrderByCourierId(String courierId) {
-        Courier foundCourier = courierRepository.findById(courierId).orElseThrow(() -> new RuntimeException("Курьер не найден"));//todo реализовать ошибку
+        Courier foundCourier = courierRepository.findById(courierId).orElseThrow(() -> new ResourceNotFoundException("Курьер c id '" + courierId + "' не найден"));
         List<Order> foundOrders = orderRepository.findOrdersByCourier(foundCourier);
         List<FindOrderDto> dtoFound = new ArrayList<>();
         for (Order order : foundOrders) {
@@ -98,30 +107,35 @@ public class OrdersServiceImpl implements OrdersService {
 
     /**
      * Удаление заказа
+     *
      * @param id заказа
      * @return true в случае успеха
      */
     @Override
     @Transactional
     public boolean deleteOrder(String id) {
-        orderRepository.findById(id).orElseThrow(() -> new RuntimeException("Заказ не найден"));//todo реализовать ошибку
+        getOrder(id);
         orderRepository.deleteById(id);
         return true;
     }
 
     /**
      * Изменить статус заказа
-      * @param orderId заказа
+     *
+     * @param orderId      заказа
      * @param updateStatus новый статус
      * @return true при успехе
      */
     @Override
     @Transactional
     public boolean changeStatusOrder(String orderId, OrderStatus updateStatus) {
-        Order foundOrder = orderRepository.findById(orderId).orElseThrow(() ->
-                new RuntimeException("Заказ не найден"));//todo реализовать ошибку
+        Order foundOrder = getOrder(orderId);
         foundOrder.setStatus(updateStatus);
         orderRepository.save(foundOrder);
         return true;
+    }
+
+    private Order getOrder(String orderId) {
+        return orderRepository.findById(orderId).orElseThrow(() -> new ResourceNotFoundException("Заказ не найден"));
     }
 }

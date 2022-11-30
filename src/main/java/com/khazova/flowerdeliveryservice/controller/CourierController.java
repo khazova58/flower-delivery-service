@@ -4,8 +4,11 @@ import com.khazova.flowerdeliveryservice.model.dto.CourierDto;
 import com.khazova.flowerdeliveryservice.service.couriers.CourierService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -21,7 +24,8 @@ public class CourierController {
 
     @PostMapping
     @Operation(summary = "Новый курьер")
-    public String newCourier(CourierDto courier) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public String newCourier(@Valid @RequestBody CourierDto courier) {
         return courierService.newCourier(courier);
     }
 
@@ -33,19 +37,19 @@ public class CourierController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Найти курьера")
-    public CourierDto getCourierNameByID(@PathVariable String id) {
+    public CourierDto getCourierNameByID(@NotNull @PathVariable String id) {
         return courierService.findOneCourierByID(id);
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Обновить курьера")
-    public boolean updateCourier(@PathVariable String id, @RequestBody CourierDto updateCourier) {
+    public boolean updateCourier(@NotNull @PathVariable String id, @Valid @RequestBody CourierDto updateCourier) {
         return courierService.updateCourier(id, updateCourier);
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Удалить курьера")
-    public boolean deleteCourier(@PathVariable String id) {
+    public boolean deleteCourier(@NotNull @PathVariable String id) {
         return courierService.deleteCourier(id);
     }
 }

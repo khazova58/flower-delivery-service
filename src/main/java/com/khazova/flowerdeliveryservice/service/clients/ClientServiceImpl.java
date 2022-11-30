@@ -1,6 +1,6 @@
 package com.khazova.flowerdeliveryservice.service.clients;
 
-import com.khazova.flowerdeliveryservice.exception.UserNotFound;
+import com.khazova.flowerdeliveryservice.exception.ResourceNotFoundException;
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
@@ -25,6 +25,17 @@ public class ClientServiceImpl implements ClientService {
     public ClientServiceImpl(ClientRepository repository, UserMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
+    }
+
+    /**
+     * Получить клиента по id
+     *
+     * @param id клиента
+     * @return найденного клиента или ошибку
+     */
+    private Client getClient(String id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Пользователь с id '" + id + "' не найден"));
     }
 
     /**
@@ -56,11 +67,6 @@ public class ClientServiceImpl implements ClientService {
         return dtoClient;
     }
 
-    private Client getClient(String id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new UserNotFound("Пользователь с id:" + id + " не найден"));
-    }
-
     /**
      * Поиск клиента по ID
      *
@@ -72,7 +78,6 @@ public class ClientServiceImpl implements ClientService {
         Client client = getClient(id);
         return mapper.clientMapToDTO(client);
     }
-
 
     /**
      * Обновить данные клиента

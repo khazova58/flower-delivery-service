@@ -3,12 +3,14 @@ package com.khazova.flowerdeliveryservice.controller;
 import com.khazova.flowerdeliveryservice.model.dto.FindOrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.NewOrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.OrderDto;
+import com.khazova.flowerdeliveryservice.model.entity.Courier;
 import com.khazova.flowerdeliveryservice.model.enums.OrderStatus;
 import com.khazova.flowerdeliveryservice.service.orders.OrdersService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -24,7 +26,7 @@ public class OrderController {
 
     @PostMapping
     @Operation(summary = "Создать новый заказ")
-    public NewOrderDto newOrder(OrderDto order) {
+    public NewOrderDto newOrder(@Valid @RequestBody OrderDto order) {
         return ordersService.newOrder(order);
     }
 
@@ -48,14 +50,14 @@ public class OrderController {
 
     @DeleteMapping("/{orderId}")
     @Operation(summary = "Удалить заказ")
-    public boolean deleteOrder(@PathVariable String  orderId) {
+    public boolean deleteOrder(@PathVariable String orderId) {
         return ordersService.deleteOrder(orderId);
     }
 
 
     @PutMapping("/{orderId}")
     @Operation(summary = "Изменить статус заказа")
-    public boolean changeStatusOrder(@PathVariable String orderId, @RequestParam OrderStatus updateStatus){
+    public boolean changeStatusOrder(@PathVariable String orderId, @RequestParam OrderStatus updateStatus) {
         return ordersService.changeStatusOrder(orderId, updateStatus);
     }
 }
