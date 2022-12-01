@@ -10,7 +10,6 @@ import java.util.Objects;
 /**
  * Сущность для работы с Clients
  */
-
 @Entity
 @Table(name = "clients")
 @Getter
@@ -24,7 +23,7 @@ public class Client {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "client_id", unique = true)
+    @Column(name = "client_id")
     private String clientId;
 
     @Column(name = "name")
