@@ -3,7 +3,6 @@ package com.khazova.flowerdeliveryservice.controller;
 import com.khazova.flowerdeliveryservice.model.dto.FindOrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.NewOrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.OrderDto;
-import com.khazova.flowerdeliveryservice.model.entity.Courier;
 import com.khazova.flowerdeliveryservice.model.enums.OrderStatus;
 import com.khazova.flowerdeliveryservice.service.orders.OrdersService;
 import io.swagger.v3.oas.annotations.Operation;

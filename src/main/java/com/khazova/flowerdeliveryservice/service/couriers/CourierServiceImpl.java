@@ -8,7 +8,6 @@ import com.khazova.flowerdeliveryservice.repository.CourierRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,6 +27,7 @@ public class CourierServiceImpl implements CourierService {
 
     /**
      * Получить курьера по id
+     *
      * @param id клиента
      * @return найденный курьер или exception
      */
@@ -38,6 +38,7 @@ public class CourierServiceImpl implements CourierService {
 
     /**
      * Создать нового курьера
+     *
      * @param courierDTO курьер
      * @return ID нового курьера в строковом представлении
      */
@@ -51,20 +52,20 @@ public class CourierServiceImpl implements CourierService {
 
     /**
      * Получить список всех курьеров
+     *
      * @return список найденных клиентов
      */
     @Override
     public List<CourierDto> findAll() {
         List<Courier> findCouriers = repository.findAll();
-        List<CourierDto> dtoCourier = new ArrayList<>();
-        for (Courier courier : findCouriers) {
-            dtoCourier.add(mapperCourier.courierMapToDTO(courier));
-        }
-        return dtoCourier;
+        return findCouriers.stream()
+                .map(courier -> mapperCourier.courierMapToDTO(courier))
+                .toList();
     }
 
     /**
      * Найти курьера по идентификатору
+     *
      * @param id курьера
      * @return найденный курьер
      */
@@ -76,7 +77,8 @@ public class CourierServiceImpl implements CourierService {
 
     /**
      * Обновить существующую запись
-     * @param id курьера
+     *
+     * @param id            курьера
      * @param updateCourier новые данные
      * @return true
      */
@@ -93,6 +95,7 @@ public class CourierServiceImpl implements CourierService {
 
     /**
      * Удалить курьера из базы по идентификатору
+     *
      * @param id курьера
      * @return true
      */
