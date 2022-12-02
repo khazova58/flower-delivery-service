@@ -10,10 +10,10 @@ import java.util.List;
 @Data
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ApiError {
+public class ApiError{
 
-    private String code;
-    private String message;
+    private String errorCode;
+    private String description;
     private LocalDateTime timeStamp;
     private List<String> errors;
 }

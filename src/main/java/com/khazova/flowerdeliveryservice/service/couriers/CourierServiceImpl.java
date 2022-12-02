@@ -1,6 +1,6 @@
 package com.khazova.flowerdeliveryservice.service.couriers;
 
-import com.khazova.flowerdeliveryservice.exception.ResourceNotFoundException;
+import com.khazova.flowerdeliveryservice.exception.CourierNotFoundException;
 import com.khazova.flowerdeliveryservice.model.dto.CourierDto;
 import com.khazova.flowerdeliveryservice.model.entity.Courier;
 import com.khazova.flowerdeliveryservice.model.mapper.UserMapper;
@@ -33,7 +33,7 @@ public class CourierServiceImpl implements CourierService {
      */
     private Courier getCourier(String id) {
         return repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Курьер с id '" + id + "' не найден"));
+                .orElseThrow(() -> new CourierNotFoundException(id));
     }
 
     /**
