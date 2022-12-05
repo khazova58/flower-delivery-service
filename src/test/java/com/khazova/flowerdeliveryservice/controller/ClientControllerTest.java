@@ -54,8 +54,8 @@ public class ClientControllerTest {
                                 }
                                 """))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.clientID").value("testId"));
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.clientId").value("testId"));
     }
 
     @Test

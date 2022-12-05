@@ -15,7 +15,6 @@ import com.khazova.flowerdeliveryservice.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -64,11 +63,9 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public List<FindOrderDto> findAllOrders() {
         List<Order> foundOrders = orderRepository.findAll();
-        List<FindOrderDto> dtoFound = new ArrayList<>();
-        for (Order order : foundOrders) {
-            dtoFound.add(mapper.entityMapToFindDto(order));
-        }
-        return dtoFound;
+        return foundOrders.stream()
+                .map(order -> mapper.entityMapToFindDto(order))
+                .toList();
     }
 
     /**
@@ -81,11 +78,9 @@ public class OrdersServiceImpl implements OrdersService {
     public List<FindOrderDto> getOrdersByClientId(String clientId) {
         Client foundClient = getClient(clientId);
         List<Order> foundOrders = orderRepository.findOrdersByClient(foundClient);
-        List<FindOrderDto> dtoFound = new ArrayList<>();
-        for (Order order : foundOrders) {
-            dtoFound.add(mapper.entityMapToFindDto(order));
-        }
-        return dtoFound;
+        return foundOrders.stream()
+                .map(order -> mapper.entityMapToFindDto(order))
+                .toList();
     }
 
     /**
@@ -98,11 +93,9 @@ public class OrdersServiceImpl implements OrdersService {
     public List<FindOrderDto> getOrderByCourierId(String courierId) {
         Courier foundCourier = courierRepository.findById(courierId).orElseThrow(() -> new ResourceNotFoundException("Курьер c id '" + courierId + "' не найден"));
         List<Order> foundOrders = orderRepository.findOrdersByCourier(foundCourier);
-        List<FindOrderDto> dtoFound = new ArrayList<>();
-        for (Order order : foundOrders) {
-            dtoFound.add(mapper.entityMapToFindDto(order));
-        }
-        return dtoFound;
+        return foundOrders.stream()
+                .map(order -> mapper.entityMapToFindDto(order))
+                .toList();
     }
 
     /**
@@ -135,6 +128,11 @@ public class OrdersServiceImpl implements OrdersService {
         return true;
     }
 
+    /**
+     * Проверка наличия заказа с указанным id
+     * @param orderId заказа
+     * @return заказ или сообщение об ошибке
+     */
     private Order getOrder(String orderId) {
         return orderRepository.findById(orderId).orElseThrow(() -> new ResourceNotFoundException("Заказ не найден"));
     }

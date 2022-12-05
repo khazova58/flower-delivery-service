@@ -9,7 +9,6 @@ import com.khazova.flowerdeliveryservice.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -60,11 +59,9 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public List<ClientDto> findAllClients() {
         List<Client> findClients = repository.findAll();
-        List<ClientDto> dtoClient = new ArrayList<>();
-        for (Client client : findClients) {
-            dtoClient.add(mapper.clientMapToDTO(client));
-        }
-        return dtoClient;
+        return findClients.stream()
+                .map(client -> mapper.clientMapToDTO(client))
+                .toList();
     }
 
     /**
