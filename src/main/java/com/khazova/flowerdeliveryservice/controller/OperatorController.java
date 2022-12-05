@@ -4,6 +4,7 @@ import com.khazova.flowerdeliveryservice.model.entity.Operator;
 import com.khazova.flowerdeliveryservice.service.operators.OperatorServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -20,23 +21,22 @@ public class OperatorController {
 
     @PostMapping
     @Operation(summary = "Создать нового оператора")
+    @ResponseStatus(HttpStatus.CREATED)
     public String createNewOperator(Operator operator) {
-        operatorServiceImpl.createNewOperator(operator);
-        return "";
+        return operatorServiceImpl.createNewOperator(operator);
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Удалить оператора с заданным идентификатором")
     public String deleteOperatorByID(@PathVariable String id) {
         operatorServiceImpl.deleteOperatorByID(id);
-        return "Оператор " + id + " удалён и бд.";
+        return "Оператор " + id + " удалён из бд.";
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Получить оператора по индентификатору")
     public Operator findOneOperatorByID(@PathVariable String id) {
         return operatorServiceImpl.findOneOperatorByID(id);
-
     }
 
     @GetMapping
@@ -47,10 +47,8 @@ public class OperatorController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Обновить оператора с заданным индентификаторм")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateOperatorByID(@PathVariable String id, Operator operator) {
        operatorServiceImpl.updateOperatorByID(id, operator);
     }
-
 }
-
-
