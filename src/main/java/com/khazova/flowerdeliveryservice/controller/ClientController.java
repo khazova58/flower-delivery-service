@@ -46,7 +46,6 @@ public class ClientController {
     @PutMapping("/{id}")
     @Operation(summary = "Обновить клиента")
     public boolean updateClient(@NotNull @PathVariable String id, @Valid @RequestBody ClientDto updateClient) {
-
         return clientService.updateClient(id, updateClient);
     }
 

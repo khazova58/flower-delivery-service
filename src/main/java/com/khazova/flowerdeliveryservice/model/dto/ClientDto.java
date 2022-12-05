@@ -25,7 +25,7 @@ public class ClientDto {
     @Pattern(regexp = "^(8|[+]7)[0-9]{10}$", message = "должно соответствовать записи (+7/8)9555555")
     private String phoneNumber;
 
-    @Email(message = "должно соответствовать формату test@test.ru")
+    @Email(message = "должен соответствовать формату test@test.ru")
     @NotNull(message = "не должно быть пустым")
     private String email;
 }
