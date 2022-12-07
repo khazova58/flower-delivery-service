@@ -1,5 +1,9 @@
 package com.khazova.flowerdeliveryservice.exception;
 
+import com.khazova.flowerdeliveryservice.exception.part1.ApiError;
+import com.khazova.flowerdeliveryservice.exception.part1.BusinessException;
+import com.khazova.flowerdeliveryservice.exception.part1.EmailExistException;
+import com.khazova.flowerdeliveryservice.exception.part2.ServiceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -48,5 +52,15 @@ public class AppExceptionHandler {
                 .errors(messages)
                 .build();
         return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ServiceException.class)
+    public ResponseEntity<?> handleServiceException(ServiceException ex) {
+        ApiError error = ApiError.builder()
+                .errorCode(ex.getError().getErrorCode())
+                .description(ex.getMessage())
+                .timeStamp(LocalDateTime.now())
+                .build();
+        return new ResponseEntity<>(error, ex.getError().getHttpStatus());
     }
 }
