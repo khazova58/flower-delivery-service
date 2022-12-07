@@ -14,14 +14,24 @@ import java.util.List;
 @ControllerAdvice
 public class AppExceptionHandler {
 
-    @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<?> handleResourceNotFound(ResourceNotFoundException ex) {
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<?> handleResourceNotFound(BusinessException ex) {
         ApiError apiError = ApiError.builder()
-                .code("error-01")
+                .errorCode(ex.getError())
+                .description(ex.getDescription())
                 .timeStamp(LocalDateTime.now())
-                .message(ex.getMessage())
                 .build();
         return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<?> handleEmailExist(EmailExistException ex) {
+        ApiError apiError = ApiError.builder()
+                .errorCode(ex.getError())
+                .description(ex.getDescription())
+                .timeStamp(LocalDateTime.now())
+                .build();
+        return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -32,8 +42,8 @@ public class AppExceptionHandler {
                 .map(error -> "Поле " + error.getField() + " " + error.getDefaultMessage())
                 .toList();
         ApiError apiError = ApiError.builder()
-                .code("error-02")
-                .message("Ошибка валидации")
+                .errorCode("Error:0102")
+                .description("Ошибка валидации")
                 .timeStamp(LocalDateTime.now())
                 .errors(messages)
                 .build();
