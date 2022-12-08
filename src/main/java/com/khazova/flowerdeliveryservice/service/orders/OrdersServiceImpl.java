@@ -1,6 +1,8 @@
 package com.khazova.flowerdeliveryservice.service.orders;
 
+import com.khazova.flowerdeliveryservice.exception.CourierNotFoundException;
 import com.khazova.flowerdeliveryservice.exception.ResourceNotFoundException;
+import com.khazova.flowerdeliveryservice.exception.UserNotFoundException;
 import com.khazova.flowerdeliveryservice.model.dto.FindOrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.NewOrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.OrderDto;
@@ -36,7 +38,7 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     private Client getClient(String id) {
-        return clientRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Клиент c id '" + id + "' не найден"));
+        return clientRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
     /**
@@ -91,7 +93,7 @@ public class OrdersServiceImpl implements OrdersService {
      */
     @Override
     public List<FindOrderDto> getOrderByCourierId(String courierId) {
-        Courier foundCourier = courierRepository.findById(courierId).orElseThrow(() -> new ResourceNotFoundException("Курьер c id '" + courierId + "' не найден"));
+        Courier foundCourier = courierRepository.findById(courierId).orElseThrow(() -> new CourierNotFoundException(courierId));
         List<Order> foundOrders = orderRepository.findOrdersByCourier(foundCourier);
         return foundOrders.stream()
                 .map(order -> mapper.entityMapToFindDto(order))
@@ -134,6 +136,6 @@ public class OrdersServiceImpl implements OrdersService {
      * @return заказ или сообщение об ошибке
      */
     private Order getOrder(String orderId) {
-        return orderRepository.findById(orderId).orElseThrow(() -> new ResourceNotFoundException("Заказ не найден"));
+        return orderRepository.findById(orderId).orElseThrow(() -> new ResourceNotFoundException(orderId));
     }
 }

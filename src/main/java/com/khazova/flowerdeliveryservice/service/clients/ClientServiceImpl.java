@@ -1,6 +1,7 @@
 package com.khazova.flowerdeliveryservice.service.clients;
 
-import com.khazova.flowerdeliveryservice.exception.ResourceNotFoundException;
+import com.khazova.flowerdeliveryservice.exception.EmailExistException;
+import com.khazova.flowerdeliveryservice.exception.UserNotFoundException;
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
@@ -34,7 +35,7 @@ public class ClientServiceImpl implements ClientService {
      */
     private Client getClient(String id) {
         return repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Пользователь с id '" + id + "' не найден"));
+                .orElseThrow(() -> new UserNotFoundException(id));
     }
 
     /**
@@ -46,6 +47,8 @@ public class ClientServiceImpl implements ClientService {
     @Override
     @Transactional
     public ClientWithIdDto newClient(ClientDto clientDTO) {
+        if(repository.findByEmail(clientDTO.getEmail()).isPresent())
+            throw new EmailExistException(clientDTO.getEmail());
         Client newClient = mapper.dtoMapToClient(clientDTO);
         repository.save(newClient);
         return mapper.clientMapToDtoWithId(newClient);
