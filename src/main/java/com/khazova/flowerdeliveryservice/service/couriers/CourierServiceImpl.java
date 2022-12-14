@@ -1,6 +1,7 @@
 package com.khazova.flowerdeliveryservice.service.couriers;
 
-import com.khazova.flowerdeliveryservice.exception.CourierNotFoundException;
+import com.khazova.flowerdeliveryservice.exception.part2.Error;
+import com.khazova.flowerdeliveryservice.exception.part2.ServiceException;
 import com.khazova.flowerdeliveryservice.model.dto.CourierDto;
 import com.khazova.flowerdeliveryservice.model.entity.Courier;
 import com.khazova.flowerdeliveryservice.model.mapper.UserMapper;
@@ -33,7 +34,7 @@ public class CourierServiceImpl implements CourierService {
      */
     private Courier getCourier(String id) {
         return repository.findById(id)
-                .orElseThrow(() -> new CourierNotFoundException(id));
+                .orElseThrow(() -> new ServiceException(Error.COURIER_NOT_FOUND,id));
     }
 
     /**

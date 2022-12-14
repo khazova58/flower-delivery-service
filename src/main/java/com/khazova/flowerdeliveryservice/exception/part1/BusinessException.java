@@ -1,4 +1,4 @@
-package com.khazova.flowerdeliveryservice.exception;
+package com.khazova.flowerdeliveryservice.exception.part1;
 
 
 public abstract class BusinessException extends RuntimeException {

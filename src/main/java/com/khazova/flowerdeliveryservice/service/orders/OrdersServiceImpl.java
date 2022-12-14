@@ -1,8 +1,7 @@
 package com.khazova.flowerdeliveryservice.service.orders;
 
-import com.khazova.flowerdeliveryservice.exception.CourierNotFoundException;
-import com.khazova.flowerdeliveryservice.exception.ResourceNotFoundException;
-import com.khazova.flowerdeliveryservice.exception.UserNotFoundException;
+import com.khazova.flowerdeliveryservice.exception.part2.Error;
+import com.khazova.flowerdeliveryservice.exception.part2.ServiceException;
 import com.khazova.flowerdeliveryservice.model.dto.FindOrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.NewOrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.OrderDto;
@@ -38,7 +37,7 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     private Client getClient(String id) {
-        return clientRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+        return clientRepository.findById(id).orElseThrow(() -> new ServiceException(Error.CLIENT_NOT_FOUND, id));
     }
 
     /**
@@ -93,7 +92,7 @@ public class OrdersServiceImpl implements OrdersService {
      */
     @Override
     public List<FindOrderDto> getOrderByCourierId(String courierId) {
-        Courier foundCourier = courierRepository.findById(courierId).orElseThrow(() -> new CourierNotFoundException(courierId));
+        Courier foundCourier = courierRepository.findById(courierId).orElseThrow(() -> new ServiceException(Error.COURIER_NOT_FOUND, courierId));
         List<Order> foundOrders = orderRepository.findOrdersByCourier(foundCourier);
         return foundOrders.stream()
                 .map(order -> mapper.entityMapToFindDto(order))
@@ -132,10 +131,11 @@ public class OrdersServiceImpl implements OrdersService {
 
     /**
      * Проверка наличия заказа с указанным id
+     *
      * @param orderId заказа
      * @return заказ или сообщение об ошибке
      */
     private Order getOrder(String orderId) {
-        return orderRepository.findById(orderId).orElseThrow(() -> new ResourceNotFoundException(orderId));
+        return orderRepository.findById(orderId).orElseThrow(() -> new ServiceException(Error.ORDER_NOT_FOUND, orderId));
     }
 }
