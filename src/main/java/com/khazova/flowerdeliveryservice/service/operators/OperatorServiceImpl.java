@@ -1,7 +1,7 @@
 package com.khazova.flowerdeliveryservice.service.operators;
 
-import com.khazova.flowerdeliveryservice.exception.part2.Error;
-import com.khazova.flowerdeliveryservice.exception.part2.ServiceException;
+import com.khazova.flowerdeliveryservice.exception.Error;
+import com.khazova.flowerdeliveryservice.exception.ServiceException;
 import com.khazova.flowerdeliveryservice.model.entity.Operator;
 import com.khazova.flowerdeliveryservice.repository.OperatorRepository;
 import org.springframework.stereotype.Service;
@@ -49,7 +49,7 @@ public class OperatorServiceImpl {
      */
     public Operator findOneOperatorByID(String id) {
         return operatorRepository.findById(id)
-                .orElseThrow(() -> new ServiceException(Error.COURIER_NOT_FOUND));
+                .orElseThrow(() -> new ServiceException(Error.OPERATOR_NOT_FOUND));
     }
 
     /**

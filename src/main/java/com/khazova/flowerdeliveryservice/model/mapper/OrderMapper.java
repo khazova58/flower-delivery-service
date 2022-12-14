@@ -16,5 +16,6 @@ public interface OrderMapper {
 
     @Mapping(target = "nameClient", source = "client.name")
     @Mapping(target = "lastName", source = "client.lastName")
+    @Mapping(target = "dateOfOrder", source = "order.createDateTime")
     FindOrderDto entityMapToFindDto(Order order);
 }

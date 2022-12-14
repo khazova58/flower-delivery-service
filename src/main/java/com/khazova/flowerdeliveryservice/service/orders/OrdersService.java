@@ -3,7 +3,10 @@ package com.khazova.flowerdeliveryservice.service.orders;
 import com.khazova.flowerdeliveryservice.model.dto.FindOrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.NewOrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.OrderDto;
+import com.khazova.flowerdeliveryservice.model.dto.RequestForClientDto;
 import com.khazova.flowerdeliveryservice.model.enums.OrderStatus;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -21,15 +24,15 @@ public interface OrdersService {
      *
      * @return list - список заказов
      */
-    List<FindOrderDto> findAllOrders();
+    List<FindOrderDto> findAllOrders(Pageable pageable);
 
     /**
      * Возвращает заказы клиента по ID
      *
-     * @param clientId идентификатор клиента
+     * @param request объект запроса
      * @return list заказов клиента
      */
-    List<FindOrderDto> getOrdersByClientId(String clientId);
+    List<FindOrderDto> getOrdersByClientWithParam(RequestForClientDto request, Sort sort);
 
     /**
      * Возвращает заказы курьера

@@ -1,10 +1,11 @@
 package com.khazova.flowerdeliveryservice.service.orders;
 
-import com.khazova.flowerdeliveryservice.exception.part2.Error;
-import com.khazova.flowerdeliveryservice.exception.part2.ServiceException;
+import com.khazova.flowerdeliveryservice.exception.Error;
+import com.khazova.flowerdeliveryservice.exception.ServiceException;
 import com.khazova.flowerdeliveryservice.model.dto.FindOrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.NewOrderDto;
 import com.khazova.flowerdeliveryservice.model.dto.OrderDto;
+import com.khazova.flowerdeliveryservice.model.dto.RequestForClientDto;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
 import com.khazova.flowerdeliveryservice.model.entity.Courier;
 import com.khazova.flowerdeliveryservice.model.entity.Order;
@@ -13,8 +14,12 @@ import com.khazova.flowerdeliveryservice.model.mapper.OrderMapper;
 import com.khazova.flowerdeliveryservice.repository.ClientRepository;
 import com.khazova.flowerdeliveryservice.repository.CourierRepository;
 import com.khazova.flowerdeliveryservice.repository.OrderRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -59,11 +64,11 @@ public class OrdersServiceImpl implements OrdersService {
     /**
      * Поиск всех заказов
      *
-     * @return список заказов
+     * @return список заказов, отсортированный по дате создания (новые->старые)
      */
     @Override
-    public List<FindOrderDto> findAllOrders() {
-        List<Order> foundOrders = orderRepository.findAll();
+    public List<FindOrderDto> findAllOrders(Pageable pageable) {
+        Page<Order> foundOrders = orderRepository.findAll(pageable);
         return foundOrders.stream()
                 .map(order -> mapper.entityMapToFindDto(order))
                 .toList();
@@ -72,13 +77,13 @@ public class OrdersServiceImpl implements OrdersService {
     /**
      * Поиск заказов по клиенту
      *
-     * @param clientId идентификатор клиента
-     * @return список найденных заказов
+     * @param request объект запроса
+     * @return список найденных заказов отсортированный по возрастанию
      */
     @Override
-    public List<FindOrderDto> getOrdersByClientId(String clientId) {
-        Client foundClient = getClient(clientId);
-        List<Order> foundOrders = orderRepository.findOrdersByClient(foundClient);
+    public List<FindOrderDto> getOrdersByClientWithParam(@RequestBody RequestForClientDto request, Sort sort) {
+        Client foundClient = getClient(request.getClientId());
+        List<Order> foundOrders = orderRepository.findOrdersByRequest(foundClient.getClientId(), request.getStatus(), request.getStartDate(), request.getEndDate(), sort);
         return foundOrders.stream()
                 .map(order -> mapper.entityMapToFindDto(order))
                 .toList();
