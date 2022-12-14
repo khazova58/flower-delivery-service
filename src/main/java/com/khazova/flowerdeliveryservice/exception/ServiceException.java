@@ -1,4 +1,4 @@
-package com.khazova.flowerdeliveryservice.exception.part2;
+package com.khazova.flowerdeliveryservice.exception;
 
 import lombok.Getter;
 
