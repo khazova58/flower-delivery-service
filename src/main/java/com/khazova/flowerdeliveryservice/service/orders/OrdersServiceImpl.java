@@ -78,7 +78,7 @@ public class OrdersServiceImpl implements OrdersService {
      * Поиск заказов по клиенту
      *
      * @param request объект запроса
-     * @return список найденных заказов отсортированный по возрастанию
+     * @return список найденных заказов отсортированный по критерию (по умолчанию по дате создания в порядке увбывания)
      */
     @Override
     public List<FindOrderDto> getOrdersByClientWithParam(@RequestBody RequestForClientDto request, Sort sort) {

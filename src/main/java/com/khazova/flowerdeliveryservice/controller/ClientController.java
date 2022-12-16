@@ -45,14 +45,12 @@ public class ClientController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Обновить клиента")
-    @ResponseStatus(HttpStatus.OK)
     public boolean updateClient(@NotNull @PathVariable String id, @Valid @RequestBody ClientDto updateClient) {
         return clientService.updateClient(id, updateClient);
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Удалить клиента")
-    @ResponseStatus(HttpStatus.OK)
     public boolean deleteClient(@NotNull @PathVariable String id) {
         return clientService.deleteClientById(id);
     }

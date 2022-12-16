@@ -18,8 +18,8 @@ public interface OrderRepository extends JpaRepository<Order, String> {
     List<Order> findOrdersByCourier(Courier courier);
 
     @Query(value = "SELECT o FROM Order o WHERE (o.client.clientId= :clientId) " +
-            "and (:status is null or o.status=:status) " +
-            "and ((:start is null or :end is null) or o.createDateTime between :start and :end)")
+            "AND (:status IS NULL OR o.status=:status) " +
+            "AND ((:start IS NULL OR :end IS NULL) OR o.createDateTime BETWEEN :start AND :end)")
     List<Order> findOrdersByRequest(@Param("clientId") String clientId,
                                     @Param("status") OrderStatus status,
                                     @Param("start") Date start,

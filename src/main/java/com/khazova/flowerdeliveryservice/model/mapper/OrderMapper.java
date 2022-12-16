@@ -13,7 +13,6 @@ public interface OrderMapper {
     @Mapping(target = "clientId", source = "client.clientId")
     NewOrderDto entityMapToNewDto(Order order);
 
-
     @Mapping(target = "nameClient", source = "client.name")
     @Mapping(target = "lastName", source = "client.lastName")
     @Mapping(target = "dateOfOrder", source = "order.createDateTime")
