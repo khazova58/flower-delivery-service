@@ -1,4 +1,4 @@
-package com.khazova.flowerdeliveryservice.exception.part1;
+package com.khazova.flowerdeliveryservice.exception;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;

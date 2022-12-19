@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 
 /**
  * DTO-класс для ответа- представление объекта Client в формате Имя, Фамилия, Телефон и eMail
@@ -26,6 +23,6 @@ public class ClientDto {
     private String phoneNumber;
 
     @Email(message = "должен соответствовать формату test@test.ru")
-    @NotNull(message = "не должно быть пустым")
+    @NotBlank(message = "не должно быть пустым")
     private String email;
 }

@@ -1,7 +1,7 @@
 package com.khazova.flowerdeliveryservice.service.clients;
 
-import com.khazova.flowerdeliveryservice.exception.part2.Error;
-import com.khazova.flowerdeliveryservice.exception.part2.ServiceException;
+import com.khazova.flowerdeliveryservice.exception.Error;
+import com.khazova.flowerdeliveryservice.exception.ServiceException;
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
