@@ -1,7 +1,6 @@
 package com.khazova.flowerdeliveryservice.service.clients;
 
-import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
-import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
+import com.khazova.flowerdeliveryservice.model.dto.*;
 
 import java.util.List;
 

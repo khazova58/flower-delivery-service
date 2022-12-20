@@ -3,7 +3,6 @@ package com.khazova.flowerdeliveryservice.model.dto;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Data
 public class OrderDto {

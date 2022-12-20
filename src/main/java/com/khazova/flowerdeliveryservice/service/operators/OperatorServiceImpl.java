@@ -51,7 +51,7 @@ public class OperatorServiceImpl {
      */
     public Operator findOneOperatorByID(String id) {
         return operatorRepository.findById(id)
-                .orElseThrow(() -> new ServiceException(Error.COURIER_NOT_FOUND));
+                .orElseThrow(() -> new ServiceException(Error.OPERATOR_NOT_FOUND));
     }
 
     /**

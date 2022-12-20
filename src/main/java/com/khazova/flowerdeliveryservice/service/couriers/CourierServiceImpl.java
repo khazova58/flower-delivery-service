@@ -1,7 +1,7 @@
 package com.khazova.flowerdeliveryservice.service.couriers;
 
-import com.khazova.flowerdeliveryservice.exception.part2.Error;
-import com.khazova.flowerdeliveryservice.exception.part2.ServiceException;
+import com.khazova.flowerdeliveryservice.exception.Error;
+import com.khazova.flowerdeliveryservice.exception.ServiceException;
 import com.khazova.flowerdeliveryservice.model.dto.CourierDto;
 import com.khazova.flowerdeliveryservice.model.entity.Courier;
 import com.khazova.flowerdeliveryservice.model.mapper.UserMapper;
