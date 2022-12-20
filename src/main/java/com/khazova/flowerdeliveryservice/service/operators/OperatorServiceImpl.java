@@ -2,12 +2,15 @@ package com.khazova.flowerdeliveryservice.service.operators;
 
 import com.khazova.flowerdeliveryservice.exception.Error;
 import com.khazova.flowerdeliveryservice.exception.ServiceException;
+import com.khazova.flowerdeliveryservice.model.dto.OperatorDTO;
 import com.khazova.flowerdeliveryservice.model.dto.UpdateOperatorResponse;
 import com.khazova.flowerdeliveryservice.model.entity.Operator;
+import com.khazova.flowerdeliveryservice.model.mapper.OperatorMapper;
 import com.khazova.flowerdeliveryservice.repository.OperatorRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +20,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class OperatorServiceImpl {
     private final OperatorRepository operatorRepository;
+    private OperatorMapper operatorMapper = new OperatorMapper();
 
     public OperatorServiceImpl(OperatorRepository operatorRepository){
         this.operatorRepository = operatorRepository;
@@ -24,13 +28,15 @@ public class OperatorServiceImpl {
 
     /**
      * Создать нового оператора
-     * @param operator оператор
+     * @param operatorDTO оператор
      * @return ID нового оператора в строковом представлении
      */
     @Transactional
-    public String createNewOperator(Operator operator) {
+    public OperatorDTO createNewOperator(OperatorDTO operatorDTO) {
+        //OperatorMapper operatorMapper = new OperatorMapper();
+        Operator operator = operatorMapper.dtoMapToOperator(operatorDTO);
         operatorRepository.save(operator);
-        return operator.getOperatorID();
+        return operatorMapper.operatorMapToDTO(operator);
     }
 
     /**
@@ -49,27 +55,34 @@ public class OperatorServiceImpl {
      * @param id оператора
      * @return найденный оператор или exception
      */
-    public Operator findOneOperatorByID(String id) {
-        return operatorRepository.findById(id)
-                .orElseThrow(() -> new ServiceException(Error.OPERATOR_NOT_FOUND, id));
+    public OperatorDTO findOneOperatorByID(String id) {
+        return operatorMapper.operatorMapToDTO(operatorRepository.findById(id)
+                .orElseThrow(() -> new ServiceException(Error.OPERATOR_NOT_FOUND, id)));
     }
 
     /**
      * Получить список всех операторов
      * @return список найденных операторов
      */
-    public List<Operator> findAllOperators() {
-        return operatorRepository.findAll();
+    public List<OperatorDTO> findAllOperators() {
+        List<Operator> operatorList = operatorRepository.findAll();
+        List<OperatorDTO> operatorDTOList = new ArrayList<>();
+        for (Operator temp: operatorList) {
+            operatorDTOList.add(operatorMapper.operatorMapToDTO(temp));
+        }
+        return operatorDTOList;
+
     }
 
     /**
      * Обновить существующую запись оператора
      * @param id оператора
-     * @param updateOperator новые данные
+     * @param updateOperatorDTO новые данные
      */
     @Transactional
-    public UpdateOperatorResponse updateOperatorByID(String id, Operator updateOperator) {
+    public UpdateOperatorResponse updateOperatorByID(String id, OperatorDTO updateOperatorDTO) {
         findOneOperatorByID(id);
+        Operator updateOperator = operatorMapper.dtoMapToOperator(updateOperatorDTO);
         updateOperator.setOperatorID(id);
         operatorRepository.save(updateOperator);
         return new UpdateOperatorResponse(true);
