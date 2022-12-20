@@ -3,7 +3,7 @@ package com.khazova.flowerdeliveryservice.model.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Objects;
 
 /**
  * Сущность для работы с Operators
@@ -80,5 +80,18 @@ public class Operator {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Operator operator = (Operator) o;
+        return Objects.equals(operatorID, operator.operatorID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(operatorID);
     }
 }
