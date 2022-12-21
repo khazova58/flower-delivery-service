@@ -1,15 +1,17 @@
 package com.khazova.flowerdeliveryservice.controller;
 
+import com.khazova.flowerdeliveryservice.model.dto.UpdateOperatorResponse;
 import com.khazova.flowerdeliveryservice.model.entity.Operator;
 import com.khazova.flowerdeliveryservice.service.operators.OperatorServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/operator")
+@RequestMapping(value = "api/v1/operator", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Оператор")
 public class OperatorController {
 
@@ -28,9 +30,8 @@ public class OperatorController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Удалить оператора с заданным идентификатором")
-    public String deleteOperatorByID(@PathVariable String id) {
-        operatorServiceImpl.deleteOperatorByID(id);
-        return "Оператор " + id + " удалён из бд.";
+    public Boolean deleteOperatorByID(@PathVariable String id) {
+        return operatorServiceImpl.deleteOperatorByID(id);
     }
 
     @GetMapping("/{id}")
@@ -42,13 +43,12 @@ public class OperatorController {
     @GetMapping
     @Operation(summary = "Получить всех операторов")
     public List<Operator> findAllOperators() {
-         return operatorServiceImpl.findAll();
+         return operatorServiceImpl.findAllOperators();
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Обновить оператора с заданным индентификаторм")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateOperatorByID(@PathVariable String id, Operator operator) {
-       operatorServiceImpl.updateOperatorByID(id, operator);
+    public UpdateOperatorResponse updateOperatorByID(@PathVariable String id, @RequestBody Operator operator) {
+       return operatorServiceImpl.updateOperatorByID(id, operator);
     }
 }
