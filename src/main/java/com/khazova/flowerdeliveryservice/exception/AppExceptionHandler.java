@@ -1,5 +1,6 @@
 package com.khazova.flowerdeliveryservice.exception;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Slf4j
 @ControllerAdvice
 public class AppExceptionHandler {
 
@@ -27,6 +29,7 @@ public class AppExceptionHandler {
                 .timeStamp(LocalDateTime.now())
                 .errors(messages)
                 .build();
+        log.error("Incorrect values: {}", messages);
         return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
     }
 
@@ -37,6 +40,7 @@ public class AppExceptionHandler {
                 .description(ex.getMessage())
                 .timeStamp(LocalDateTime.now())
                 .build();
+        log.error("Resource not found: {}", error.getDescription());
         return new ResponseEntity<>(error, ex.getError().getHttpStatus());
     }
 
@@ -47,6 +51,7 @@ public class AppExceptionHandler {
                 .description(ex.getMessage())
                 .timeStamp(LocalDateTime.now())
                 .build();
+        log.error("Exception from Runtime: {}", error.getDescription());
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 }

@@ -1,0 +1,187 @@
+2022-12-21 17:16:53.027  INFO 23101 --- [main] c.k.f.FlowerDeliveryServiceApplication   : Starting FlowerDeliveryServiceApplication using Java 17.0.4.1 on home with PID 23101 (/home/julia/IdeaProjects/flower-delivery-service/target/classes started by julia in /home/julia/IdeaProjects/flower-delivery-service)
+2022-12-21 17:16:53.029  INFO 23101 --- [main] c.k.f.FlowerDeliveryServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2022-12-21 17:16:53.634  INFO 23101 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-21 17:16:53.681  INFO 23101 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 4 JPA repository interfaces.
+2022-12-21 17:16:54.085  INFO 23101 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-21 17:16:54.093  INFO 23101 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-21 17:16:54.093  INFO 23101 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-21 17:16:54.171  INFO 23101 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-21 17:16:54.172  INFO 23101 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1100 ms
+2022-12-21 17:16:54.205  INFO 23101 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-21 17:16:54.439  INFO 23101 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-21 17:16:54.456  INFO 23101 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2o'. Database available at 'jdbc:h2:file:./.h2/flower_delivery'
+2022-12-21 17:16:54.568  INFO 23101 --- [main] liquibase.database                       : Set default schema name to PUBLIC
+2022-12-21 17:16:54.674  INFO 23101 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2022-12-21 17:16:54.738  INFO 23101 --- [main] liquibase.changelog                      : Reading from PUBLIC.DATABASECHANGELOG
+2022-12-21 17:16:54.769  INFO 23101 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2022-12-21 17:16:54.818  INFO 23101 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-21 17:16:54.851  INFO 23101 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-21 17:16:54.958  INFO 23101 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-21 17:16:55.034  INFO 23101 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-12-21 17:16:55.498  INFO 23101 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-21 17:16:55.504  INFO 23101 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 17:16:56.597  INFO 23101 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-21 17:16:56.609  INFO 23101 --- [main] c.k.f.FlowerDeliveryServiceApplication   : Started FlowerDeliveryServiceApplication in 3.982 seconds (JVM running for 4.42)
+2022-12-21 17:17:06.283  INFO 23101 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 17:17:06.285  INFO 23101 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-21 17:17:06.291  INFO 23101 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-21 17:30:46.059  INFO 24471 --- [main] c.k.f.FlowerDeliveryServiceApplication   : Starting FlowerDeliveryServiceApplication using Java 17.0.4.1 on home with PID 24471 (/home/julia/IdeaProjects/flower-delivery-service/target/classes started by julia in /home/julia/IdeaProjects/flower-delivery-service)
+2022-12-21 17:30:46.062  INFO 24471 --- [main] c.k.f.FlowerDeliveryServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2022-12-21 17:30:46.688  INFO 24471 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-21 17:30:46.735  INFO 24471 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40 ms. Found 4 JPA repository interfaces.
+2022-12-21 17:30:47.152  INFO 24471 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-21 17:30:47.159  INFO 24471 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-21 17:30:47.159  INFO 24471 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-21 17:30:47.236  INFO 24471 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-21 17:30:47.237  INFO 24471 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1124 ms
+2022-12-21 17:30:47.264  INFO 24471 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-21 17:30:47.518  INFO 24471 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-21 17:30:47.528  INFO 24471 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2o'. Database available at 'jdbc:h2:file:./.h2/flower_delivery'
+2022-12-21 17:30:47.633  INFO 24471 --- [main] liquibase.database                       : Set default schema name to PUBLIC
+2022-12-21 17:30:47.738  INFO 24471 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2022-12-21 17:30:47.805  INFO 24471 --- [main] liquibase.changelog                      : Reading from PUBLIC.DATABASECHANGELOG
+2022-12-21 17:30:47.838  INFO 24471 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2022-12-21 17:30:47.887  INFO 24471 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-21 17:30:47.919  INFO 24471 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-21 17:30:48.027  INFO 24471 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-21 17:30:48.102  INFO 24471 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-12-21 17:30:48.586  INFO 24471 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-21 17:30:48.592  INFO 24471 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 17:30:49.702  INFO 24471 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-21 17:30:49.712  INFO 24471 --- [main] c.k.f.FlowerDeliveryServiceApplication   : Started FlowerDeliveryServiceApplication in 4.047 seconds (JVM running for 4.496)
+2022-12-21 17:30:58.200  INFO 24471 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-12-21 17:30:58.200  INFO 24471 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-12-21 17:30:58.201  INFO 24471 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2022-12-21 17:30:58.307 ERROR 24471 --- [http-nio-8080-exec-1] c.k.f.exception.AppExceptionHandler      : Incorrect values ApiError(errorCode=Error:0100, description=Ошибка валидации, timeStamp=2022-12-21T17:30:58.307918547, errors=[Поле email должен соответствовать формату test@test.ru])
+2022-12-21 17:31:24.909 ERROR 24471 --- [http-nio-8080-exec-2] c.k.f.exception.AppExceptionHandler      : Resource not found ApiError(errorCode=Error:0102, description=Клиент с id 'rrr' не найден, timeStamp=2022-12-21T17:31:24.909016365, errors=null)
+2022-12-21 17:32:03.865  INFO 24471 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 17:32:03.867  INFO 24471 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-21 17:32:03.892  INFO 24471 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-21 17:32:09.015  INFO 24768 --- [main] c.k.f.FlowerDeliveryServiceApplication   : Starting FlowerDeliveryServiceApplication using Java 17.0.4.1 on home with PID 24768 (/home/julia/IdeaProjects/flower-delivery-service/target/classes started by julia in /home/julia/IdeaProjects/flower-delivery-service)
+2022-12-21 17:32:09.018  INFO 24768 --- [main] c.k.f.FlowerDeliveryServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2022-12-21 17:32:09.621  INFO 24768 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-21 17:32:09.664  INFO 24768 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 4 JPA repository interfaces.
+2022-12-21 17:32:10.049  INFO 24768 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-21 17:32:10.056  INFO 24768 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-21 17:32:10.056  INFO 24768 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-21 17:32:10.126  INFO 24768 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-21 17:32:10.126  INFO 24768 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1062 ms
+2022-12-21 17:32:10.151  INFO 24768 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-21 17:32:10.398  INFO 24768 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-21 17:32:10.407  INFO 24768 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2o'. Database available at 'jdbc:h2:file:./.h2/flower_delivery'
+2022-12-21 17:32:10.510  INFO 24768 --- [main] liquibase.database                       : Set default schema name to PUBLIC
+2022-12-21 17:32:10.615  INFO 24768 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2022-12-21 17:32:10.680  INFO 24768 --- [main] liquibase.changelog                      : Reading from PUBLIC.DATABASECHANGELOG
+2022-12-21 17:32:10.711  INFO 24768 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2022-12-21 17:32:10.760  INFO 24768 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-21 17:32:10.792  INFO 24768 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-21 17:32:10.898  INFO 24768 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-21 17:32:10.972  INFO 24768 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-12-21 17:32:11.450  INFO 24768 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-21 17:32:11.455  INFO 24768 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 17:32:12.636  INFO 24768 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-21 17:32:12.649  INFO 24768 --- [main] c.k.f.FlowerDeliveryServiceApplication   : Started FlowerDeliveryServiceApplication in 4.077 seconds (JVM running for 4.609)
+2022-12-21 17:32:15.297  INFO 24768 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-12-21 17:32:15.297  INFO 24768 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-12-21 17:32:15.298  INFO 24768 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-12-21 17:32:15.372 ERROR 24768 --- [http-nio-8080-exec-1] c.k.f.exception.AppExceptionHandler      : Resource not found Клиент с id 'rrr' не найден
+2022-12-21 17:35:21.229 ERROR 24768 --- [http-nio-8080-exec-3] c.k.f.exception.AppExceptionHandler      : Resource not found Клиент с id 'dddd' не найден
+2022-12-21 17:36:21.525 ERROR 24768 --- [http-nio-8080-exec-5] c.k.f.exception.AppExceptionHandler      : Incorrect values ApiError(errorCode=Error:0100, description=Ошибка валидации, timeStamp=2022-12-21T17:36:21.525460697, errors=[Поле lastName не должно быть пустым, Поле name не должно быть пустым])
+2022-12-21 17:36:37.735  INFO 24768 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 17:36:37.736  INFO 24768 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-21 17:36:37.737  INFO 24768 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-21 17:36:45.982  INFO 25189 --- [main] c.k.f.FlowerDeliveryServiceApplication   : Starting FlowerDeliveryServiceApplication using Java 17.0.4.1 on home with PID 25189 (/home/julia/IdeaProjects/flower-delivery-service/target/classes started by julia in /home/julia/IdeaProjects/flower-delivery-service)
+2022-12-21 17:36:45.984  INFO 25189 --- [main] c.k.f.FlowerDeliveryServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2022-12-21 17:36:46.610  INFO 25189 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-21 17:36:46.655  INFO 25189 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 38 ms. Found 4 JPA repository interfaces.
+2022-12-21 17:36:47.071  INFO 25189 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-21 17:36:47.079  INFO 25189 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-21 17:36:47.079  INFO 25189 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-21 17:36:47.156  INFO 25189 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-21 17:36:47.156  INFO 25189 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1132 ms
+2022-12-21 17:36:47.184  INFO 25189 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-21 17:36:47.452  INFO 25189 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-21 17:36:47.462  INFO 25189 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2o'. Database available at 'jdbc:h2:file:./.h2/flower_delivery'
+2022-12-21 17:36:47.568  INFO 25189 --- [main] liquibase.database                       : Set default schema name to PUBLIC
+2022-12-21 17:36:47.680  INFO 25189 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2022-12-21 17:36:47.747  INFO 25189 --- [main] liquibase.changelog                      : Reading from PUBLIC.DATABASECHANGELOG
+2022-12-21 17:36:47.780  INFO 25189 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2022-12-21 17:36:47.832  INFO 25189 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-21 17:36:47.864  INFO 25189 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-21 17:36:47.972  INFO 25189 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-21 17:36:48.047  INFO 25189 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-12-21 17:36:48.524  INFO 25189 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-21 17:36:48.530  INFO 25189 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 17:36:49.649  INFO 25189 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-21 17:36:49.659  INFO 25189 --- [main] c.k.f.FlowerDeliveryServiceApplication   : Started FlowerDeliveryServiceApplication in 4.098 seconds (JVM running for 4.597)
+2022-12-21 17:36:52.492  INFO 25189 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-12-21 17:36:52.492  INFO 25189 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-12-21 17:36:52.493  INFO 25189 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-12-21 17:36:52.618 ERROR 25189 --- [http-nio-8080-exec-1] c.k.f.exception.AppExceptionHandler      : Incorrect values: ApiError(errorCode=Error:0100, description=Ошибка валидации, timeStamp=2022-12-21T17:36:52.618568408, errors=[Поле lastName не должно быть пустым, Поле name не должно быть пустым])
+2022-12-21 17:37:20.799  INFO 25189 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 17:37:20.801  INFO 25189 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-21 17:37:20.820  INFO 25189 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-21 17:37:25.950  INFO 25455 --- [main] c.k.f.FlowerDeliveryServiceApplication   : Starting FlowerDeliveryServiceApplication using Java 17.0.4.1 on home with PID 25455 (/home/julia/IdeaProjects/flower-delivery-service/target/classes started by julia in /home/julia/IdeaProjects/flower-delivery-service)
+2022-12-21 17:37:25.952  INFO 25455 --- [main] c.k.f.FlowerDeliveryServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2022-12-21 17:37:26.584  INFO 25455 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-21 17:37:26.638  INFO 25455 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 4 JPA repository interfaces.
+2022-12-21 17:37:27.073  INFO 25455 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-21 17:37:27.080  INFO 25455 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-21 17:37:27.080  INFO 25455 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-21 17:37:27.157  INFO 25455 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-21 17:37:27.157  INFO 25455 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1163 ms
+2022-12-21 17:37:27.184  INFO 25455 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-21 17:37:27.443  INFO 25455 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-21 17:37:27.452  INFO 25455 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2o'. Database available at 'jdbc:h2:file:./.h2/flower_delivery'
+2022-12-21 17:37:27.559  INFO 25455 --- [main] liquibase.database                       : Set default schema name to PUBLIC
+2022-12-21 17:37:27.665  INFO 25455 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2022-12-21 17:37:27.731  INFO 25455 --- [main] liquibase.changelog                      : Reading from PUBLIC.DATABASECHANGELOG
+2022-12-21 17:37:27.761  INFO 25455 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2022-12-21 17:37:27.806  INFO 25455 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-21 17:37:27.839  INFO 25455 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-21 17:37:27.955  INFO 25455 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-21 17:37:28.038  INFO 25455 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-12-21 17:37:28.505  INFO 25455 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-21 17:37:28.513  INFO 25455 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 17:37:29.610  INFO 25455 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-21 17:37:29.620  INFO 25455 --- [main] c.k.f.FlowerDeliveryServiceApplication   : Started FlowerDeliveryServiceApplication in 4.059 seconds (JVM running for 4.504)
+2022-12-21 17:37:32.500  INFO 25455 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-12-21 17:37:32.500  INFO 25455 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-12-21 17:37:32.501  INFO 25455 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-12-21 17:37:32.627 ERROR 25455 --- [http-nio-8080-exec-1] c.k.f.exception.AppExceptionHandler      : Incorrect values: [Поле lastName не должно быть пустым, Поле name не должно быть пустым]
+2022-12-21 17:38:17.121  INFO 25455 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 17:38:17.122  INFO 25455 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-21 17:38:17.143  INFO 25455 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-21 17:42:50.072  INFO 25814 --- [main] c.k.f.FlowerDeliveryServiceApplication   : Starting FlowerDeliveryServiceApplication using Java 17.0.4.1 on home with PID 25814 (/home/julia/IdeaProjects/flower-delivery-service/target/classes started by julia in /home/julia/IdeaProjects/flower-delivery-service)
+2022-12-21 17:42:50.081  INFO 25814 --- [main] c.k.f.FlowerDeliveryServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2022-12-21 17:42:50.722  INFO 25814 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-21 17:42:50.775  INFO 25814 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46 ms. Found 4 JPA repository interfaces.
+2022-12-21 17:42:51.180  INFO 25814 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-21 17:42:51.187  INFO 25814 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-21 17:42:51.187  INFO 25814 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-21 17:42:51.259  INFO 25814 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-21 17:42:51.259  INFO 25814 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1123 ms
+2022-12-21 17:42:51.284  INFO 25814 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-21 17:42:51.544  INFO 25814 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-21 17:42:51.555  INFO 25814 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2o'. Database available at 'jdbc:h2:file:./.h2/flower_delivery'
+2022-12-21 17:42:51.656  INFO 25814 --- [main] liquibase.database                       : Set default schema name to PUBLIC
+2022-12-21 17:42:51.761  INFO 25814 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2022-12-21 17:42:51.823  INFO 25814 --- [main] liquibase.changelog                      : Reading from PUBLIC.DATABASECHANGELOG
+2022-12-21 17:42:51.853  INFO 25814 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2022-12-21 17:42:51.898  INFO 25814 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-21 17:42:51.929  INFO 25814 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-21 17:42:52.035  INFO 25814 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-21 17:42:52.110  INFO 25814 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-12-21 17:42:52.583  INFO 25814 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-21 17:42:52.589  INFO 25814 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 17:42:53.791  INFO 25814 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-21 17:42:53.803  INFO 25814 --- [main] c.k.f.FlowerDeliveryServiceApplication   : Started FlowerDeliveryServiceApplication in 4.133 seconds (JVM running for 4.608)
+2022-12-21 17:42:59.553  INFO 25814 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-12-21 17:42:59.553  INFO 25814 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-12-21 17:42:59.555  INFO 25814 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2022-12-21 17:42:59.580  INFO 25814 --- [http-nio-8080-exec-1] c.k.f.controller.ClientController        : Получение всех клиентов
+2022-12-21 17:43:33.516  INFO 25814 --- [http-nio-8080-exec-2] c.k.f.controller.ClientController        : Редактирование пользователя с ID: dddd
+2022-12-21 17:43:33.529 ERROR 25814 --- [http-nio-8080-exec-2] c.k.f.exception.AppExceptionHandler      : Resource not found: Клиент с id 'dddd' не найден
+2022-12-21 17:44:48.693  INFO 25814 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 17:44:48.694  INFO 25814 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-21 17:44:48.696  INFO 25814 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
