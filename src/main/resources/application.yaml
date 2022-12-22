@@ -19,9 +19,4 @@ spring:
   h2:
     console:
       enabled: true
-      path: /h2o
-logging:
-  file:
-    path: src/main/java/com/khazova/flowerdeliveryservice/logs
-  level:
-    root: info
+      path: /h2
