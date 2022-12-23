@@ -33,16 +33,16 @@ public class OperatorControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private final Operator operator = new Operator(/*"123456789", */"Иван", "Петров", "+79025566779", "ivan@ya.ru");
+    private final Operator operator = new Operator("Иван", "Петров", "+79025566779", "ivan@ya.ru");
 
     private final OperatorDTO operatorDTO = new OperatorDTO("Ivan", "Petrov", "+79025566779", "ivan@ya.ru");
-    private final String id = "testId";
+    private final String testID = "testID";
 
     @Test
     @DisplayName("Создание нового оператора")
     public void createNewOperatorTest() throws Exception {
 
-        Mockito.when(service.createNewOperator(any())).thenReturn(new CreateOperatorResponse(id));
+        Mockito.when(service.createNewOperator(any())).thenReturn(new CreateOperatorResponse(testID));
         mockMvc.perform(post("/api/v1/operator")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -55,15 +55,15 @@ public class OperatorControllerTest {
                                 """))
                 .andDo(print())
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.name").value("Ivan"));
+                .andExpect(jsonPath("$.id").value(testID));
     }
 
     @Test
     @DisplayName("Удалить оператора из базы по идентификатору")
     void deleteOperatorByIDTest() throws Exception {
-        Mockito.when(service.deleteOperatorByID(operator.getOperatorID())).thenReturn(true);
+        Mockito.when(service.deleteOperatorByID(testID)).thenReturn(true);
 
-        mockMvc.perform(delete("/api/v1/operator/{id}", operator.getOperatorID()))
+        mockMvc.perform(delete("/api/v1/operator/{id}", testID))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(jsonPath("$").value("true"));
@@ -72,9 +72,9 @@ public class OperatorControllerTest {
     @Test
     @DisplayName("Найти оператора по идентификатору")
     void findOneOperatorByID() throws Exception {
-        Mockito.when(service.findOneOperatorByID(operator.getOperatorID())).thenReturn(operatorDTO);
+        Mockito.when(service.findOneOperatorByID(testID)).thenReturn(operatorDTO);
 
-        mockMvc.perform(get("/api/v1/operator/{id}", operator.getOperatorID()))
+        mockMvc.perform(get("/api/v1/operator/{id}", testID))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Ivan"));
@@ -98,14 +98,14 @@ public class OperatorControllerTest {
     @Test
     @DisplayName("Обновить существующую запись оператора")
     void updateOperatorByIDTest() throws Exception {
-        Mockito.when(service.updateOperatorByID("123456789", operatorDTO))
+        Mockito.when(service.updateOperatorByID(testID, operatorDTO))
                 .thenReturn(new UpdateOperatorResponse(true));
 
         mockMvc.perform(put("/api/v1/operator/")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
                                 {
-                                "id": "123456789",
+                                "id": "testID",
                                 "data": {
                                   "name": "Ivan",
                                   "lastName": "Petrov",

@@ -36,7 +36,6 @@ public class OperatorServiceImpl {
         Operator operator = operatorMapper.dtoMapToOperator(operatorDTO);
         String id = operatorRepository.saveAndFlush(operator).getOperatorID();
         return new CreateOperatorResponse(id);
-        //return operatorMapper.operatorMapToDTO(operator);
     }
 
     /**

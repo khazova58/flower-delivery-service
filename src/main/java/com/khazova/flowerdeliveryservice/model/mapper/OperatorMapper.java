@@ -12,7 +12,7 @@ public class OperatorMapper {
     }
 
     public Operator dtoMapToOperator(OperatorDTO operatorDTO){
-        return new Operator(/*"",*/ operatorDTO.getName(), operatorDTO.getLastName(), operatorDTO.getPhoneNumber(), operatorDTO.getEmail());
+        return new Operator(operatorDTO.getName(), operatorDTO.getLastName(), operatorDTO.getPhoneNumber(), operatorDTO.getEmail());
     }
 
     public List<OperatorDTO> convertListOperatorToListOperatorDTO(List<Operator> operatorList) {
@@ -22,6 +22,12 @@ public class OperatorMapper {
         }
         return operatorDTOList;
     }
+//    public List<OperatorDTO> convertListOperatorToListOperatorDTO1(List<Operator> operatorList) {
+//
+//        return operatorList.stream()
+//                .map(operator -> operatorMapToDTO(operator))
+//                .toList();
+//    }
 
     public OperatorMapper() {
         }

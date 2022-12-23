@@ -31,7 +31,7 @@ public class OperatorServiceImplTest {
 
     private final Operator operator = new Operator(/*"123456789",*/ "Иван", "Петров", "+79025566779", "ivan@ya.ru");
     private final OperatorDTO operatorDTO = new OperatorDTO("Иван", "Петров", "+79025566779", "ivan@ya.ru");
-    private final String testID = "123456";
+    private final String testID = "testID";
 
     @BeforeEach
     void setUp() {
@@ -50,8 +50,8 @@ public class OperatorServiceImplTest {
     @Test
     @DisplayName("Удалить оператора из базы по идентификатору")
     void deleteOperatorByIDTest(){
-        Mockito.when(repository.findById("123456789")).thenReturn(Optional.of(operator));
-            assertTrue(sut.deleteOperatorByID("123456789"));
+        Mockito.when(repository.findById(testID)).thenReturn(Optional.of(operator));
+            assertTrue(sut.deleteOperatorByID(testID));
     }
 
     @Test
@@ -76,7 +76,7 @@ public class OperatorServiceImplTest {
     @Test
     @DisplayName("Обновить существующую запись оператора")
     void updateOperatorByIDTest(){
-        Mockito.when(repository.findById("123456789")).thenReturn(Optional.of(operator));
-        assertTrue(sut.deleteOperatorByID("123456789"));
+        Mockito.when(repository.findById(testID)).thenReturn(Optional.of(operator));
+        assertTrue(sut.deleteOperatorByID(testID));
     }
 }
