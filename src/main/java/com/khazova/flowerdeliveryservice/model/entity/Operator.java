@@ -33,9 +33,9 @@ public class Operator {
 
     public Operator() {}
 
-    public Operator(String operatorID, String name, String lastName,
+    public Operator(/*String operatorID,*/ String name, String lastName,
                     String phoneNumber, String email) {
-        this.operatorID = operatorID;
+        //this.operatorID = operatorID;
         this.name = name;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;

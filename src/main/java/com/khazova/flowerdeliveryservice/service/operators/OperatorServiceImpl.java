@@ -2,6 +2,7 @@ package com.khazova.flowerdeliveryservice.service.operators;
 
 import com.khazova.flowerdeliveryservice.exception.Error;
 import com.khazova.flowerdeliveryservice.exception.ServiceException;
+import com.khazova.flowerdeliveryservice.model.dto.CreateOperatorResponse;
 import com.khazova.flowerdeliveryservice.model.dto.OperatorDTO;
 import com.khazova.flowerdeliveryservice.model.dto.UpdateOperatorResponse;
 import com.khazova.flowerdeliveryservice.model.entity.Operator;
@@ -10,7 +11,6 @@ import com.khazova.flowerdeliveryservice.repository.OperatorRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +20,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class OperatorServiceImpl {
     private final OperatorRepository operatorRepository;
-    private OperatorMapper operatorMapper = new OperatorMapper();
+    private final OperatorMapper operatorMapper = new OperatorMapper();
 
     public OperatorServiceImpl(OperatorRepository operatorRepository){
         this.operatorRepository = operatorRepository;
@@ -32,11 +32,11 @@ public class OperatorServiceImpl {
      * @return ID нового оператора в строковом представлении
      */
     @Transactional
-    public OperatorDTO createNewOperator(OperatorDTO operatorDTO) {
-        //OperatorMapper operatorMapper = new OperatorMapper();
+    public CreateOperatorResponse createNewOperator(OperatorDTO operatorDTO) {
         Operator operator = operatorMapper.dtoMapToOperator(operatorDTO);
-        operatorRepository.save(operator);
-        return operatorMapper.operatorMapToDTO(operator);
+        String id = operatorRepository.saveAndFlush(operator).getOperatorID();
+        return new CreateOperatorResponse(id);
+        //return operatorMapper.operatorMapToDTO(operator);
     }
 
     /**
@@ -65,12 +65,7 @@ public class OperatorServiceImpl {
      * @return список найденных операторов
      */
     public List<OperatorDTO> findAllOperators() {
-        List<Operator> operatorList = operatorRepository.findAll();
-        List<OperatorDTO> operatorDTOList = new ArrayList<>();
-        for (Operator temp: operatorList) {
-            operatorDTOList.add(operatorMapper.operatorMapToDTO(temp));
-        }
-        return operatorDTOList;
+        return operatorMapper.convertListOperatorToListOperatorDTO(operatorRepository.findAll());
 
     }
 

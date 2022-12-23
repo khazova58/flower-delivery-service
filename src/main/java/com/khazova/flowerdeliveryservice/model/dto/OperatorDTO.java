@@ -1,5 +1,7 @@
 package com.khazova.flowerdeliveryservice.model.dto;
 
+import java.util.Objects;
+
 public class OperatorDTO {
     private String name;
     private String lastName;
@@ -43,5 +45,18 @@ public class OperatorDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OperatorDTO that = (OperatorDTO) o;
+        return Objects.equals(name, that.name) && Objects.equals(lastName, that.lastName) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(email, that.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, lastName, phoneNumber, email);
     }
 }

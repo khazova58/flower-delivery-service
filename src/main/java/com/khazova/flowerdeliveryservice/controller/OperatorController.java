@@ -1,7 +1,6 @@
 package com.khazova.flowerdeliveryservice.controller;
 
-import com.khazova.flowerdeliveryservice.model.dto.OperatorDTO;
-import com.khazova.flowerdeliveryservice.model.dto.UpdateOperatorResponse;
+import com.khazova.flowerdeliveryservice.model.dto.*;
 import com.khazova.flowerdeliveryservice.service.operators.OperatorServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,8 +23,9 @@ public class OperatorController {
     @PostMapping
     @Operation(summary = "Создать нового оператора")
     @ResponseStatus(HttpStatus.CREATED)
-    public OperatorDTO createNewOperator(OperatorDTO operatorDTO) {
-        return operatorServiceImpl.createNewOperator(operatorDTO);
+    public CreateOperatorResponse createNewOperator(@RequestBody CreateOperatorRequest createOperatorRequest) {
+        //OperatorDTO operatorDTO = createOperatorRequest.getData();
+        return operatorServiceImpl.createNewOperator(createOperatorRequest.getData());
     }
 
     @DeleteMapping("/{id}")
@@ -46,9 +46,9 @@ public class OperatorController {
          return operatorServiceImpl.findAllOperators();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     @Operation(summary = "Обновить оператора с заданным индентификаторм")
-    public UpdateOperatorResponse updateOperatorByID(@PathVariable String id, @RequestBody OperatorDTO operatorDTO) {
-       return operatorServiceImpl.updateOperatorByID(id, operatorDTO);
+    public UpdateOperatorResponse updateOperatorByID(@RequestBody UpdateOperatorRequest updateOperatorRequest) {
+        return operatorServiceImpl.updateOperatorByID(updateOperatorRequest.getId(), updateOperatorRequest.getData());
     }
 }
