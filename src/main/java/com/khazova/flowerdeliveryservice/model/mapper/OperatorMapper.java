@@ -22,14 +22,7 @@ public class OperatorMapper {
         }
         return operatorDTOList;
     }
-//    public List<OperatorDTO> convertListOperatorToListOperatorDTO1(List<Operator> operatorList) {
-//
-//        return operatorList.stream()
-//                .map(operator -> operatorMapToDTO(operator))
-//                .toList();
-//    }
 
     public OperatorMapper() {
         }
-
     }

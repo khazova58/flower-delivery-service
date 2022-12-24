@@ -29,7 +29,7 @@ public class OperatorServiceImplTest {
 
     private OperatorServiceImpl sut;
 
-    private final Operator operator = new Operator(/*"123456789",*/ "Иван", "Петров", "+79025566779", "ivan@ya.ru");
+    private final Operator operator = new Operator("Иван", "Петров", "+79025566779", "ivan@ya.ru");
     private final OperatorDTO operatorDTO = new OperatorDTO("Иван", "Петров", "+79025566779", "ivan@ya.ru");
     private final String testID = "testID";
 
