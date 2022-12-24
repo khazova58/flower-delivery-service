@@ -98,7 +98,6 @@ public class OperatorControllerTest {
 
     @Test
     @DisplayName("Обновить существующую запись оператора")
-    @Disabled
     void updateOperatorByIDTest() throws Exception {
         Mockito.when(service.updateOperatorByID(testID, operatorDTO))
                 .thenReturn(new UpdateOperatorResponse(true));
