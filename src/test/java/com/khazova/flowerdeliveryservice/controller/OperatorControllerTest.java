@@ -5,7 +5,6 @@ import com.khazova.flowerdeliveryservice.model.dto.OperatorDTO;
 import com.khazova.flowerdeliveryservice.model.dto.UpdateOperatorResponse;
 import com.khazova.flowerdeliveryservice.model.entity.Operator;
 import com.khazova.flowerdeliveryservice.service.operators.OperatorServiceImpl;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

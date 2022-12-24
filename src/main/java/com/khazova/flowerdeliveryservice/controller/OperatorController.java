@@ -24,7 +24,6 @@ public class OperatorController {
     @Operation(summary = "Создать нового оператора")
     @ResponseStatus(HttpStatus.CREATED)
     public CreateOperatorResponse createNewOperator(@RequestBody CreateOperatorRequest createOperatorRequest) {
-        //OperatorDTO operatorDTO = createOperatorRequest.getData();
         return operatorServiceImpl.createNewOperator(createOperatorRequest.getData());
     }
 
