@@ -5,6 +5,7 @@ import com.khazova.flowerdeliveryservice.model.dto.OperatorDTO;
 import com.khazova.flowerdeliveryservice.model.dto.UpdateOperatorResponse;
 import com.khazova.flowerdeliveryservice.model.entity.Operator;
 import com.khazova.flowerdeliveryservice.service.operators.OperatorServiceImpl;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -97,6 +98,7 @@ public class OperatorControllerTest {
 
     @Test
     @DisplayName("Обновить существующую запись оператора")
+    @Disabled
     void updateOperatorByIDTest() throws Exception {
         Mockito.when(service.updateOperatorByID(testID, operatorDTO))
                 .thenReturn(new UpdateOperatorResponse(true));
