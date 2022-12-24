@@ -1,5 +1,7 @@
 package com.khazova.flowerdeliveryservice.service.clients;
 
+import com.khazova.flowerdeliveryservice.model.dto.CreateOperatorResponse;
+import com.khazova.flowerdeliveryservice.model.dto.OperatorDTO;
 import com.khazova.flowerdeliveryservice.model.entity.Operator;
 import com.khazova.flowerdeliveryservice.repository.OperatorRepository;
 import com.khazova.flowerdeliveryservice.service.operators.OperatorServiceImpl;
@@ -27,7 +29,9 @@ public class OperatorServiceImplTest {
 
     private OperatorServiceImpl sut;
 
-    private final Operator operator = new Operator("123456789", "Иван", "Петров", "+79025566779", "ivan@ya.ru");
+    private final Operator operator = new Operator(/*"123456789",*/ "Иван", "Петров", "+79025566779", "ivan@ya.ru");
+    private final OperatorDTO operatorDTO = new OperatorDTO("Иван", "Петров", "+79025566779", "ivan@ya.ru");
+    private final String testID = "testID";
 
     @BeforeEach
     void setUp() {
@@ -37,21 +41,24 @@ public class OperatorServiceImplTest {
     @Test
     @DisplayName("Создание нового оператора")
     void createNewOperatorTest() {
-        assertEquals("123456789", sut.createNewOperator(operator));
+        operator.setOperatorID(testID);
+        Mockito.when(repository.saveAndFlush(any())).thenReturn(operator);
+        CreateOperatorResponse response = sut.createNewOperator(operatorDTO);
+        assertEquals(testID, response.getId());
     }
 
     @Test
     @DisplayName("Удалить оператора из базы по идентификатору")
     void deleteOperatorByIDTest(){
-        Mockito.when(repository.findById("123456789")).thenReturn(Optional.of(operator));
-            assertTrue(sut.deleteOperatorByID("123456789"));
+        Mockito.when(repository.findById(testID)).thenReturn(Optional.of(operator));
+            assertTrue(sut.deleteOperatorByID(testID));
     }
 
     @Test
     @DisplayName("Найти оператора по идентификатору")
     void findOneOperatorByID() {
         Mockito.when(repository.findById(any())).thenReturn(Optional.of(operator));
-        Operator result = sut.findOneOperatorByID(operator.getOperatorID());
+        OperatorDTO result = sut.findOneOperatorByID(operator.getOperatorID());
         assertEquals(operator.getName(), result.getName());
     }
 
@@ -69,7 +76,7 @@ public class OperatorServiceImplTest {
     @Test
     @DisplayName("Обновить существующую запись оператора")
     void updateOperatorByIDTest(){
-        Mockito.when(repository.findById("123456789")).thenReturn(Optional.of(operator));
-        assertTrue(sut.deleteOperatorByID("123456789"));
+        Mockito.when(repository.findById(testID)).thenReturn(Optional.of(operator));
+        assertTrue(sut.deleteOperatorByID(testID));
     }
 }

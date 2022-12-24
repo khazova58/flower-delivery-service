@@ -1,7 +1,6 @@
 package com.khazova.flowerdeliveryservice.controller;
 
-import com.khazova.flowerdeliveryservice.model.dto.UpdateOperatorResponse;
-import com.khazova.flowerdeliveryservice.model.entity.Operator;
+import com.khazova.flowerdeliveryservice.model.dto.*;
 import com.khazova.flowerdeliveryservice.service.operators.OperatorServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,31 +23,32 @@ public class OperatorController {
     @PostMapping
     @Operation(summary = "Создать нового оператора")
     @ResponseStatus(HttpStatus.CREATED)
-    public String createNewOperator(Operator operator) {
-        return operatorServiceImpl.createNewOperator(operator);
+    public CreateOperatorResponse createNewOperator(@RequestBody CreateOperatorRequest createOperatorRequest) {
+        //OperatorDTO operatorDTO = createOperatorRequest.getData();
+        return operatorServiceImpl.createNewOperator(createOperatorRequest.getData());
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Удалить оператора с заданным идентификатором")
-    public Boolean deleteOperatorByID(@PathVariable String id) {
+    public boolean deleteOperatorByID(@PathVariable String id) {
         return operatorServiceImpl.deleteOperatorByID(id);
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Получить оператора по индентификатору")
-    public Operator findOneOperatorByID(@PathVariable String id) {
+    public OperatorDTO findOneOperatorByID(@PathVariable String id) {
         return operatorServiceImpl.findOneOperatorByID(id);
     }
 
     @GetMapping
     @Operation(summary = "Получить всех операторов")
-    public List<Operator> findAllOperators() {
+    public List<OperatorDTO> findAllOperators() {
          return operatorServiceImpl.findAllOperators();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     @Operation(summary = "Обновить оператора с заданным индентификаторм")
-    public UpdateOperatorResponse updateOperatorByID(@PathVariable String id, @RequestBody Operator operator) {
-       return operatorServiceImpl.updateOperatorByID(id, operator);
+    public UpdateOperatorResponse updateOperatorByID(@RequestBody UpdateOperatorRequest updateOperatorRequest) {
+        return operatorServiceImpl.updateOperatorByID(updateOperatorRequest.getId(), updateOperatorRequest.getData());
     }
 }
