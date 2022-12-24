@@ -8,6 +8,9 @@ public class OperatorDTO {
     private String phoneNumber;
     private String email;
 
+    public OperatorDTO() {
+    }
+
     public OperatorDTO(String name, String lastName, String phoneNumber, String email) {
         this.name = name;
         this.lastName = lastName;
