@@ -3,7 +3,8 @@ package com.khazova.flowerdeliveryservice.model.dto;
 public class UpdateOperatorRequest {
     private String id;
     private OperatorDTO data;
-
+    public UpdateOperatorRequest() {
+    }
     public UpdateOperatorRequest(String id, OperatorDTO data) {
         this.id = id;
         this.data = data;
