@@ -2,10 +2,12 @@ package com.khazova.flowerdeliveryservice.model.mapper;
 
 import com.khazova.flowerdeliveryservice.model.dto.OperatorDTO;
 import com.khazova.flowerdeliveryservice.model.entity.Operator;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class OperatorMapper {
     public OperatorDTO operatorMapToDTO(Operator operator){
         return new OperatorDTO(operator.getName(), operator.getLastName(), operator.getPhoneNumber(), operator.getEmail());

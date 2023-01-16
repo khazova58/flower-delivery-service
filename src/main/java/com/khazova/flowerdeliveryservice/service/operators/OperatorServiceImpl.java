@@ -8,6 +8,7 @@ import com.khazova.flowerdeliveryservice.model.dto.UpdateOperatorResponse;
 import com.khazova.flowerdeliveryservice.model.entity.Operator;
 import com.khazova.flowerdeliveryservice.model.mapper.OperatorMapper;
 import com.khazova.flowerdeliveryservice.repository.OperatorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,10 +21,11 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class OperatorServiceImpl {
     private final OperatorRepository operatorRepository;
-    private final OperatorMapper operatorMapper = new OperatorMapper();
-
-    public OperatorServiceImpl(OperatorRepository operatorRepository){
+    private final OperatorMapper operatorMapper;
+    @Autowired
+    public OperatorServiceImpl(OperatorRepository operatorRepository, OperatorMapper operatorMapper){
         this.operatorRepository = operatorRepository;
+        this.operatorMapper = operatorMapper;
     }
 
     /**
