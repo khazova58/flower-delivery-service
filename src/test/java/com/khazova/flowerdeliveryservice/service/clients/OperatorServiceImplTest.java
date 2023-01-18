@@ -3,7 +3,7 @@ package com.khazova.flowerdeliveryservice.service.clients;
 import com.khazova.flowerdeliveryservice.model.dto.CreateOperatorResponse;
 import com.khazova.flowerdeliveryservice.model.dto.OperatorDTO;
 import com.khazova.flowerdeliveryservice.model.entity.Operator;
-import com.khazova.flowerdeliveryservice.model.mapper.OperatorMapper;
+import com.khazova.flowerdeliveryservice.model.mapper.OperatorMapperImpl;
 import com.khazova.flowerdeliveryservice.repository.OperatorRepository;
 import com.khazova.flowerdeliveryservice.service.operators.OperatorServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,7 +30,7 @@ public class OperatorServiceImplTest {
 
     private OperatorServiceImpl sut;
 
-    private OperatorMapper operatorMapper = new OperatorMapper();
+    private final OperatorMapperImpl operatorMapper = new OperatorMapperImpl();
 
     private final Operator operator = new Operator("Иван", "Петров", "+79025566779", "ivan@ya.ru");
     private final OperatorDTO operatorDTO = new OperatorDTO("Иван", "Петров", "+79025566779", "ivan@ya.ru");
