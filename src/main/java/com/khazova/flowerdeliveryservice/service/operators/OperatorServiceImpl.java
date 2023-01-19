@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -34,7 +35,9 @@ public class OperatorServiceImpl {
      * @return ID нового оператора в строковом представлении
      */
     @Transactional
-    public CreateOperatorResponse createNewOperator(OperatorDTO operatorDTO) {
+    public CreateOperatorResponse createNewOperator(@Valid OperatorDTO operatorDTO) {
+        if (operatorRepository.findByEmail(operatorDTO.getEmail()).isPresent())
+            throw new ServiceException(Error.EMAIL_EXIST, operatorDTO.getEmail());
         Operator operator = operatorMapper.dtoMapToOperator(operatorDTO);
         String id = operatorRepository.saveAndFlush(operator).getOperatorID();
         return new CreateOperatorResponse(id);

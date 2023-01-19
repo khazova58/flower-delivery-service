@@ -7,6 +7,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -23,19 +26,19 @@ public class OperatorController {
     @PostMapping
     @Operation(summary = "Создать нового оператора")
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateOperatorResponse createNewOperator(@RequestBody CreateOperatorRequest createOperatorRequest) {
+    public CreateOperatorResponse createNewOperator(@Valid @RequestBody CreateOperatorRequest createOperatorRequest) {
         return operatorServiceImpl.createNewOperator(createOperatorRequest.getData());
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Удалить оператора с заданным идентификатором")
-    public boolean deleteOperatorByID(@PathVariable String id) {
+    public boolean deleteOperatorByID(@NotNull @PathVariable String id) {
         return operatorServiceImpl.deleteOperatorByID(id);
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Получить оператора по индентификатору")
-    public OperatorDTO findOneOperatorByID(@PathVariable String id) {
+    public OperatorDTO findOneOperatorByID(@NotNull @PathVariable String id) {
         return operatorServiceImpl.findOneOperatorByID(id);
     }
 
