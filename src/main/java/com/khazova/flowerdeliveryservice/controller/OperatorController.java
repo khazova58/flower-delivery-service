@@ -50,7 +50,7 @@ public class OperatorController {
 
     @PutMapping
     @Operation(summary = "Обновить оператора с заданным индентификаторм")
-    public UpdateOperatorResponse updateOperatorByID(@RequestBody UpdateOperatorRequest updateOperatorRequest) {
+    public UpdateOperatorResponse updateOperatorByID(@NotNull @Valid @RequestBody UpdateOperatorRequest updateOperatorRequest) {
         return operatorServiceImpl.updateOperatorByID(updateOperatorRequest.getId(), updateOperatorRequest.getData());
     }
 }

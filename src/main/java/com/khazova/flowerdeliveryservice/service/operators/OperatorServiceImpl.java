@@ -81,6 +81,8 @@ public class OperatorServiceImpl {
     @Transactional
     public UpdateOperatorResponse updateOperatorByID(String id, OperatorDTO updateOperatorDTO) {
         findOneOperatorByID(id);
+        if (operatorRepository.findByEmail(updateOperatorDTO.getEmail()).isPresent())
+            throw new ServiceException(Error.EMAIL_EXIST, updateOperatorDTO.getEmail());
         Operator updateOperator = operatorMapper.dtoMapToOperator(updateOperatorDTO);
         updateOperator.setOperatorID(id);
         operatorRepository.save(updateOperator);
