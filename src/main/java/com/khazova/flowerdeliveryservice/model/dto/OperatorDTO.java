@@ -1,51 +1,21 @@
-package com.khazova.flowerdeliveryservice.model.entity;
+package com.khazova.flowerdeliveryservice.model.dto;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
 import java.util.Objects;
 
-/**
- * Сущность для работы с Operators
- */
-
-@Entity
-@Table(name = "operators")
-public class Operator {
-
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "operator_id", unique = true)
-    private String operatorID;
-
-    @Column(name = "name")
+public class OperatorDTO {
     private String name;
-
-    @Column(name = "last_name")
     private String lastName;
-
-    @Column(name = "phone_number")
     private String phoneNumber;
-
-    @Column(name = "email")
     private String email;
 
-    public Operator() {}
+    public OperatorDTO() {
+    }
 
-    public Operator(String name, String lastName, String phoneNumber, String email) {
+    public OperatorDTO(String name, String lastName, String phoneNumber, String email) {
         this.name = name;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
-    }
-
-    public String getOperatorID() {
-        return operatorID;
-    }
-
-    public void setOperatorID(String operatorID) {
-        this.operatorID = operatorID;
     }
 
     public String getName() {
@@ -84,12 +54,12 @@ public class Operator {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Operator operator = (Operator) o;
-        return Objects.equals(operatorID, operator.operatorID);
+        OperatorDTO that = (OperatorDTO) o;
+        return Objects.equals(name, that.name) && Objects.equals(lastName, that.lastName) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(email, that.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(operatorID);
+        return Objects.hash(name, lastName, phoneNumber, email);
     }
 }
