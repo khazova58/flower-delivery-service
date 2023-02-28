@@ -12,10 +12,3 @@ services:
       - 'POSTGRES_DB=flower_delivery'
     ports:
       - '5432:5432'
-#
-#  # далее наше приложение из dockerfile
-#  app:
-#    build: ./
-#    container_name: 'java-app'
-#    ports:
-#      - '8080:8080'
