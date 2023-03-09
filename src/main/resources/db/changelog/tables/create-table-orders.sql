@@ -4,8 +4,8 @@
 create table if not exists delivery.orders
 (
     order_id         varchar       not null primary key,
-    date_of_order    smalldatetime not null,
-    date_of_update   smalldatetime not null,
+    date_of_order    date not null,
+    date_of_update   date not null,
     address_client   varchar(300)  not null,
     address_delivery varchar(300)  not null,
     status_order     varchar(10),

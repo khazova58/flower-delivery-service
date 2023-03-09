@@ -1,0 +1,9 @@
+#конфигурация для запуска приложения на PostgreSQL из докера
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/flower_delivery
+    username: admin
+    password: root
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
