@@ -1,11 +1,20 @@
 package com.khazova.flowerdeliveryservice.model.dto;
 
 import java.util.Objects;
+import javax.validation.constraints.*;
 
 public class OperatorDTO {
+    @NotBlank(message = "не должно быть пустым")
     private String name;
+
+    @NotBlank(message = "не должно быть пустым")
     private String lastName;
+
+    @Pattern(regexp = "^(8|[+]7)[0-9]{10}$", message = "должно соответствовать записи (+7/8)9555555")
     private String phoneNumber;
+
+    @Email(message = "должно соответствовать формату test@test.ru")
+    @NotBlank(message = "не должно быть пустым")
     private String email;
 
     public OperatorDTO() {

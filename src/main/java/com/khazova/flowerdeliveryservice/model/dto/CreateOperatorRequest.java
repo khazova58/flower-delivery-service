@@ -1,7 +1,9 @@
 package com.khazova.flowerdeliveryservice.model.dto;
 
+import javax.validation.Valid;
+
 public class CreateOperatorRequest {
-    private OperatorDTO data;
+    @Valid private OperatorDTO data;
 
     public CreateOperatorRequest() {
     }

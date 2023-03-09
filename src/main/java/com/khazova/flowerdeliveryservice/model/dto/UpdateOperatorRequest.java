@@ -1,8 +1,10 @@
 package com.khazova.flowerdeliveryservice.model.dto;
 
+import javax.validation.Valid;
+
 public class UpdateOperatorRequest {
     private String id;
-    private OperatorDTO data;
+    @Valid private OperatorDTO data;
     public UpdateOperatorRequest() {
     }
     public UpdateOperatorRequest(String id, OperatorDTO data) {
