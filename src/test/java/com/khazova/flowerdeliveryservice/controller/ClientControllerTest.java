@@ -76,7 +76,7 @@ public class ClientControllerTest {
         Mockito.when(service.findAllClients()).thenReturn(
                 List.of(dto));
 
-        String expected = "[{\"name\":\"Sveta\",\"lastName\":\"Sokolova\",\"phoneNumber\":\"89253651414\",\"email\":\"test@mail.ru\"}]";
+        String expected = "[{\"firstName\":\"Sokolova\",\"name\":\"Svetlana\",\"lastName\":\"Olegovna\",\"phoneNumber\":\"89253651414\",\"email\":\"test@mail.ru\"}]";
 
         MvcResult result = mockMvc.perform(get("/api/v1/clients"))
                 .andDo(print())
