@@ -7,6 +7,7 @@ import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
 import com.khazova.flowerdeliveryservice.model.mapper.UserMapper;
 import com.khazova.flowerdeliveryservice.repository.ClientRepository;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -78,6 +79,22 @@ public class ClientServiceImpl implements ClientService {
         Client client = getClient(id);
         return mapper.clientMapToDTO(client);
     }
+
+    @Override
+    public List<ClientDto> findClientByFIO(String firstName,
+                                           String name,
+                                           String lastName,
+                                           Pageable pageable) {
+        String findClient = firstName + ' ' + name + ' ' + lastName;
+        List<Client> clientByFIO = repository.findClientByFIO(firstName, name, lastName, pageable);
+        if (clientByFIO.isEmpty()) {
+            throw new ServiceException(Error.CLIENT_BY_REQUEST_NOT_FOUND, findClient);
+        }
+        return clientByFIO.stream()
+                .map(client -> mapper.clientMapToDTO(client))
+                .toList();
+    }
+
 
     /**
      * Обновить данные клиента

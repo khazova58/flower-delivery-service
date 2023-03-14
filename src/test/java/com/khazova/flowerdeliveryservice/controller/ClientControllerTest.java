@@ -31,7 +31,7 @@ public class ClientControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private final ClientDto dto = new ClientDto("Sveta", "Sokolova", "89253651414", "test@mail.ru");
+    private final ClientDto dto = new ClientDto("Sokolova","Svetlana", "Olegovna", "89253651414", "test@mail.ru");
 
     private final String id = "testId";
 
@@ -47,8 +47,9 @@ public class ClientControllerTest {
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
                                 {
+                                  "firstName": "Sokolova",
                                   "name": "Sveta",
-                                  "lastName": "Sokolova",
+                                  "lastName": "Olegovna",
                                   "phoneNumber": "89253651414",
                                   "email": "test@mail.ru"
                                 }

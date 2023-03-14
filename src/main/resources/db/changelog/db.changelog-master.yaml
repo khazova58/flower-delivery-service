@@ -11,3 +11,5 @@ databaseChangeLog:
       file: db/changelog/tables/create-table-orders.sql
   - include:
       file: db/changelog/tables/create-table-operators.sql
+  - include:
+      file: db/changelog/tables/update-table-clients.sql
