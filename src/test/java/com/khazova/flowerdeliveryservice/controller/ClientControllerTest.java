@@ -67,7 +67,7 @@ public class ClientControllerTest {
         mockMvc.perform(get("/api/v1/clients/{id}", id))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Sveta"));
+                .andExpect(jsonPath("$.name").value("Svetlana"));
     }
 
     @Test
@@ -95,8 +95,9 @@ public class ClientControllerTest {
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
                                 {
-                                          "name": "Sveta",
-                                          "lastName": "Sokolova",
+                                          "firstName": "Sokolova",
+                                          "name": "Svetlana",
+                                          "lastName": "Olegovna",
                                           "phoneNumber": "89253651414",
                                           "email": "test@mail.ru"
                                 }
