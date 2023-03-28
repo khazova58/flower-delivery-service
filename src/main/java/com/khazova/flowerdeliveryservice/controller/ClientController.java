@@ -2,6 +2,7 @@ package com.khazova.flowerdeliveryservice.controller;
 
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
+import com.khazova.flowerdeliveryservice.model.dto.FindClientRequest;
 import com.khazova.flowerdeliveryservice.service.clients.ClientService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -69,11 +70,9 @@ public class ClientController {
 
     @GetMapping("/find")
     @Operation(summary = "Поиск клиента по ФИО")
-    public List<ClientDto> findClientByFIO(@RequestParam(required = false) String firstName,
-                                           @RequestParam(required = false) String name,
-                                           @RequestParam(required = false) String lastName,
+    public List<ClientDto> findClientByFIO(@ModelAttribute FindClientRequest findClientRequest,
                                            @ParameterObject @PageableDefault(size = 5, sort = "firstName", direction = Sort.Direction.DESC) Pageable pageable) {
-        log.info("Получение клиента по ФИО");
-        return clientService.findClientByFIO(firstName, name, lastName, pageable);
+        log.info("Получение клиента {}", findClientRequest);
+        return clientService.findClientByFIO(findClientRequest, pageable);
     }
 }

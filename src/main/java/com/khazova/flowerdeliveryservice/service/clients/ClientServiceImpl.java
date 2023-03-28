@@ -4,6 +4,7 @@ import com.khazova.flowerdeliveryservice.exception.Error;
 import com.khazova.flowerdeliveryservice.exception.ServiceException;
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
+import com.khazova.flowerdeliveryservice.model.dto.FindClientRequest;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
 import com.khazova.flowerdeliveryservice.model.mapper.UserMapper;
 import com.khazova.flowerdeliveryservice.repository.ClientRepository;
@@ -80,16 +81,16 @@ public class ClientServiceImpl implements ClientService {
         return mapper.clientMapToDTO(client);
     }
 
+    /**
+     * Поиск клиента по ФИО
+     * @param findClientRequest тело запроса
+     * @param pageable сортировка
+     * @return найденные клиенты
+     */
     @Override
-    public List<ClientDto> findClientByFIO(String firstName,
-                                           String name,
-                                           String lastName,
-                                           Pageable pageable) {
-        String findClient = firstName + ' ' + name + ' ' + lastName;
-        List<Client> clientByFIO = repository.findClientByFIO(firstName, name, lastName, pageable);
-        if (clientByFIO.isEmpty()) {
-            throw new ServiceException(Error.CLIENT_BY_REQUEST_NOT_FOUND, findClient);
-        }
+    public List<ClientDto> findClientByFIO(FindClientRequest findClientRequest,
+                                                   Pageable pageable) {
+        List<Client> clientByFIO = repository.findClientByFIO(findClientRequest.getFirstName(), findClientRequest.getName(), findClientRequest.getLastName(), pageable);
         return clientByFIO.stream()
                 .map(client -> mapper.clientMapToDTO(client))
                 .toList();

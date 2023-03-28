@@ -14,9 +14,12 @@ import java.util.Optional;
 public interface ClientRepository extends JpaRepository<Client, String> {
     Optional<Client> findByEmail(String id);
 
-    @Query(value = "SELECT o FROM Client o WHERE (:firstName IS NULL OR LOWER(o.firstName) LIKE LOWER(CONCAT (:firstName, '%')))" +
-            "AND (:name IS NULL OR LOWER(o.name) LIKE LOWER(CONCAT(:name, '%')))" +
-            "AND (:lastName IS NULL OR LOWER(o.lastName) LIKE LOWER(CONCAT(:lastName, '%')))")
+    @Query(value = """
+            SELECT o FROM Client o
+            WHERE (:firstName IS NULL OR LOWER(o.firstName) LIKE LOWER(CONCAT (:firstName, '%')))
+            AND (:name IS NULL OR LOWER(o.name) LIKE LOWER(CONCAT(:name, '%')))
+            AND (:lastName IS NULL OR LOWER(o.lastName) LIKE LOWER(CONCAT(:lastName, '%')))
+            """)
     List<Client> findClientByFIO(@Param("firstName") String firstName,
                                  @Param("name") String name,
                                  @Param("lastName") String lastName,

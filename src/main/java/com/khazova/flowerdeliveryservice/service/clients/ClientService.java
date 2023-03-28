@@ -2,6 +2,7 @@ package com.khazova.flowerdeliveryservice.service.clients;
 
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
+import com.khazova.flowerdeliveryservice.model.dto.FindClientRequest;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -37,16 +38,12 @@ public interface ClientService {
     /**
      * Поиск клиента(-ов) по ФИО
      *
-     * @param firstName фамилия
-     * @param name      имя
-     * @param lastName  отчество
-     * @param pageable
+     * @param findClientRequest тело запроса
+     * @param pageable сортировка
      * @return список клиентов, клиента или null
      */
-    List<ClientDto> findClientByFIO(String firstName,
-                                    String name,
-                                    String lastName,
-                                    Pageable pageable);
+    List<ClientDto> findClientByFIO(FindClientRequest findClientRequest,
+                                            Pageable pageable);
 
     /**
      * Редактирование клиента по ID
