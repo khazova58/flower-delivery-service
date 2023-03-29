@@ -30,9 +30,9 @@ class ClientServiceImplTest {
 
     private ClientServiceImpl sut;
 
-    private final ClientDto dto = new ClientDto("Sveta", "Sokolova", "89253651414", "test@mail.ru");
+    private final ClientDto dto = new ClientDto("Sokolova","Svetlana", "Olegovna", "89253651414", "test@mail.ru");
 
-    private final Client client = new Client("Sveta", "Sokolova", "89253651414", "test@mail.ru");
+    private final Client client = new Client("Sokolova","Svetlana", "Olegovna", "89253651414", "test@mail.ru");
 
     @BeforeEach
     void setUp() {
@@ -61,7 +61,7 @@ class ClientServiceImplTest {
     void findOneClientByID() {
         Mockito.when(repository.findById(any())).thenReturn(Optional.of(client));
         ClientDto result = sut.findOneClientById("testId");
-        assertEquals("Sveta", result.getName());
+        assertEquals("Svetlana", result.getName());
     }
 
     @Test

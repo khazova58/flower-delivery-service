@@ -14,6 +14,9 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 public class ClientDto {
     @NotBlank(message = "не должно быть пустым")
+    private String firstName;
+
+    @NotBlank(message = "не должно быть пустым")
     private String name;
 
     @NotBlank(message = "не должно быть пустым")

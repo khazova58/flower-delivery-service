@@ -1,6 +1,8 @@
 package com.khazova.flowerdeliveryservice.model.entity;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -26,6 +28,9 @@ public class Client {
     @Column(name = "client_id")
     private String clientId;
 
+    @Column(name = "first_name")
+    private String firstName;
+
     @Column(name = "name")
     private String name;
 
@@ -38,7 +43,8 @@ public class Client {
     @Column(name = "email")
     private String email;
 
-    public Client(String name, String lastName, String phoneNumber, String email) {
+    public Client(String firstName, String name, String lastName, String phoneNumber, String email) {
+        this.firstName = firstName;
         this.name = name;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;

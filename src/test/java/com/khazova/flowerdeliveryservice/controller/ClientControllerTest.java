@@ -31,7 +31,7 @@ public class ClientControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private final ClientDto dto = new ClientDto("Sveta", "Sokolova", "89253651414", "test@mail.ru");
+    private final ClientDto dto = new ClientDto("Sokolova","Svetlana", "Olegovna", "89253651414", "test@mail.ru");
 
     private final String id = "testId";
 
@@ -47,8 +47,9 @@ public class ClientControllerTest {
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
                                 {
+                                  "firstName": "Sokolova",
                                   "name": "Sveta",
-                                  "lastName": "Sokolova",
+                                  "lastName": "Olegovna",
                                   "phoneNumber": "89253651414",
                                   "email": "test@mail.ru"
                                 }
@@ -66,7 +67,7 @@ public class ClientControllerTest {
         mockMvc.perform(get("/api/v1/clients/{id}", id))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Sveta"));
+                .andExpect(jsonPath("$.name").value("Svetlana"));
     }
 
     @Test
@@ -75,7 +76,7 @@ public class ClientControllerTest {
         Mockito.when(service.findAllClients()).thenReturn(
                 List.of(dto));
 
-        String expected = "[{\"name\":\"Sveta\",\"lastName\":\"Sokolova\",\"phoneNumber\":\"89253651414\",\"email\":\"test@mail.ru\"}]";
+        String expected = "[{\"firstName\":\"Sokolova\",\"name\":\"Svetlana\",\"lastName\":\"Olegovna\",\"phoneNumber\":\"89253651414\",\"email\":\"test@mail.ru\"}]";
 
         MvcResult result = mockMvc.perform(get("/api/v1/clients"))
                 .andDo(print())
@@ -94,8 +95,9 @@ public class ClientControllerTest {
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
                                 {
-                                          "name": "Sveta",
-                                          "lastName": "Sokolova",
+                                          "firstName": "Sokolova",
+                                          "name": "Svetlana",
+                                          "lastName": "Olegovna",
                                           "phoneNumber": "89253651414",
                                           "email": "test@mail.ru"
                                 }
