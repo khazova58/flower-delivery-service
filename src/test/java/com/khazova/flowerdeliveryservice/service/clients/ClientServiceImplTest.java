@@ -3,6 +3,7 @@ package com.khazova.flowerdeliveryservice.service.clients;
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
+import com.khazova.flowerdeliveryservice.model.entity.Order;
 import com.khazova.flowerdeliveryservice.model.mapper.UserMapperImpl;
 import com.khazova.flowerdeliveryservice.repository.ClientRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +15,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,9 +32,9 @@ class ClientServiceImplTest {
 
     private ClientServiceImpl sut;
 
-    private final ClientDto dto = new ClientDto("Sokolova","Svetlana", "Olegovna", "89253651414", "test@mail.ru");
+    private final ClientDto dto = new ClientDto("Sokolova", "Svetlana", "Olegovna", "89253651414", "test@mail.ru");
 
-    private final Client client = new Client("Sokolova","Svetlana", "Olegovna", "89253651414", "test@mail.ru");
+    private final Client client = new Client("Sokolova", "Svetlana", "Olegovna", "89253651414", "test@mail.ru");
 
     @BeforeEach
     void setUp() {
@@ -56,11 +58,15 @@ class ClientServiceImplTest {
         assertEquals(1, sut.findAllClients().size());
     }
 
-//    @Test
-//    @DisplayName("Получение клиента по ID")
-//    void findOneClientByID() {
-//        Mockito.when(repository.findByClientId(any())).thenReturn(client);
-//    }
+    @Test
+    @DisplayName("Получение клиента по ID")
+    void findOneClientByID() {
+        List<Order> ordersMock = new ArrayList<>();
+        ordersMock.add(new Order(client, "Moscow", "Penza"));
+        client.setOrders(ordersMock);
+        Mockito.when(repository.findByClientId(any())).thenReturn(Optional.of(client));
+        assertEquals(1, sut.findOneClientById("testId").getCountOrders());
+    }
 
     @Test
     @DisplayName("Обновление клиента по ID")

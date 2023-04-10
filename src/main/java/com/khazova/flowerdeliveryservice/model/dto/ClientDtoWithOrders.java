@@ -3,9 +3,6 @@ package com.khazova.flowerdeliveryservice.model.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-/**
- * DTO-класс для ответа- представление объекта Client в формате Имя, Фамилия, Телефон и eMail
- */
 @Data
 @AllArgsConstructor
 public class ClientDtoWithOrders {
