@@ -2,6 +2,7 @@ package com.khazova.flowerdeliveryservice.repository;
 
 import com.khazova.flowerdeliveryservice.model.entity.Client;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -24,4 +25,12 @@ public interface ClientRepository extends JpaRepository<Client, String> {
                                  @Param("name") String name,
                                  @Param("lastName") String lastName,
                                  Pageable pageable);
+
+    @EntityGraph(attributePaths = "orders")
+    @Query("""
+            SELECT c FROM Client c 
+            JOIN FETCH c.orders
+            WHERE c.clientId = :id
+                        """)
+    Optional<Client> findByClientId(String id);
 }

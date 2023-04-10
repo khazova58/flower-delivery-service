@@ -1,6 +1,7 @@
 package com.khazova.flowerdeliveryservice.controller;
 
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
+import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithOrders;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
 import com.khazova.flowerdeliveryservice.model.dto.FindClientRequest;
 import com.khazova.flowerdeliveryservice.service.clients.ClientService;
@@ -41,7 +42,7 @@ public class ClientController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Поиск клиента по ID")
-    public ClientDto findOneClient(@NotNull @PathVariable String id) {
+    public ClientDtoWithOrders findOneClient(@NotNull @PathVariable String id) {
         log.info("Поиск клиента c id {}", id);
         return clientService.findOneClientById(id);
     }
@@ -68,9 +69,9 @@ public class ClientController {
         return clientService.deleteClientById(id);
     }
 
-    @GetMapping("/find")
+    @PostMapping("/find")
     @Operation(summary = "Поиск клиента по ФИО")
-    public List<ClientDto> findClientByFIO(@ModelAttribute FindClientRequest findClientRequest,
+    public List<ClientDto> findClientByFIO(@RequestBody FindClientRequest findClientRequest,
                                            @ParameterObject @PageableDefault(size = 5, sort = "firstName", direction = Sort.Direction.DESC) Pageable pageable) {
         log.info("Получение клиента {}", findClientRequest);
         return clientService.findClientByFIO(findClientRequest, pageable);

@@ -1,6 +1,7 @@
 package com.khazova.flowerdeliveryservice.model.mapper;
 
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
+import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithOrders;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
 import com.khazova.flowerdeliveryservice.model.dto.CourierDto;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
@@ -12,6 +13,8 @@ import org.mapstruct.Mapper;
 public interface UserMapper {
 
     ClientDto clientMapToDTO(Client client);
+
+    ClientDtoWithOrders clientMapToDtoWithOrders(Client client);
 
     ClientWithIdDto clientMapToDtoWithId(Client model);
 

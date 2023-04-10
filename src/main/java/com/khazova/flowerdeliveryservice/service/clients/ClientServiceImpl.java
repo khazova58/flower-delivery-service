@@ -3,9 +3,11 @@ package com.khazova.flowerdeliveryservice.service.clients;
 import com.khazova.flowerdeliveryservice.exception.Error;
 import com.khazova.flowerdeliveryservice.exception.ServiceException;
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
+import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithOrders;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
 import com.khazova.flowerdeliveryservice.model.dto.FindClientRequest;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
+import com.khazova.flowerdeliveryservice.model.entity.Order;
 import com.khazova.flowerdeliveryservice.model.mapper.UserMapper;
 import com.khazova.flowerdeliveryservice.repository.ClientRepository;
 import org.springframework.data.domain.Pageable;
@@ -73,23 +75,27 @@ public class ClientServiceImpl implements ClientService {
      * Поиск клиента по ID
      *
      * @param id клиента
-     * @return найденный клиент
+     * @return найденный клиент с количеством заказов
      */
     @Override
-    public ClientDto findOneClientById(String id) {
-        Client client = getClient(id);
-        return mapper.clientMapToDTO(client);
+    public ClientDtoWithOrders findOneClientById(String id) {
+        Client client = repository.findByClientId(id).orElseThrow(()->new ServiceException(Error.CLIENT_NOT_FOUND, id));
+        List<Order> clientOrders = client.getOrders();
+        ClientDtoWithOrders clientDto = mapper.clientMapToDtoWithOrders(client);
+        clientDto.setCountOrders(clientOrders.size());
+        return clientDto;
     }
 
     /**
      * Поиск клиента по ФИО
+     *
      * @param findClientRequest тело запроса
-     * @param pageable сортировка
+     * @param pageable          сортировка
      * @return найденные клиенты
      */
     @Override
     public List<ClientDto> findClientByFIO(FindClientRequest findClientRequest,
-                                                   Pageable pageable) {
+                                           Pageable pageable) {
         List<Client> clientByFIO = repository.findClientByFIO(findClientRequest.getFirstName(), findClientRequest.getName(), findClientRequest.getLastName(), pageable);
         return clientByFIO.stream()
                 .map(client -> mapper.clientMapToDTO(client))

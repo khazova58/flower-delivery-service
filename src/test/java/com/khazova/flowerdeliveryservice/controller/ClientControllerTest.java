@@ -1,6 +1,7 @@
 package com.khazova.flowerdeliveryservice.controller;
 
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
+import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithOrders;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
 import com.khazova.flowerdeliveryservice.service.clients.ClientService;
 import org.junit.jupiter.api.DisplayName;
@@ -33,6 +34,8 @@ public class ClientControllerTest {
 
     private final ClientDto dto = new ClientDto("Sokolova","Svetlana", "Olegovna", "89253651414", "test@mail.ru");
 
+    private final ClientDtoWithOrders dtoWithOrders = new ClientDtoWithOrders("Sokolova","Svetlana", "Olegovna", "89253651414", "test@mail.ru",2);
+
     private final String id = "testId";
 
     @Test
@@ -62,7 +65,7 @@ public class ClientControllerTest {
     @Test
     @DisplayName("Получение клиента по ID")
     void findOneClient() throws Exception {
-        Mockito.when(service.findOneClientById(id)).thenReturn(dto);
+        Mockito.when(service.findOneClientById(id)).thenReturn(dtoWithOrders);
 
         mockMvc.perform(get("/api/v1/clients/{id}", id))
                 .andDo(print())
