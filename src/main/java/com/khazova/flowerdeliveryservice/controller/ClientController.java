@@ -1,9 +1,6 @@
 package com.khazova.flowerdeliveryservice.controller;
 
-import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
-import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithOrders;
-import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
-import com.khazova.flowerdeliveryservice.model.dto.FindClientRequest;
+import com.khazova.flowerdeliveryservice.model.dto.*;
 import com.khazova.flowerdeliveryservice.service.clients.ClientService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -42,7 +39,7 @@ public class ClientController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Поиск клиента по ID")
-    public ClientDtoWithOrders findOneClient(@NotNull @PathVariable String id) {
+    public ClientWithOrdersDto findOneClient(@NotNull @PathVariable String id) {
         log.info("Поиск клиента c id {}", id);
         return clientService.findOneClientById(id);
     }
@@ -57,7 +54,7 @@ public class ClientController {
     @PutMapping("/{id}")
     @Operation(summary = "Обновить клиента по ID")
     public boolean updateClient(@NotNull @PathVariable String id,
-                                @Valid @RequestBody ClientDto updateClient) {
+                                @Valid @RequestBody UpdateClientDto updateClient) {
         log.info("Редактирование пользователя с ID: {} {}", id, updateClient);
         return clientService.updateClient(id, updateClient);
     }
@@ -72,7 +69,7 @@ public class ClientController {
     @PostMapping("/find")
     @Operation(summary = "Поиск клиента по ФИО")
     public List<ClientDto> findClientByFIO(@RequestBody FindClientRequest findClientRequest,
-                                           @ParameterObject @PageableDefault(size = 5, sort = "firstName", direction = Sort.Direction.DESC) Pageable pageable) {
+                                           @ParameterObject @PageableDefault(size = 5, sort = "lastName", direction = Sort.Direction.ASC) Pageable pageable) {
         log.info("Получение клиента {}", findClientRequest);
         return clientService.findClientByFIO(findClientRequest, pageable);
     }

@@ -5,13 +5,13 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ClientDtoWithOrders {
+public class ClientWithOrdersDto {
+
+    private String lastName;
 
     private String firstName;
 
-    private String name;
-
-    private String lastName;
+    private String middleName;
 
     private String phoneNumber;
 

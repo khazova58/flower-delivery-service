@@ -2,6 +2,7 @@ package com.khazova.flowerdeliveryservice.service.clients;
 
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
+import com.khazova.flowerdeliveryservice.model.dto.UpdateClientDto;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
 import com.khazova.flowerdeliveryservice.model.entity.Order;
 import com.khazova.flowerdeliveryservice.model.mapper.UserMapperImpl;
@@ -46,7 +47,7 @@ class ClientServiceImplTest {
     void newClient() {
         Mockito.when(repository.save(any())).thenReturn(client);
         ClientWithIdDto withId = sut.newClient(dto);
-        assertEquals(client.getName(), withId.getName());
+        assertEquals(client.getLastName(), withId.getLastName());
     }
 
     @Test
@@ -72,7 +73,7 @@ class ClientServiceImplTest {
     @DisplayName("Обновление клиента по ID")
     void updateClient() {
         Mockito.when(repository.findById(any())).thenReturn(Optional.of(client));
-        assertTrue(sut.updateClient("testId", dto));
+        assertTrue(sut.updateClient("testId", new UpdateClientDto("Sokolova","Svetlana", "Olegovna", "89253651414", "test@mail.ru")));
     }
 
     @Test

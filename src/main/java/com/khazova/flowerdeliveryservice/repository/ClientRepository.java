@@ -17,20 +17,15 @@ public interface ClientRepository extends JpaRepository<Client, String> {
 
     @Query(value = """
             SELECT o FROM Client o
-            WHERE (:firstName IS NULL OR LOWER(o.firstName) LIKE LOWER(CONCAT (:firstName, '%')))
-            AND (:name IS NULL OR LOWER(o.name) LIKE LOWER(CONCAT(:name, '%')))
-            AND (:lastName IS NULL OR LOWER(o.lastName) LIKE LOWER(CONCAT(:lastName, '%')))
+            WHERE (:lastName IS NULL OR LOWER(o.lastName) LIKE LOWER(CONCAT (:lastName, '%')))
+            AND (:firstName IS NULL OR LOWER(o.firstName) LIKE LOWER(CONCAT(:firstName, '%')))
+            AND (:middleName IS NULL OR LOWER(o.middleName) LIKE LOWER(CONCAT(:middleName, '%')))
             """)
-    List<Client> findClientByFIO(@Param("firstName") String firstName,
-                                 @Param("name") String name,
-                                 @Param("lastName") String lastName,
+    List<Client> findClientByFIO(@Param("lastName") String lastName,
+                                 @Param("firstName") String firstName,
+                                 @Param("middleName") String middleName,
                                  Pageable pageable);
 
     @EntityGraph(attributePaths = "orders")
-    @Query("""
-            SELECT c FROM Client c 
-            JOIN FETCH c.orders
-            WHERE c.clientId = :id
-                        """)
     Optional<Client> findByClientId(String id);
 }

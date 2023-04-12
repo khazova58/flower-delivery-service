@@ -2,10 +2,7 @@ package com.khazova.flowerdeliveryservice.service.clients;
 
 import com.khazova.flowerdeliveryservice.exception.Error;
 import com.khazova.flowerdeliveryservice.exception.ServiceException;
-import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
-import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithOrders;
-import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
-import com.khazova.flowerdeliveryservice.model.dto.FindClientRequest;
+import com.khazova.flowerdeliveryservice.model.dto.*;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
 import com.khazova.flowerdeliveryservice.model.entity.Order;
 import com.khazova.flowerdeliveryservice.model.mapper.UserMapper;
@@ -78,10 +75,10 @@ public class ClientServiceImpl implements ClientService {
      * @return найденный клиент с количеством заказов
      */
     @Override
-    public ClientDtoWithOrders findOneClientById(String id) {
-        Client client = repository.findByClientId(id).orElseThrow(()->new ServiceException(Error.CLIENT_NOT_FOUND, id));
+    public ClientWithOrdersDto findOneClientById(String id) {
+        Client client = repository.findByClientId(id).orElseThrow(() -> new ServiceException(Error.CLIENT_NOT_FOUND, id));
         List<Order> clientOrders = client.getOrders();
-        ClientDtoWithOrders clientDto = mapper.clientMapToDtoWithOrders(client);
+        ClientWithOrdersDto clientDto = mapper.clientMapToDtoWithOrders(client);
         clientDto.setCountOrders(clientOrders.size());
         return clientDto;
     }
@@ -96,7 +93,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public List<ClientDto> findClientByFIO(FindClientRequest findClientRequest,
                                            Pageable pageable) {
-        List<Client> clientByFIO = repository.findClientByFIO(findClientRequest.getFirstName(), findClientRequest.getName(), findClientRequest.getLastName(), pageable);
+        List<Client> clientByFIO = repository.findClientByFIO(findClientRequest.getLastName(), findClientRequest.getFirstName(), findClientRequest.getMiddleName(), pageable);
         return clientByFIO.stream()
                 .map(client -> mapper.clientMapToDTO(client))
                 .toList();
@@ -112,12 +109,18 @@ public class ClientServiceImpl implements ClientService {
      */
     @Override
     @Transactional
-    public boolean updateClient(String id, ClientDto updateClient) {
+    public boolean updateClient(String id, UpdateClientDto updateClient) {
         Client client = getClient(id);
-        client.setName(updateClient.getName());
-        client.setLastName(updateClient.getLastName());
-        client.setPhoneNumber(updateClient.getPhoneNumber());
-        client.setEmail(updateClient.getEmail());
+        if (updateClient.getLastName() != null)
+            client.setLastName(updateClient.getLastName());
+        if (updateClient.getFirstName() != null)
+            client.setLastName(updateClient.getFirstName());
+        if (updateClient.getMiddleName() != null)
+            client.setMiddleName(updateClient.getMiddleName());
+        if (updateClient.getPhoneNumber() != null)
+            client.setPhoneNumber(updateClient.getPhoneNumber());
+        if (updateClient.getEmail() != null)
+            client.setEmail(updateClient.getEmail());
         repository.save(client);
         return true;
     }

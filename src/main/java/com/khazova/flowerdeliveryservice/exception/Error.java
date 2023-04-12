@@ -10,6 +10,7 @@ public enum Error {
     ORDER_NOT_FOUND("Error:0103", "Заказ с id '%s' не найден", HttpStatus.NOT_FOUND),
     EMAIL_EXIST("Error:0104", "Email '%s' уже существует", HttpStatus.BAD_REQUEST),
     OPERATOR_NOT_FOUND("Error:0105", "Оператор с id '%s' не найден", HttpStatus.NOT_FOUND),
+
     CLIENT_BY_REQUEST_NOT_FOUND("Error:0106", "Клиент '%s' не найден", HttpStatus.NOT_FOUND);
 
     private final String errorCode;

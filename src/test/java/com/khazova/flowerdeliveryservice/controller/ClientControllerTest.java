@@ -1,8 +1,9 @@
 package com.khazova.flowerdeliveryservice.controller;
 
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
-import com.khazova.flowerdeliveryservice.model.dto.ClientDtoWithOrders;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
+import com.khazova.flowerdeliveryservice.model.dto.ClientWithOrdersDto;
+import com.khazova.flowerdeliveryservice.model.dto.UpdateClientDto;
 import com.khazova.flowerdeliveryservice.service.clients.ClientService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,9 +33,11 @@ public class ClientControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private final ClientDto dto = new ClientDto("Sokolova","Svetlana", "Olegovna", "89253651414", "test@mail.ru");
+    private final ClientDto dto = new ClientDto("Sokolova", "Svetlana", "Olegovna", "89253651414", "test@mail.ru");
 
-    private final ClientDtoWithOrders dtoWithOrders = new ClientDtoWithOrders("Sokolova","Svetlana", "Olegovna", "89253651414", "test@mail.ru",2);
+    private final ClientWithOrdersDto dtoWithOrders = new ClientWithOrdersDto("Sokolova", "Svetlana", "Olegovna", "89253651414", "test@mail.ru", 2);
+
+    private final UpdateClientDto updateClientDto = new UpdateClientDto("Sokolova", "Svetlana", "Olegovna", "89253651414", "test@mail.ru");
 
     private final String id = "testId";
 
@@ -50,9 +53,9 @@ public class ClientControllerTest {
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
                                 {
-                                  "firstName": "Sokolova",
-                                  "name": "Sveta",
-                                  "lastName": "Olegovna",
+                                  "lastName": "Sokolova",
+                                  "firstName": "Sveta",
+                                  "middleName": "Olegovna",
                                   "phoneNumber": "89253651414",
                                   "email": "test@mail.ru"
                                 }
@@ -70,7 +73,7 @@ public class ClientControllerTest {
         mockMvc.perform(get("/api/v1/clients/{id}", id))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Svetlana"));
+                .andExpect(jsonPath("$.firstName").value("Svetlana"));
     }
 
     @Test
@@ -79,7 +82,7 @@ public class ClientControllerTest {
         Mockito.when(service.findAllClients()).thenReturn(
                 List.of(dto));
 
-        String expected = "[{\"firstName\":\"Sokolova\",\"name\":\"Svetlana\",\"lastName\":\"Olegovna\",\"phoneNumber\":\"89253651414\",\"email\":\"test@mail.ru\"}]";
+        String expected = "[{\"lastName\":\"Sokolova\",\"firstName\":\"Svetlana\",\"middleName\":\"Olegovna\",\"phoneNumber\":\"89253651414\",\"email\":\"test@mail.ru\"}]";
 
         MvcResult result = mockMvc.perform(get("/api/v1/clients"))
                 .andDo(print())
@@ -92,15 +95,15 @@ public class ClientControllerTest {
     @Test
     @DisplayName("Обновление клиента с заданным ID")
     void updateClient() throws Exception {
-        Mockito.when(service.updateClient(id, dto)).thenReturn(true);
+        Mockito.when(service.updateClient(id, updateClientDto)).thenReturn(true);
 
         mockMvc.perform(put("/api/v1/clients/{id}", id)
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
                                 {
-                                          "firstName": "Sokolova",
-                                          "name": "Svetlana",
-                                          "lastName": "Olegovna",
+                                          "lastName": "Sokolova",
+                                          "firstName": "Svetlana",
+                                          "middleName": "Olegovna",
                                           "phoneNumber": "89253651414",
                                           "email": "test@mail.ru"
                                 }
