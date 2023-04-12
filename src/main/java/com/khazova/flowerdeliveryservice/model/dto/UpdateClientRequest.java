@@ -8,7 +8,7 @@ import javax.validation.constraints.Pattern;
 
 @Data
 @AllArgsConstructor
-public class UpdateClientDto {
+public class UpdateClientRequest {
 
     private String lastName;
 
@@ -21,5 +21,4 @@ public class UpdateClientDto {
 
     @Email(message = "должен соответствовать формату test@test.ru")
     private String email;
-
 }

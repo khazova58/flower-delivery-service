@@ -109,20 +109,9 @@ public class ClientServiceImpl implements ClientService {
      */
     @Override
     @Transactional
-    public boolean updateClient(String id, UpdateClientDto updateClient) {
-        Client client = getClient(id);
-        if (updateClient.getLastName() != null)
-            client.setLastName(updateClient.getLastName());
-        if (updateClient.getFirstName() != null)
-            client.setLastName(updateClient.getFirstName());
-        if (updateClient.getMiddleName() != null)
-            client.setMiddleName(updateClient.getMiddleName());
-        if (updateClient.getPhoneNumber() != null)
-            client.setPhoneNumber(updateClient.getPhoneNumber());
-        if (updateClient.getEmail() != null)
-            client.setEmail(updateClient.getEmail());
-        repository.save(client);
-        return true;
+    public ClientDto updateClient(String id, UpdateClientRequest updateClient) {
+        Client saveClient = repository.save(mapper.updateClientFromUpdateClientRequest(updateClient, getClient(id)));
+        return mapper.clientMapToDTO(saveClient);
     }
 
     /**

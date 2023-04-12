@@ -48,8 +48,8 @@ public interface ClientService {
      *
      * @return execution message
      */
-    boolean updateClient(String id,
-                         UpdateClientDto updateClient);
+    ClientDto updateClient(String id,
+                         UpdateClientRequest updateClient);
 
     /**
      * Удаление клиента из БД

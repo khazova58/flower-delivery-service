@@ -1,13 +1,11 @@
 package com.khazova.flowerdeliveryservice.model.mapper;
 
-import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
-import com.khazova.flowerdeliveryservice.model.dto.ClientWithOrdersDto;
-import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
-import com.khazova.flowerdeliveryservice.model.dto.CourierDto;
+import com.khazova.flowerdeliveryservice.model.dto.*;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
 import com.khazova.flowerdeliveryservice.model.entity.Courier;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface UserMapper {
@@ -16,7 +14,9 @@ public interface UserMapper {
 
     ClientWithOrdersDto clientMapToDtoWithOrders(Client client);
 
-    ClientWithIdDto clientMapToDtoWithId(Client model);
+    ClientWithIdDto clientMapToDtoWithId(Client client);
+
+    Client updateClientFromUpdateClientRequest(UpdateClientRequest updateClientRequest, @MappingTarget Client client);
 
     Client dtoMapToClient(ClientDto clientDTO);
 

@@ -3,7 +3,6 @@ package com.khazova.flowerdeliveryservice.controller;
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithOrdersDto;
-import com.khazova.flowerdeliveryservice.model.dto.UpdateClientDto;
 import com.khazova.flowerdeliveryservice.service.clients.ClientService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,8 +35,6 @@ public class ClientControllerTest {
     private final ClientDto dto = new ClientDto("Sokolova", "Svetlana", "Olegovna", "89253651414", "test@mail.ru");
 
     private final ClientWithOrdersDto dtoWithOrders = new ClientWithOrdersDto("Sokolova", "Svetlana", "Olegovna", "89253651414", "test@mail.ru", 2);
-
-    private final UpdateClientDto updateClientDto = new UpdateClientDto("Sokolova", "Svetlana", "Olegovna", "89253651414", "test@mail.ru");
 
     private final String id = "testId";
 
@@ -95,22 +92,22 @@ public class ClientControllerTest {
     @Test
     @DisplayName("Обновление клиента с заданным ID")
     void updateClient() throws Exception {
-        Mockito.when(service.updateClient(id, updateClientDto)).thenReturn(true);
+        Mockito.when(service.updateClient(any(), any())).thenReturn(dto);
 
         mockMvc.perform(put("/api/v1/clients/{id}", id)
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
                                 {
-                                          "lastName": "Sokolova",
-                                          "firstName": "Svetlana",
-                                          "middleName": "Olegovna",
-                                          "phoneNumber": "89253651414",
-                                          "email": "test@mail.ru"
-                                }
-                                """))
+                                   "lastName": "Sokolova",
+                                   "firstName": "Sveta",
+                                   "middleName": "Olegovna",
+                                   "phoneNumber": "89253651414",
+                                   "email": "test@mail.ru"
+                                 }
+                                 """))
                 .andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(jsonPath("$").value("true"));
+                .andExpect(jsonPath("$.lastName").value("Sokolova"));
     }
 
     @Test

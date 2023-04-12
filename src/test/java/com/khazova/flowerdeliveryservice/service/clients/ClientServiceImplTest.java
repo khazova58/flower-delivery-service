@@ -2,7 +2,7 @@ package com.khazova.flowerdeliveryservice.service.clients;
 
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
-import com.khazova.flowerdeliveryservice.model.dto.UpdateClientDto;
+import com.khazova.flowerdeliveryservice.model.dto.UpdateClientRequest;
 import com.khazova.flowerdeliveryservice.model.entity.Client;
 import com.khazova.flowerdeliveryservice.model.entity.Order;
 import com.khazova.flowerdeliveryservice.model.mapper.UserMapperImpl;
@@ -36,6 +36,8 @@ class ClientServiceImplTest {
     private final ClientDto dto = new ClientDto("Sokolova", "Svetlana", "Olegovna", "89253651414", "test@mail.ru");
 
     private final Client client = new Client("Sokolova", "Svetlana", "Olegovna", "89253651414", "test@mail.ru");
+
+    private final UpdateClientRequest update = new UpdateClientRequest("Sokolova", "Svetlana", "Olegovna", "89253651414", "test@mail.ru");
 
     @BeforeEach
     void setUp() {
@@ -72,8 +74,10 @@ class ClientServiceImplTest {
     @Test
     @DisplayName("Обновление клиента по ID")
     void updateClient() {
-        Mockito.when(repository.findById(any())).thenReturn(Optional.of(client));
-        assertTrue(sut.updateClient("testId", new UpdateClientDto("Sokolova","Svetlana", "Olegovna", "89253651414", "test@mail.ru")));
+        Mockito.when(repository.findById("testId")).thenReturn(Optional.of(client));
+        Mockito.when(repository.save(any())).thenReturn(client);
+        sut.updateClient("testId", update);
+        assertEquals("Sokolova", update.getLastName());
     }
 
     @Test
