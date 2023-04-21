@@ -22,14 +22,6 @@ import java.util.Date;
 @NoArgsConstructor
 public class Order {
 
-    @ManyToOne
-    @JoinColumn(name = "courier_id", referencedColumnName = "courier_id")
-    private Courier courier;
-
-    @ManyToOne
-    @JoinColumn(name = "client_id", referencedColumnName = "client_id")
-    private Client client;
-
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
@@ -63,6 +55,14 @@ public class Order {
         this.addressClient = addressClient;
         this.addressDelivery = addressDelivery;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "courier_id", referencedColumnName = "courier_id")
+    private Courier courier;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id", referencedColumnName = "client_id")
+    private Client client;
 
     @Override
     public String toString() {

@@ -7,8 +7,8 @@ import java.util.Date;
 @Data
 public class FindOrderDto {
     private String status;
-    private String nameClient;
     private String lastName;
+    private String firstName;
     private String addressDelivery;
     private Date dateOfOrder;
 }

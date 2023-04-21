@@ -2,6 +2,7 @@ package com.khazova.flowerdeliveryservice.repository;
 
 import com.khazova.flowerdeliveryservice.model.entity.Client;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,12 +17,15 @@ public interface ClientRepository extends JpaRepository<Client, String> {
 
     @Query(value = """
             SELECT o FROM Client o
-            WHERE (:firstName IS NULL OR LOWER(o.firstName) LIKE LOWER(CONCAT (:firstName, '%')))
-            AND (:name IS NULL OR LOWER(o.name) LIKE LOWER(CONCAT(:name, '%')))
-            AND (:lastName IS NULL OR LOWER(o.lastName) LIKE LOWER(CONCAT(:lastName, '%')))
+            WHERE (:lastName IS NULL OR LOWER(o.lastName) LIKE LOWER(CONCAT (:lastName, '%')))
+            AND (:firstName IS NULL OR LOWER(o.firstName) LIKE LOWER(CONCAT(:firstName, '%')))
+            AND (:middleName IS NULL OR LOWER(o.middleName) LIKE LOWER(CONCAT(:middleName, '%')))
             """)
-    List<Client> findClientByFIO(@Param("firstName") String firstName,
-                                 @Param("name") String name,
-                                 @Param("lastName") String lastName,
+    List<Client> findClientByFIO(@Param("lastName") String lastName,
+                                 @Param("firstName") String firstName,
+                                 @Param("middleName") String middleName,
                                  Pageable pageable);
+
+    @EntityGraph(attributePaths = "orders")
+    Optional<Client> findByClientId(String id);
 }

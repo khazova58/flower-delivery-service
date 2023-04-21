@@ -29,13 +29,13 @@ public class Client {
     private String clientId;
 
     @Column(name = "first_name")
-    private String firstName;
+    private String lastName;
 
     @Column(name = "name")
-    private String name;
+    private String firstName;
 
     @Column(name = "last_name")
-    private String lastName;
+    private String middleName;
 
     @Column(name = "phone_number")
     private String phoneNumber;
@@ -43,10 +43,10 @@ public class Client {
     @Column(name = "email")
     private String email;
 
-    public Client(String firstName, String name, String lastName, String phoneNumber, String email) {
-        this.firstName = firstName;
-        this.name = name;
+    public Client(String lastName, String firstName, String middleName, String phoneNumber, String email) {
         this.lastName = lastName;
+        this.firstName = firstName;
+        this.middleName = middleName;
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
