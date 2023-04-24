@@ -3,6 +3,7 @@ package com.khazova.flowerdeliveryservice.model.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class Client {
 
     @OneToMany(mappedBy = "client")
@@ -28,13 +30,13 @@ public class Client {
     @Column(name = "client_id")
     private String clientId;
 
-    @Column(name = "first_name")
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "name")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "middle_name")
     private String middleName;
 
     @Column(name = "phone_number")

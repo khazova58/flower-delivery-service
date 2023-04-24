@@ -1,0 +1,4 @@
+insert into DELIVERY.CLIENTS (CLIENT_ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, PHONE_NUMBER, EMAIL) values ( '1','Соколова', 'Светлана', 'Владимировна', '89273661328', 'sveta357@mail.ru' );
+insert into DELIVERY.CLIENTS (CLIENT_ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, PHONE_NUMBER, EMAIL) values ( '2','Иванов', 'Олег', 'Сергеевич', '89653212121', 'vano@gmail.com' );
+insert into DELIVERY.CLIENTS (CLIENT_ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, PHONE_NUMBER, EMAIL) values ( '3','Данилина', 'Ирина', 'Александровна', '89261566333', 'irishka@yandex.ru' );
+insert into DELIVERY.CLIENTS (CLIENT_ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, PHONE_NUMBER, EMAIL) values ( '4','Соколов', 'Сергей', 'Олегович', '89263598787', 'serega@mail.ru' );
