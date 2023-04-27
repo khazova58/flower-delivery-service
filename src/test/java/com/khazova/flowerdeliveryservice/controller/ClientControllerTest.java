@@ -1,5 +1,6 @@
 package com.khazova.flowerdeliveryservice.controller;
 
+import com.khazova.flowerdeliveryservice.SpringBootAppTest;
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithOrdersDto;
@@ -8,7 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -23,8 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(ClientController.class)
-public class ClientControllerTest {
+public class ClientControllerTest extends SpringBootAppTest {
 
     @MockBean
     private ClientService service;
@@ -59,15 +58,15 @@ public class ClientControllerTest {
                                 """))
                 .andDo(print())
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.clientId").value("testId"));
+                .andExpect(jsonPath("$.clientId").value(id));
     }
 
     @Test
     @DisplayName("Получение клиента по ID")
     void findOneClient() throws Exception {
-        Mockito.when(service.findOneClientById(id)).thenReturn(dtoWithOrders);
+        Mockito.when(service.findOneClientById("testId")).thenReturn(dtoWithOrders);
 
-        mockMvc.perform(get("/api/v1/clients/{id}", id))
+        mockMvc.perform(get("/api/v1/clients/{id}", "testId"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName").value("Svetlana"));
@@ -94,7 +93,7 @@ public class ClientControllerTest {
     void updateClient() throws Exception {
         Mockito.when(service.updateClient(any(), any())).thenReturn(dto);
 
-        mockMvc.perform(put("/api/v1/clients/{id}", id)
+        this.mockMvc.perform(put("/api/v1/clients/{id}", id)
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
                                 {
@@ -113,7 +112,7 @@ public class ClientControllerTest {
     @Test
     @DisplayName("Удаление клиента с заданным ID")
     void deleteClient() throws Exception {
-        Mockito.when(service.deleteClientById(id)).thenReturn(true);
+        Mockito.when(service.deleteClientById("testId")).thenReturn(true);
 
         mockMvc.perform(delete("/api/v1/clients/{id}", id))
                 .andExpect(status().isOk())
