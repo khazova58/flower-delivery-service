@@ -1,6 +1,5 @@
 package com.khazova.flowerdeliveryservice.controller;
 
-import com.khazova.flowerdeliveryservice.SpringBootAppTest;
 import com.khazova.flowerdeliveryservice.model.dto.ClientDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithIdDto;
 import com.khazova.flowerdeliveryservice.model.dto.ClientWithOrdersDto;
@@ -9,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -23,7 +23,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class ClientControllerTest extends SpringBootAppTest {
+@WebMvcTest(ClientController.class)
+public class ClientControllerTest {
 
     @MockBean
     private ClientService service;
