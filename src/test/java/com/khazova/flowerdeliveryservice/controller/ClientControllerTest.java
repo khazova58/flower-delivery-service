@@ -59,15 +59,15 @@ public class ClientControllerTest {
                                 """))
                 .andDo(print())
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.clientId").value("testId"));
+                .andExpect(jsonPath("$.clientId").value(id));
     }
 
     @Test
     @DisplayName("Получение клиента по ID")
     void findOneClient() throws Exception {
-        Mockito.when(service.findOneClientById(id)).thenReturn(dtoWithOrders);
+        Mockito.when(service.findOneClientById("testId")).thenReturn(dtoWithOrders);
 
-        mockMvc.perform(get("/api/v1/clients/{id}", id))
+        mockMvc.perform(get("/api/v1/clients/{id}", "testId"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName").value("Svetlana"));
@@ -94,7 +94,7 @@ public class ClientControllerTest {
     void updateClient() throws Exception {
         Mockito.when(service.updateClient(any(), any())).thenReturn(dto);
 
-        mockMvc.perform(put("/api/v1/clients/{id}", id)
+        this.mockMvc.perform(put("/api/v1/clients/{id}", id)
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
                                 {
@@ -113,7 +113,7 @@ public class ClientControllerTest {
     @Test
     @DisplayName("Удаление клиента с заданным ID")
     void deleteClient() throws Exception {
-        Mockito.when(service.deleteClientById(id)).thenReturn(true);
+        Mockito.when(service.deleteClientById("testId")).thenReturn(true);
 
         mockMvc.perform(delete("/api/v1/clients/{id}", id))
                 .andExpect(status().isOk())
